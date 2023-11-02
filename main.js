@@ -1,4 +1,4 @@
-var md = fetch("/md-to-tracker/example.md").then(response => { response.text() });
+var md = await fetch("/md-to-tracker/example.md").then(response => { return response.text() });
 
 /*
 `
