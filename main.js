@@ -1,4 +1,7 @@
-var md = `
+var md = fetch("/md-to-tracker/main/example.md").then(response => { response.text() });
+
+/*
+`
 # Tundra Boy Lonely
 2014-2016 Era
 ## Gorgeous Records
@@ -13,6 +16,7 @@ Songs released in this era that dont fit a particular group
 | ------------ | -------------------------------------------- | ----------------- | ------ | ------- | ---------- | ---- |
 | Then I'm Off | (prod. Meltycanon) Lone was 14 when Released | 1/6/2016          | N/A    | N/A     | Soundcloud | N/A  |
 `
+*/
 
 var lex = md.split('\n');
 var lexed = {}
