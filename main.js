@@ -1,22 +1,5 @@
 var md = await fetch("/md-to-tracker/example.md").then(response => { return response.text() });
-
-/*
-`
-# Tundra Boy Lonely
-2014-2016 Era
-## Gorgeous Records
-Tracks released by Gorgeous Records
-| Song                             | Description                                          | Leak Date (d/m/y) | Length | Quality | Released | Link |
-| -------------------------------- | ---------------------------------------------------- | ----------------- | ------ | ------- | -------- | ---- |
-| Hunnit Band Lone \*Extreme Trap* | Song released on May 19th, 2016 Title may be wrong   | 19/5/2016         | N/A    | N/A     | Lost     | N/A  |
-| CITGLO! [VERY RARE] [NEW]        | (prod. HELLASKETCHY) Song Released on May 23rd, 2016 | 23/5/2016         | N/A    | N/A     | Lost     | N/A  | 
-## Loosies
-Songs released in this era that dont fit a particular group
-| Song         | Description                                  | Leak Date (d/m/y) | Length | Quality | Released   | Link |
-| ------------ | -------------------------------------------- | ----------------- | ------ | ------- | ---------- | ---- |
-| Then I'm Off | (prod. Meltycanon) Lone was 14 when Released | 1/6/2016          | N/A    | N/A     | Soundcloud | N/A  |
-`
-*/
+// md file
 
 var lex = md.split('\n');
 var lexed = {}
@@ -41,16 +24,18 @@ for (let i = 0; i < lex.length; i++) {
         }
         
         var tbl = tokens.split("|");
-        var buh = ["song", "description", "date", "length", "quality", "released", "link"];
+        var buh = ["song", "features", "producer", "description", "date", "length", "quality", "released", "link"];
         if (previousDictionary) {
             previousDictionaryValueLength = Object.keys(previousDictionary.value).length;
             if (previousDictionary.index >= 2) previousDictionary.value[previousDictionaryValueLength + 1] = {}
         }
 
         for (let key = 0; key < tbl.length; key++) {
-            var value = tbl[key].trimStart().trimEnd();
+            var value = tbl[key].trim();
 
             if (value !== "" && previousDictionary.index >= 2) {
+                if(value == "-") value = "";
+                
                 previousDictionary.value[previousDictionaryValueLength + 1][buh[key-1]] = value;
             }
         }
