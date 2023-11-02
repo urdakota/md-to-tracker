@@ -81,7 +81,7 @@ for (let i = 0; i < lex.length; i++) {
 };
 
 console.log("Loaded Tracker & Formatted");
-console.log(lexed);
+alert(lexed);
 
 // Begin Modifying Website
 
