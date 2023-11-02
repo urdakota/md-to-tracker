@@ -1,19 +1,25 @@
-var md = await fetch("/md-to-tracker/example.md").then(response => { return response.text() });
-// md file
+// Just some functions
+const select = (_, el=document) => el.querySelector(_);
+
+// Load md file
+const md = await fetch("/md-to-tracker/example.md").then(response => { return response.text() });
+
 
 var lex = md.split('\n');
 var lexed = {}
 for (let i = 0; i < lex.length; i++) {
     var length = Object.keys(lexed).length;
-    var tokens = lex[i];
+    var previousDictionary = lexed[length];
+
     var cleaned = tokens.replace(tokens.split(" ")[0], "").trim();
-    var token = "Text";
+    var tokens = lex[i];
+    var type = "Text";
 
-    if (tokens.startsWith("# ")) { token = "Album", lexed[length + 1] = { token: "Album", value: cleaned, description: "" } };
-    if (tokens.startsWith("## ")) { token = "Group", lexed[length + 1] = { token: "Group", value: cleaned, description: "" } };
-    if (tokens.startsWith("| "))  token = "Table";
+    if (tokens.startsWith("# ")) { type = "Album", lexed[length + 1] = { token: "Album", value: cleaned, description: "", image: "" } };
+    if (tokens.startsWith("## ")) { type = "Group", lexed[length + 1] = { token: "Group", value: cleaned, description: "" } };
+    if (tokens.startsWith("| "))  type = "Table";
 
-    if (token == "Table") {
+    if (type == "Table") {
         var previousDictionary = lexed[length];
         var previousDictionaryValueLength = 0;
 
@@ -41,14 +47,45 @@ for (let i = 0; i < lex.length; i++) {
         }
     }
 
-    if (token == "Text" && tokens !== "") {
-        lexed[length].description = tokens.trim();
-        lexed[length] = lexed[length];
+    if (type == "Text" && tokens !== "") {
+        if(!previousDictionary){
+            lexed[length + 1] = { token: "Title", value: cleaned, image: ""};
+        } else {
+            switch(previousDictionary.token){
+                case "Title": 
+                    previousDictionary.image = tokens.trim();
+                    break;
+                case "Album":
+                    if(previousDictionary.description == ""){
+                        previousDictionary.description = tokens.trim();
+                    } else {
+                        previousDictionary.image = tokens.trim();
+                    }
+                    break;
+                case "Group":
+                    previousDictionary.description = tokens.trim();
+                    break;
+                default:
+                    alert(`Error in code!
+                        ${previousDictionary.token} is not [Title, Album, Group]!
+                        type: Text, tokens: ${tokens}
+                    `);
+                    break;
+            }
+            // Update Previous
+            lexed[length] = previousDictionary;
+        }
     }
 
-    //for (const tokens of md.split(' ')) {
-        
-    //};
+    // More later
 };
 
+console.log("Loaded Tracker & Formatted");
 console.log(lexed);
+
+// Begin Modifying Website
+
+var Title = select("Header_title__CHLQo");
+
+Title.innerText = lexed[1].value; // Title
+select("img",Title).src = lexed[1].image; // Image

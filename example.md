@@ -1,5 +1,8 @@
+Destroy Lonely Tracker
+imageurl
 # Tundra Boy Lonely
 2014-2016 Era
+imageurl
 ## Gorgeous Records
 Tracks released by Gorgeous Records
 | Song                             | Features | Producer | Description                                          | Leak Date (d/m/y) | Length | Quality | Released | Link |
