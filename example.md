@@ -14,5 +14,5 @@ Tracks released by Gorgeous Records
 ## Loosies
 Songs released in this era that dont fit a particular group
 | Song                             | Features | Producer     | Description                                          | Leak Date (d/m/y) | Length | File Type | Quality | Released | Link |
-| -------------------------------- | N/A      | N/A          | ---------------------------------------------------- | ----------------- | ------ | --------- | ------- | -------- | ---- |
+| -------------------------------- | -------- | ------------ | ---------------------------------------------------- | ----------------- | ------ | --------- | ------- | -------- | ---- |
 | Then I'm Off                     | N/A      | Meltycanon   | Lone was 14 when Released                            | 1/6/2016          | N/A    | N/A       | N/A     | Lost     | N/A  |
