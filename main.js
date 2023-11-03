@@ -2,7 +2,10 @@
 const select = (_, el=document) => el.querySelector(_);
 
 // constants
-const 
+const table = ["song", "features", "producer", "description", "date", "length", "type", "quality", "released", "link"];
+const filetype = {
+    
+}
 const quality = {
     Lost: { background: "rgb(153, 153, 153)", textcolor: "rgb(0, 0, 0)" },
     NA: { background: "rgb(243, 243, 243)", textcolor: "rgb(0, 0, 0)" },
@@ -43,7 +46,6 @@ async function main() {
             }
 
             var tbl = tokens.split("|");
-            var buh = ["song", "features", "producer", "description", "date", "length", "type", "quality", "released", "link"];
             if (previousDictionary) {
                 previousDictionaryValueLength = Object.keys(previousDictionary.value).length;
                 if (previousDictionary.index >= 2) previousDictionary.value[previousDictionaryValueLength + 1] = {}
