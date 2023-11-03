@@ -18,7 +18,7 @@ const quality = {
     
 // Main
 async function main() {
-    const md = await fetch("./example.md").then(response => { return response.text() });
+    const md = await fetch("/example.md").then(response => { return response.text() });
 
     // Read the entire md file & format into readable object
     var lex = md.split('\n');
