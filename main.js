@@ -3,10 +3,10 @@ const select = (_, el=document) => el.querySelector(_);
 
 // constants
 const table = ["song", "features", "producer", "description", "date", "length", "type", "quality", "released", "link"];
-const filetype = {
+const lengthcolors = {
     
 }
-const quality = {
+const qualitycolors = {
     Lost: { background: "rgb(153, 153, 153)", textcolor: "rgb(0, 0, 0)" },
     NA: { background: "rgb(243, 243, 243)", textcolor: "rgb(0, 0, 0)" },
     LQ: { background: "rgb(255, 0, 0)", textcolor: "rgb(255, 255, 255)" },
@@ -57,7 +57,7 @@ async function main() {
                 if (value !== "" && previousDictionary.index >= 2) {
                     if(value == "-") value = "";
 
-                    previousDictionary.value[previousDictionaryValueLength + 1][buh[key-1]] = value;
+                    previousDictionary.value[previousDictionaryValueLength + 1][table[key-1]] = value;
                 }
             }
         }
