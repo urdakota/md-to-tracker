@@ -243,17 +243,18 @@ async function main() {
     }
   	if (tokens.token == "Table") {
     	
-      var Parent = previousAlbum.songs;
-      if(previousAlbumGroupLength > 0) Parent = previousAlbum.groups[previousAlbumGroupLength].songs;
+      var Parent = previousAlbum.object;
+      if(previousAlbumGroupLength > 0) Parent = previousAlbum.groups[previousAlbumGroupLength].object;
       
       var songs = tokens.value;
     	var songsLength = Object.keys(songs).length;
   		for (let i = 1; i < songsLength + 1; i++) {
       		var song = songs[i];
-        
+        	
           const TextHolder = create("div", Parent);
           TextHolder.classList.add("Song");
-
+					
+					
           const SongName = create("div", TextHolder);
           SongName.classList.add("Song_Name");
 
@@ -265,8 +266,15 @@ async function main() {
 
           const SongDescriptionText = create("Span", SongDescription);
           SongDescriptionText.textContent = song.description;
+					
+          const SongDate = create("div", TextHolder);
+          SongDate.classList.add("Song_Date");
 
-          console.log("Created " + song.song);
+          const SongDateText = create("Span", SongDate);
+          SongDateText.textContent = song.date;
+          
+          
+          console.log(song);
       }
       // Decorate
 			/*
