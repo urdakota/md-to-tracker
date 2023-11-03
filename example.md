@@ -9,10 +9,10 @@ rgb(90, 50, 134)
 Tracks released by Gorgeous Records
 | Song                             | Features | Producer     | Description                                          | Leak Date (d/m/y) | Length | File Type | Quality | Released | Link |
 | -------------------------------- | -------- | ------------ | ---------------------------------------------------- | ----------------- | ------ | --------- | ------- | -------- | ---- |
-| Hunnit Band Lone \*Extreme Trap* | -------- | ------------ | Song released on May 19th, 2016 Title may be wrong   | 19/5/2016         | N/A    | N/A       | N/A     | Lost     | N/A  |
-| CITGLO! [VERY RARE] [NEW]        | -------- | HELLASKETCHY | Song Released on May 23rd, 2016                      | 23/5/2016         | N/A    | N/A       | N/A     | Lost     | N/A  |
+| Hunnit Band Lone \*Extreme Trap* | N/A      | N/A          | Song released on May 19th, 2016 Title may be wrong   | 19/5/2016         | N/A    | N/A       | N/A     | Lost     | N/A  |
+| CITGLO! [VERY RARE] [NEW]        | N/A      | HELLASKETCHY | Song Released on May 23rd, 2016                      | 23/5/2016         | N/A    | N/A       | N/A     | Lost     | N/A  |
 ## Loosies
 Songs released in this era that dont fit a particular group
 | Song                             | Features | Producer     | Description                                          | Leak Date (d/m/y) | Length | File Type | Quality | Released | Link |
-| -------------------------------- | -------- | ------------ | ---------------------------------------------------- | ----------------- | ------ | --------- | ------- | -------- | ---- |
-| Then I'm Off                     | -------- | Meltycanon   | Lone was 14 when Released                            | 1/6/2016          | N/A    | N/A       | N/A     | Lost     | N/A  |
+| -------------------------------- | N/A      | N/A          | ---------------------------------------------------- | ----------------- | ------ | --------- | ------- | -------- | ---- |
+| Then I'm Off                     | N/A      | Meltycanon   | Lone was 14 when Released                            | 1/6/2016          | N/A    | N/A       | N/A     | Lost     | N/A  |
