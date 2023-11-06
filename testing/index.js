@@ -8,17 +8,28 @@ const create = (_, el = document.body) => {
 
 // constants
 const table = ["song", "features", "producer", "description", "date", "length", "type", "quality", "released", "link"];
-const lengthcolors = {
-
+const availableColors = {
+    Snippet: {
+        background: "rgb(230, 145, 56)",
+        textcolor: "rgb(0, 0, 0)"
+    },
+    Full: {
+        background: "rgb(69, 129, 142)",
+        textcolor: "rgb(255, 255, 237)"
+    },
+    Original: {
+        background: "rgb(230, 145, 56)",
+        textcolor: "rgb(255, 255, 255)"
+    }
 }
-const qualitycolors = {
+const qualityColors = {
   Lost: {
     background: "rgb(153, 153, 153)",
     textcolor: "rgb(0, 0, 0)"
   },
-  NA: {
-    background: "rgb(243, 243, 243)",
-    textcolor: "rgb(0, 0, 0)"
+  Recording: {
+    background: "rgb(0, 0, 0)",
+    textcolor: "rgb(243, 243, 243)"
   },
   LQ: {
     background: "rgb(255, 0, 0)",
@@ -61,7 +72,7 @@ function sortTable(columnIndex, table) {
 
 // Main
 async function main() {
-    const md = await fetch("./example.md").then(response => {
+    const md = await fetch("/example.md").then(response => {
         return response.text()
     });
 
