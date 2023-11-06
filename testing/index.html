@@ -1,13 +1,77 @@
 <html>
     <head>
+        <style>
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            th, td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+            }
+
+            th {
+                background-color: #f2f2f2;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            img {
+                border-radius: 4px;
+                margin-right: 10px;
+                vertical-align: sub;
+                height: 200px;
+                width: 200px;
+            }
+
+            .Tracker_Image {
+                border-radius: 4px;
+                margin-right: 10px;
+                vertical-align: sub;
+                height: 80px;
+                width: 80px;
+            }
+        </style>
         <script src="./index.js"></script>
     </head>
-    <body>
-       <h1>
-         Best Tracker
-       </h1>
-       <h2>
-         By me
-       </h2>
+        <body>
+        <h1>
+            Best Tracker
+        </h1>
+        <h2>
+            By me
+        </h2>
+        <script>
+            function sortTable(columnIndex) {
+                const table = document.getElementById('sortable-table');
+                const rows = Array.from(table.querySelectorAll('tbody tr'));
+
+                rows.sort((a, b) => {
+                    const aData = a.cells[columnIndex].textContent;
+                    const bData = b.cells[columnIndex].textContent;
+
+                    if (!isNaN(aData) && !isNaN(bData)) {
+                        return parseFloat(aData) - parseFloat(bData);
+                    } else {
+                        return aData.localeCompare(bData);
+                    }
+                });
+
+                rows.forEach((row) => table.querySelector('tbody').appendChild(row));
+            }
+
+            // Add click event listeners to the header cells for sorting
+            const headerCells = document.querySelectorAll('#sortable-table th');
+            console.log(headerCells)
+            headerCells.forEach((cell, index) => {
+                cell.addEventListener('click', () => {
+                    sortTable(index);
+                });
+            });
+        </script>
     </body>
 </html>
