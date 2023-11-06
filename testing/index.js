@@ -61,7 +61,7 @@ function sortTable(columnIndex, table) {
 
 // Main
 async function main() {
-    const md = await fetch("/example.md").then(response => {
+    const md = await fetch("./example.md").then(response => {
         return response.text()
     });
 
