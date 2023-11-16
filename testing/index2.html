@@ -1,0 +1,254 @@
+<html>
+
+<head> </head>
+
+<body>
+    <script src="./index2.js"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+
+        :root {
+            color-scheme: dark;
+            --dark-primary: #0a0a0a;
+            --dark-secondary: #191919;
+            --light-primary: #fff;
+            --light-secondary: #d3d3d3;
+        }
+
+        * {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            font-family: Inter, sans-serif;
+            color: var(--light-primary);
+            background-color: var(--dark-primary);
+            overflow: hidden;
+            scroll-behavior: smooth;
+            scroll-padding-top: 4rem;
+        }
+
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .Root {
+            --content-spacing: 16px;
+            --content-max-width: 1955px;
+            --content-spacing: clamp(16px, 16px + (100vw - var(--left-sidebar-width, 0px) - var(--panel-width, 0px) - 600px)/424*8, 24px);
+            -webkit-transition: none .5s cubic-bezier(.3, 0, .4, 1);
+            transition: none .5s cubic-bezier(.3, 0, .4, 1);
+            -webkit-transition-property: background;
+            transition-property: background;
+        }
+
+        .contentSpacing {
+            margin: 0;
+            max-width: var(--content-max-width);
+            padding: 0 var(--content-spacing);
+        }
+
+        .Header_header__v0usY {
+            display: flex;
+            justify-content: space-between;
+            padding: 24px;
+            background-color: var(--dark-secondary);
+        }
+
+        .Header_logo__VzOeQ {
+            border-radius: 4px;
+            margin-right: 10px;
+            vertical-align: sub;
+        }
+
+        .Header_index__AMXcn {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .Header_title__CHLQo {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        .Header_links___Fa_y {
+            font-size: 16px;
+        }
+
+        @media screen and (max-width: 1200px) {
+            .Header_links___Fa_y {
+                display: none !important;
+            }
+        }
+
+        .Track_track__j1JOX {
+            color: var(--light-primary);
+            gap: 8px;
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+        .Track_track__j1JOX>div{
+            width: 300px;
+            overflow: shown;
+        }
+        
+        .Track_track__j1JOX>div:nth-child(2){
+            width: 500px;
+            margin-left: 5%;
+            overflow: shown;
+        }
+
+        .Track_track__j1JOX>div:nth-child(3){
+            width: 100px;
+            overflow: shown;
+        }
+
+        .Track_track__j1JOX:hover {
+            background-color: hsla(0, 0%, 100%, 0.1);
+        }
+
+        .Track_play__O_A_T {
+            display: none !important;
+        }
+
+        .Track_track__j1JOX:hover>.Track_play__O_A_T {
+            display: block !important;
+        }
+
+        .Track_aliases__Cctz8,
+        .Track_artists__Ea865,
+        .Track_length__yIb3d {
+            color: var(--light-secondary);
+        }
+
+        .Track_length__yIb3d {
+            margin-left: auto;
+        }
+
+        .Track_tag__WTlmD {
+            padding: 4px;
+            margin-left: 4px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .SearchResults_results__mfJ5h {
+            margin: 20px;
+            padding: 8px;
+            border-radius: 4px;
+            background-color: var(--dark-secondary);
+        }
+
+        .TrackGroup_track_group__1QpGC {
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .TrackGroup_track_group__1QpGC:hover {
+            background-color: hsla(0, 0%, 100%, 0.1);
+        }
+
+        .TrackGroup_tracks__cO4Vr {
+            margin-left: 32px;
+        }
+
+        .EraCard_era__5_ZGH {
+            margin: 20px;
+            border-radius: 4px;
+            background-color: var(--dark-secondary);
+        }
+
+        .EraCard_era__5_ZGH>summary {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            border-radius: 4px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        .EraCard_cover__6ANFI {
+            height: auto;
+            min-width: 136px;
+            max-height: 136px;
+            box-shadow: 0 4px 60px rgba(0, 0, 0, 0.5);
+            border-radius: 4px;
+        }
+
+        .EraCard_title__Xknl9 {
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .EraCard_description__3MKFd {
+            font-size: 14px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .EraCard_era__5_ZGH>summary {
+                text-align: center;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            .EraCard_description__3MKFd {
+                display: none;
+            }
+        }
+
+        .EraCard_tracks__rI0Kj {
+            padding: 16px;
+        }
+
+        .EraCard_subera__uRCRb {
+            background-color: var(--light-primary);
+            color: #000;
+            padding: 8px;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+
+        .unreleased_container__IqK0q {
+            margin: 0 auto;
+            width: 100%;
+            max-width: 90%;
+        }
+    </style>
+    <div>
+        <div style="padding:10px;text-align:center">This site is dynamically generated from
+            <!-- -->
+            <a href="./example.md">this Markdown File</a>.
+            <!-- -->
+            <br>
+        </div>
+        <div class="Header_header__v0usY">
+            <a class="Header_index__AMXcn" href="/">
+                <h1 class="Header_title__CHLQo">
+                    <img alt="Tracker Icon" src="/website/logo (1).png" width="40" height="40" decoding="async"
+                        data-nimg="1" class="Header_logo__VzOeQ" loading="lazy" style="color:transparent">
+                    <span id="Tracker_Name">Loading...</span>
+                    <!-- -->
+                </h1>
+            </a>
+        </div>
+        <div class="unreleased_container__IqK0q"> </div>
+    </div>
+</body>
+
+</html>
