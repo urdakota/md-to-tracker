@@ -17,17 +17,6 @@ const table = [
     "link",
 ];
 
-const MDtoObj = {
-    1: "song",
-    2: "features",
-    3: "producer",
-    4: "description",
-    5: "date",
-    6: "length",
-    7: "quality",
-    8: "released",
-};
-
 const availableColors = {
     Snippet: {
         background: "rgb(230, 145, 56)",
@@ -76,7 +65,7 @@ const qualityColors = {
 
 // Main
 async function main() {
-    const md = await fetch("/example.md").then((response) => {
+    const md = await fetch("https://urdakota.github.io/md-to-tracker/example.md").then((response) => {
         return response.text();
     });
 
