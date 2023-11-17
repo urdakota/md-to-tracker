@@ -6,6 +6,7 @@ const create = (_, el = document.body) => {
 };
 const wait   = (t) => new Promise(_ => setTimeout(_, t*1000));
 
+// List of all properties
 const table = [
     "song",
     "features",
@@ -17,17 +18,6 @@ const table = [
     "released",
     "link",
 ];
-
-const MDtoObj = {
-    1: "song",
-    2: "features",
-    3: "producer",
-    4: "description",
-    5: "date",
-    6: "length",
-    7: "quality",
-    8: "released",
-};
 
 const availableColors = {
     Snippet: {
