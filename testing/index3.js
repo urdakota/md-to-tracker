@@ -71,7 +71,6 @@ async function main() {
     const md = await fetch("./testing.md").then((response) => {
         return response.text();
     });
-
     // Read the entire md file & format into readable object
     var lex = md.split("\n");
     var lexed = {};
@@ -263,7 +262,7 @@ async function main() {
             innerDiv1.textContent = "(" + amount + ") " + tokens.value;
 
             const Description = create('span', mainContainer);
-            if (tokens.description != "N/A") {
+            if (tokens.description != undefined) {
                 //Description.classList.add('Track_length__yIb3d');
                 Description.style = "margin-right:auto;margin-left:auto;text-align:center;font-size: 18px;font-weight: 700;"
                 Description.textContent = tokens.description;
@@ -310,16 +309,16 @@ async function main() {
                         audio.src = fulllink
                         audio.play()
                     } else {
-                        if(adjustedLink != "N/A") window.open(adjustedLink, '_blank');
+                        if(adjustedLink != undefined) window.open(adjustedLink, '_blank');
                     }
                 }
 
                 const innerDiv1 = create('div', mainContainer);
                 const songname = create("span", innerDiv1)
                 songname.textContent = song.song;
-                if (adjustedLink != "N/A") songname.style = "color:rgb(69, 188, 255);font-weight:700"
+                if (adjustedLink != undefined) songname.style = "color:rgb(69, 188, 255);font-weight:700"
 
-                if (song.quality != "N/A") {
+                if (song.quality != undefined) {
                     const QualityTag = create('span', innerDiv1);
                     QualityTag.classList.add('Track_tag__WTlmD');
                     var QualityColors = qualityColors[song.quality]
@@ -330,7 +329,7 @@ async function main() {
                     }
                 }
                 
-                if (song.features != "N/A") {
+                if (song.features != undefined) {
                     const trackFeaturesDiv = create('div', innerDiv1);
                     trackFeaturesDiv.classList.add('Track_tag__WTlmD');
                     const featuresSpan = create('span', trackFeaturesDiv);
@@ -338,7 +337,7 @@ async function main() {
                     featuresSpan.textContent = '(ft. ' + song.features + ')';
                 }
                 
-                if (song.producer != "N/A") {
+                if (song.producer != undefined) {
                     const trackProducersDiv = create('div', innerDiv1);
                     trackProducersDiv.classList.add('Track_tag__WTlmD');
                     const producersSpan = create('span', trackProducersDiv);
@@ -347,18 +346,18 @@ async function main() {
                 }
 
                 const songDescription = create('div', mainContainer);
-                if (song.description != "N/A") {
+                if (song.description != undefined) {
                     songDescription.classList.add('Track_length__yIb3d');
                     songDescription.textContent = song.description;
                 }
 
                 const releaseDateDiv = create('div', mainContainer);
-                if (song.date != "N/A") {
+                if (song.date != undefined) {
                     releaseDateDiv.classList.add('Track_length__yIb3d');
                     releaseDateDiv.textContent = song.date;
                 }
 
-                if (song.length != "N/A") {
+                if (song.length != undefined) {
                     const LengthTag = create('span', mainContainer);
                     LengthTag.classList.add('Track_tag__WTlmD');
                     var LengthColors = availableColors[song.length]
