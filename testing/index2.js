@@ -4,6 +4,7 @@ const create = (_, el = document.body) => {
     el.appendChild(created);
     return created;
 };
+const wait   = (t) => new Promise(_ => setTimeout(_, t*1000));
 
 const table = [
     "song",
@@ -16,6 +17,17 @@ const table = [
     "released",
     "link",
 ];
+
+const MDtoObj = {
+    1: "song",
+    2: "features",
+    3: "producer",
+    4: "description",
+    5: "date",
+    6: "length",
+    7: "quality",
+    8: "released",
+};
 
 const availableColors = {
     Snippet: {
@@ -65,7 +77,8 @@ const qualityColors = {
 
 // Main
 async function main() {
-    const md = await fetch("https://urdakota.github.io/md-to-tracker/example.md").then((response) => {
+    const audio = select("audio")
+    const md = await fetch("./example.md").then((response) => {
         return response.text();
     });
 
@@ -279,13 +292,37 @@ async function main() {
             for (let i = 1; i < songsLength + 1; i++) {
                 var song = songs[i];
 
-                const linkthingy = create("a", Holder)
-                var adjustedLink = song.link;
-                if (adjustedLink != "N/A") linkthingy.setAttribute('href', adjustedLink);
-                linkthingy.style.textDecoration = 'none';
-
-                const mainContainer = create('div', linkthingy);
+                const mainContainer = create('div', Holder);
                 mainContainer.classList.add('Tooltip_tooltip__q1OLA', 'Track_track__j1JOX');
+
+                var adjustedLink = song.link;
+                mainContainer.setAttribute("link", adjustedLink);
+                mainContainer.onclick = async function () {
+                    let adjustedLink = mainContainer.getAttribute("link");
+                    console.log(adjustedLink)
+                    if (adjustedLink.includes("pilowcase.zip")){
+                        let hash = adjustedLink.split("/")[-1]
+                        let request = await fetch("https://api.pillowcase.zip/api/download/" + hash);
+                    } else if (adjustedLink.includes("krakenfiles.com")) {
+                        console.log("KRAKEN")
+                        let request = await fetch(adjustedLink);
+                        let soup = new DOMParser().parseFromString(await request.text(), "text/html");
+
+                        let hash = adjustedLink.split("/file.html")[0].split("view/")[1]
+                        let link = soup.querySelector('form').action;
+                        let date = soup.querySelector("body > div > div > div.nk-content.nk-content-fluid > div > div > div > div.nk-block.invest-block > div > div.col-xl-4.col-lg-5.general-information > div.invest-field.card.card-bordered.ml-lg-4.ml-xl-0 > div > div:nth-child(1) > ul > li:nth-child(1) > div.lead-text").textContent
+
+                        console.log(hash, link, date)
+                        let leadlink = link.split("/download")[0];
+                        let fulllink = leadlink + "/uploads/" + date.replaceAll(".", "-") + "/" + hash + "/music.m4a"
+
+                        let audio = select("audio")
+                        audio.src = fulllink
+                        audio.play()
+                    } else {
+                        if(adjustedLink != "N/A") window.open(adjustedLink, '_blank');
+                    }
+                }
 
                 const innerDiv1 = create('div', mainContainer);
                 const songname = create("span", innerDiv1)
