@@ -68,7 +68,7 @@ const qualityColors = {
 // Main
 async function main() {
     const audio = select("audio")
-    const md = await fetch("/testing.md").then((response) => {
+    const md = await fetch("./testing.md").then((response) => {
         return response.text();
     });
 
