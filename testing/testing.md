@@ -9,7 +9,7 @@ rgb(90, 50, 134)
 Tracks released by Gorgeous Records
 | Song                             | Features | Producer     | Description                                          | Leak Date (d/m/y) | Length | Quality | Released | Link |
 | -------------------------------- | -------- | ------------ | ---------------------------------------------------- | ----------------- | ------ | ------- | -------- | ---- |
-| Hunnit Band Lone                 |          |              | posted as: "Hunnit Band Lone *Extreme Trap*"         | 19/5/2016         |        | Lost    | Yes      |      |
+| Hunnit Band Lone                 |          |              | posted as: "Hunnit Band Lone *Extreme Trap*"         | 19/5/2016         |        | Lost    | Yes      | https://krakenfiles.com/view/fIgcS370rn/file.html    |
 | CITGLO!                          |          | HELLASKETCHY | posted as: "CITGLO! [VERY RARE] [NEW]"               | 23/5/2016         |        | Lost    | Yes      |      |
 ## Loosies
 Songs released in this era that dont fit a particular group
