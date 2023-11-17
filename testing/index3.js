@@ -5,6 +5,18 @@ const create = (_, el = document.body) => {
     return created;
 };
 const wait   = (t) => new Promise(_ => setTimeout(_, t*1000));
+var previousbutton;
+const audioplayer = select("audio");
+const play_audio = (link, button) => {
+  audioplayer.pause();
+  if (previousbutton) previousbutton.textContent = "play_arrow"
+  
+  audioplayer.src = link;
+  audioplayer.play();
+  button.textContent = "stop"
+  
+  if (previousbutton != button) previousbutton = button;
+}
 
 // List of all properties
 const table = [
@@ -68,9 +80,26 @@ const qualityColors = {
 // Main
 async function main() {
     const audio = select("audio")
-    const md = await fetch("./testing.md").then((response) => {
-        return response.text();
-    });
+    const md = `
+    Destroy Lonely Tracker
+https://i.redd.it/6d40e3x59ns61.jpg
+# Tundra Boy Lonely
+2014-2016 Era
+https://i1.sndcdn.com/artworks-000189940788-5gm1xs-t200x200.jpg
+rgb(230, 207, 242)
+rgb(90, 50, 134)
+## Gorgeous Records
+Tracks released by Gorgeous Records
+| Song                             | Features | Producer     | Description                                          | Leak Date (d/m/y) | Length | Quality | Released | Link |
+| -------------------------------- | -------- | ------------ | ---------------------------------------------------- | ----------------- | ------ | ------- | -------- | ---- |
+| Hunnit Band Lone                 |          |              | posted as: "Hunnit Band Lone *Extreme Trap*"         | 19/5/2016         |        | Lost    | Yes      | https://krakenfiles.com/view/fIgcS370rn/file.html    |
+| CITGLO!                          |          | HELLASKETCHY | posted as: "CITGLO! [VERY RARE] [NEW]"               | 23/5/2016         |        | Lost    | Yes      |      |
+## Loosies
+Songs released in this era that dont fit a particular group
+| Song                             | Features | Producer     | Description                                          | Leak Date (d/m/y) | Length | Quality | Released | Link |
+| -------------------------------- | -------- | ------------ | ---------------------------------------------------- | ----------------- | ------ | ------- | -------- | ---- |
+| Then I'm Off                     |          | Meltycanon   | Lone was 14 when Released                            | 1/6/2016          |        | Lost    | Yes      |      |
+`
     // Read the entire md file & format into readable object
     var lex = md.split("\n");
     var lexed = {};
@@ -283,12 +312,21 @@ async function main() {
 
                 const mainContainer = create('div', Holder);
                 mainContainer.classList.add('Tooltip_tooltip__q1OLA', 'Track_track__j1JOX');
+              
+                
+                const playButton = create("span", mainContainer);
+                playButton.classList.add("material-symbols-outlined");
+                if(!!song.link) playButton.textContent = "play_arrow";
 
                 var adjustedLink = song.link;
                 mainContainer.setAttribute("link", adjustedLink);
                 mainContainer.onclick = async function () {
                     let adjustedLink = mainContainer.getAttribute("link");
-                    console.log(adjustedLink)
+                    
+                    if (playButton.textContent == "stop"){
+                      playButton.textContent = "play_arrow";
+                      audioplayer.pause();
+                    }
                     if (adjustedLink.includes("pilowcase.zip")){
                         let hash = adjustedLink.split("/")[-1]
                         let request = await fetch("https://api.pillowcase.zip/api/download/" + hash);
@@ -305,9 +343,7 @@ async function main() {
                         let leadlink = link.split("/download")[0];
                         let fulllink = leadlink + "/uploads/" + date.replaceAll(".", "-") + "/" + hash + "/music.m4a"
 
-                        let audio = select("audio")
-                        audio.src = fulllink
-                        audio.play()
+                        play_audio(fulllink, playButton)
                     } else {
                         if(adjustedLink != undefined) window.open(adjustedLink, '_blank');
                     }
@@ -377,6 +413,10 @@ async function main() {
                 } else {
                     releasedDiv.textContent = '        ';
                 }
+              
+                const downloadButton = create("span", mainContainer);
+                downloadButton.classList.add("material-symbols-outlined");
+                if (!!song.link) downloadButton.textContent = "download";
             }
 
         }
