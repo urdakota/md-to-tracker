@@ -4,19 +4,70 @@ const create = (_, el = document.body) => {
     el.appendChild(created);
     return created;
 };
-const wait   = (t) => new Promise(_ => setTimeout(_, t*1000));
-var previousbutton;
-const audioplayer = select("audio");
-const play_audio = (link, button) => {
-  audioplayer.pause();
-  if (previousbutton) previousbutton.textContent = "play_arrow"
-  
-  audioplayer.src = link;
-  audioplayer.play();
-  button.textContent = "stop"
-  
-  if (previousbutton != button) previousbutton = button;
+const wait = (t) => new Promise((_) => setTimeout(_, t * 1000));
+var fadingto = 1;
+var isfading = false;
+
+const fade = async (element, volume) => {
+    element.play();
+    if (isfading) isfading = false;
+    fadingto = volume;
+
+    isfading = true;
+    var direction = (volume >= element.volume) ? 1 : -1;
+    var step = 0.02;
+
+    do {
+        if (element.volume + (step * direction) < 0 || (direction > 0 && element.volume + (step * direction) > fadingto)) {
+            element.volume = fadingto;
+            isfading = false;
+        } else {
+            element.volume += (step * direction);
+        }
+        
+        await wait(0.01);
+    } while (element.volume != fadingto && isfading)
+    if (element.volume <= 0) element.pause();
+    console.log(element.volume, volume)
 }
+const fetchaudio = async (link) => {
+    if (link.includes("pilowcase.zip")) {
+        let hash = link.split("/")[-1];
+        return `https://api.pillowcase.zip/api/download/${hash}`;
+    } else if (link.includes("krakenfiles.com")) {
+        let request = await fetch(link);
+        let soup = new DOMParser().parseFromString(
+            await request.text(),
+            "text/html"
+        );
+
+        let hash = link.split("/file.html")[0].split("view/")[1];
+        let downloadlink = soup.querySelector("form").action;
+        let date = soup.querySelector(
+            "body > div > div > div.nk-content.nk-content-fluid > div > div > div > div.nk-block.invest-block > div > div.col-xl-4.col-lg-5.general-information > div.invest-field.card.card-bordered.ml-lg-4.ml-xl-0 > div > div:nth-child(1) > ul > li:nth-child(1) > div.lead-text"
+        ).textContent;
+
+        return `${downloadlink.split("/download")[0]}/uploads/${date.replaceAll(
+            ".",
+            "-"
+        )}/${hash}/music.m4a`;
+    }
+    return link;
+};
+var previousbutton;
+var currentsong;
+var audioplayer = select("audio");
+const play_audio = (link, button) => {
+    audioplayer = select("audio");
+    if (!!audioplayer.src && audioplayer.src != link) fade(audioplayer, 0);
+    if (!!previousbutton) previousbutton.textContent = "play_arrow";
+
+    if (audioplayer.src != link) audioplayer.src = link;
+    fade(audioplayer, 1);
+    button.textContent = "stop";
+
+    previousbutton = button;
+};
 
 // List of all properties
 const table = [
@@ -79,27 +130,9 @@ const qualityColors = {
 
 // Main
 async function main() {
-    const audio = select("audio")
-    const md = `
-    Destroy Lonely Tracker
-https://i.redd.it/6d40e3x59ns61.jpg
-# Tundra Boy Lonely
-2014-2016 Era
-https://i1.sndcdn.com/artworks-000189940788-5gm1xs-t200x200.jpg
-rgb(230, 207, 242)
-rgb(90, 50, 134)
-## Gorgeous Records
-Tracks released by Gorgeous Records
-| Song                             | Features | Producer     | Description                                          | Leak Date (d/m/y) | Length | Quality | Released | Link |
-| -------------------------------- | -------- | ------------ | ---------------------------------------------------- | ----------------- | ------ | ------- | -------- | ---- |
-| Hunnit Band Lone                 |          |              | posted as: "Hunnit Band Lone *Extreme Trap*"         | 19/5/2016         |        | Lost    | Yes      | https://krakenfiles.com/view/fIgcS370rn/file.html    |
-| CITGLO!                          |          | HELLASKETCHY | posted as: "CITGLO! [VERY RARE] [NEW]"               | 23/5/2016         |        | Lost    | Yes      |      |
-## Loosies
-Songs released in this era that dont fit a particular group
-| Song                             | Features | Producer     | Description                                          | Leak Date (d/m/y) | Length | Quality | Released | Link |
-| -------------------------------- | -------- | ------------ | ---------------------------------------------------- | ----------------- | ------ | ------- | -------- | ---- |
-| Then I'm Off                     |          | Meltycanon   | Lone was 14 when Released                            | 1/6/2016          |        | Lost    | Yes      |      |
-`
+    const md = await fetch("./testing.md").then((response) => {
+        return response.text();
+    });
     // Read the entire md file & format into readable object
     var lex = md.split("\n");
     var lexed = {};
@@ -279,124 +312,118 @@ Songs released in this era that dont fit a particular group
         if (tokens.token == "Group") {
             var Parent = previousAlbum;
             var amount = Object.keys(lexed[i + 1].value).length;
-            var Holder = select(".EraCard_tracks__rI0Kj", Parent)
-            const mainContainer = create('div', Holder);
+            var Holder = select(".EraCard_tracks__rI0Kj", Parent);
+            const mainContainer = create("div", Holder);
             mainContainer.style = `
             margin-left: 1.5%;
             font-size: 26px;
             font-weight: 700;
             display: flex;
-            align-items: center;`
-            const innerDiv1 = create('div', mainContainer);
+            align-items: center;`;
+            const innerDiv1 = create("div", mainContainer);
             innerDiv1.textContent = "(" + amount + ") " + tokens.value;
 
-            const Description = create('span', mainContainer);
+            const Description = create("span", mainContainer);
             if (tokens.description != undefined) {
                 //Description.classList.add('Track_length__yIb3d');
-                Description.style = "margin-right:auto;margin-left:auto;text-align:center;font-size: 18px;font-weight: 700;"
+                Description.style =
+                    "margin-right:auto;margin-left:auto;text-align:center;font-size: 18px;font-weight: 700;";
                 Description.textContent = tokens.description;
             }
-
         }
 
         if (tokens.token == "Table") {
-
             var Parent = previousAlbum;
-            
-            var Holder = select(".EraCard_tracks__rI0Kj", Parent)
-            
+
+            var Holder = select(".EraCard_tracks__rI0Kj", Parent);
+
             var songs = tokens.value;
             var songsLength = Object.keys(songs).length;
             for (let i = 1; i < songsLength + 1; i++) {
                 var song = songs[i];
 
-                const mainContainer = create('div', Holder);
-                mainContainer.classList.add('Tooltip_tooltip__q1OLA', 'Track_track__j1JOX');
-              
-                
+                const mainContainer = create("div", Holder);
+                mainContainer.classList.add(
+                    "Tooltip_tooltip__q1OLA",
+                    "Track_track__j1JOX"
+                );
+
                 const playButton = create("span", mainContainer);
-                playButton.classList.add("material-symbols-outlined");
-                if(!!song.link) playButton.textContent = "play_arrow";
+                playButton.classList.add("material-symbols-outlined", "Track_play");
+                if (!!song.link) playButton.textContent = "play_arrow";
 
                 var adjustedLink = song.link;
                 mainContainer.setAttribute("link", adjustedLink);
                 mainContainer.onclick = async function () {
                     let adjustedLink = mainContainer.getAttribute("link");
-                    
-                    if (playButton.textContent == "stop"){
-                      playButton.textContent = "play_arrow";
-                      audioplayer.pause();
-                    }
-                    if (adjustedLink.includes("pilowcase.zip")){
-                        let hash = adjustedLink.split("/")[-1]
-                        let request = await fetch("https://api.pillowcase.zip/api/download/" + hash);
-                    } else if (adjustedLink.includes("krakenfiles.com")) {
-                        console.log("KRAKEN")
-                        let request = await fetch(adjustedLink);
-                        let soup = new DOMParser().parseFromString(await request.text(), "text/html");
 
-                        let hash = adjustedLink.split("/file.html")[0].split("view/")[1]
-                        let link = soup.querySelector('form').action;
-                        let date = soup.querySelector("body > div > div > div.nk-content.nk-content-fluid > div > div > div > div.nk-block.invest-block > div > div.col-xl-4.col-lg-5.general-information > div.invest-field.card.card-bordered.ml-lg-4.ml-xl-0 > div > div:nth-child(1) > ul > li:nth-child(1) > div.lead-text").textContent
-
-                        console.log(hash, link, date)
-                        let leadlink = link.split("/download")[0];
-                        let fulllink = leadlink + "/uploads/" + date.replaceAll(".", "-") + "/" + hash + "/music.m4a"
-
-                        play_audio(fulllink, playButton)
+                    if (playButton.textContent == "stop") {
+                        playButton.textContent = "play_arrow";
+                        fade(audioplayer, 0);
                     } else {
-                        if(adjustedLink != undefined) window.open(adjustedLink, '_blank');
+                        if (previousbutton == playButton) {
+                            playButton.textContent = "stop";
+                            fade(audioplayer, 1);
+                        } else {
+                            let audiolink = await fetchaudio(adjustedLink);
+                            play_audio(audiolink, playButton);
+                        }
                     }
-                }
+                };
 
-                const innerDiv1 = create('div', mainContainer);
-                const songname = create("span", innerDiv1)
+                const innerDiv1 = create("div", mainContainer);
+                const songname = create("span", innerDiv1);
+                songname.classList.add("Track_name");
                 songname.textContent = song.song;
-                if (adjustedLink != undefined) songname.style = "color:rgb(69, 188, 255);font-weight:700"
+                if (adjustedLink != undefined)
+                    songname.style = "color:rgb(69, 188, 255);font-weight:700";
 
                 if (song.quality != undefined) {
-                    const QualityTag = create('span', innerDiv1);
-                    QualityTag.classList.add('Track_tag__WTlmD');
-                    var QualityColors = qualityColors[song.quality]
+                    const QualityTag = create("span", innerDiv1);
+                    QualityTag.classList.add("Track_tag__WTlmD");
+                    var QualityColors = qualityColors[song.quality];
                     if (!!QualityColors) {
                         QualityTag.style.color = QualityColors.textcolor;
                         QualityTag.style.backgroundColor = QualityColors.background;
                         QualityTag.textContent = song.quality;
                     }
                 }
-                
+
                 if (song.features != undefined) {
-                    const trackFeaturesDiv = create('div', innerDiv1);
-                    trackFeaturesDiv.classList.add('Track_tag__WTlmD');
-                    const featuresSpan = create('span', trackFeaturesDiv);
-                    featuresSpan.style.color = 'rgb(255, 255, 255)';
-                    featuresSpan.textContent = '(ft. ' + song.features + ')';
-                }
-                
-                if (song.producer != undefined) {
-                    const trackProducersDiv = create('div', innerDiv1);
-                    trackProducersDiv.classList.add('Track_tag__WTlmD');
-                    const producersSpan = create('span', trackProducersDiv);
-                    producersSpan.style.color = 'rgb(255, 255, 255)';
-                    producersSpan.textContent = '(prod. ' + song.producer + ')';
+                    const trackFeaturesDiv = create("div", innerDiv1);
+                    trackFeaturesDiv.classList.add("Track_tag__WTlmD");
+                    const featuresSpan = create("span", trackFeaturesDiv);
+                    featuresSpan.style.color = "rgb(255, 255, 255)";
+                    featuresSpan.textContent = "(ft. " + song.features + ")";
                 }
 
-                const songDescription = create('div', mainContainer);
+                if (song.producer != undefined) {
+                    const trackProducersDiv = create("div", innerDiv1);
+                    trackProducersDiv.classList.add("Track_tag__WTlmD");
+                    const producersSpan = create("span", trackProducersDiv);
+                    producersSpan.style.color = "rgb(255, 255, 255)";
+                    producersSpan.textContent = "(prod. " + song.producer + ")";
+                }
+
+                const songDescription = create("div", mainContainer);
                 if (song.description != undefined) {
-                    songDescription.classList.add('Track_length__yIb3d');
+                    songDescription.classList.add(
+                        "Track_length__yIb3d",
+                        "Track_description"
+                    );
                     songDescription.textContent = song.description;
                 }
 
-                const releaseDateDiv = create('div', mainContainer);
+                const releaseDateDiv = create("div", mainContainer);
                 if (song.date != undefined) {
-                    releaseDateDiv.classList.add('Track_length__yIb3d');
+                    releaseDateDiv.classList.add("Track_length__yIb3d", "Track_date");
                     releaseDateDiv.textContent = song.date;
                 }
 
                 if (song.length != undefined) {
-                    const LengthTag = create('span', mainContainer);
-                    LengthTag.classList.add('Track_tag__WTlmD');
-                    var LengthColors = availableColors[song.length]
+                    const LengthTag = create("span", mainContainer);
+                    LengthTag.classList.add("Track_tag__WTlmD");
+                    var LengthColors = availableColors[song.length];
                     if (!!QualityColors) {
                         LengthTag.style.color = LengthColors.textcolor;
                         LengthTag.style.backgroundColor = LengthColors.background;
@@ -404,43 +431,28 @@ Songs released in this era that dont fit a particular group
                     }
                 }
 
-                const releasedDiv = create('span', mainContainer);
-                releasedDiv.classList.add('Track_length__yIb3d', 'Track_tag__WTlmD');
+                const releasedDiv = create("span", mainContainer);
+                releasedDiv.classList.add("Track_length__yIb3d", "Track_tag__WTlmD");
                 if (song.released != "No" && song.quality != "Lost") {
-                    releasedDiv.style.color = 'rgb(255, 255, 255)';
-                    releasedDiv.style.backgroundColor = 'rgb(76, 175, 80)';
-                    releasedDiv.textContent = 'Released';
+                    releasedDiv.style.color = "rgb(255, 255, 255)";
+                    releasedDiv.style.backgroundColor = "rgb(76, 175, 80)";
+                    releasedDiv.textContent = "Released";
                 } else {
-                    releasedDiv.textContent = '        ';
+                    releasedDiv.textContent = "        ";
                 }
-              
+
                 const downloadButton = create("span", mainContainer);
                 downloadButton.classList.add("material-symbols-outlined");
                 if (!!song.link) downloadButton.textContent = "download";
             }
-
         }
     }
-
-    // Add the class attribute
-
-    // Append the details element to the document or another container element
-
-    /*
-    <details class="EraCard_era__5_ZGH">
-        <div class="EraCard_tracks__rI0Kj">
-            <div id="b46fee5b199307af84ee2bc370d94488" tag="div" class="Tooltip_tooltip__q1OLA Track_track__j1JOX" content="No description available." data-content="No description available.">
-            <div>
-                <div>Hohner Melodica #1
-                <!-- -->
-                <span class="Track_tag__WTlmD" style="color:rgb(255, 255, 255);background-color:rgb(69, 188, 255)">Lossless</span>
-                </div>
-            </div>
-            <div class="Track_length__yIb3d">0:02</div>
-            </div>
-        </div>
-    </details>
-    */
+    
+    audioplayer = select("audio");
+    audioplayer.addEventListener("ended", function(){
+        audioplayer.currentTime = 0;
+        if(!!previousbutton) previousbutton.textContent = "play_arrow";
+    });
 }
 
 main();
