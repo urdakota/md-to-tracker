@@ -9,6 +9,7 @@ var fadingto = 1;
 var isfading = false;
 
 const fade = async (element, volume) => {
+    // ChatGPT 3.5 Made it :d
     element.play();
     if (isfading) isfading = false;
     fadingto = volume;
@@ -28,7 +29,6 @@ const fade = async (element, volume) => {
         await wait(0.01);
     } while (element.volume != fadingto && isfading)
     if (element.volume <= 0) element.pause();
-    console.log(element.volume, volume)
 }
 const fetchaudio = async (link) => {
     if (link.includes("pilowcase.zip")) {
@@ -54,19 +54,34 @@ const fetchaudio = async (link) => {
     }
     return link;
 };
+const downloadaudio = async (link) => {
+    if (link.includes("pilowcase.zip")) {
+        let hash = link.split("/")[-1];
+        select('#download_helper').src = `https://api.pillowcase.zip/api/download/${hash}`;
+    } else {
+        select("#page_opener").href = link;
+        select("#page_opener").click();
+    }
+}
 var previousbutton;
 var currentsong;
 var audioplayer = select("audio");
-const play_audio = (link, button) => {
+const play_audio = async (link, button) => {
     audioplayer = select("audio");
     if (!!audioplayer.src && audioplayer.src != link) fade(audioplayer, 0);
-    if (!!previousbutton) previousbutton.textContent = "play_arrow";
-
+    if (!!previousbutton) {
+        previousbutton.textContent = "play_circle";
+        previousbutton.parentElement.style["background-color"] = "";
+    }
+    await wait(0.5);
     if (audioplayer.src != link) audioplayer.src = link;
     fade(audioplayer, 1);
-    button.textContent = "stop";
+    button.textContent = "pause_circle";
+    button.parentElement.style["background-color"] = "hsla(0, 0%, 100%, 0.1)";
 
     previousbutton = button;
+    // Fixes weird bug where audio gets stuck very low
+    fade(audioplayer, 1);
 };
 
 // List of all properties
@@ -350,23 +365,23 @@ async function main() {
 
                 const playButton = create("span", mainContainer);
                 playButton.classList.add("material-symbols-outlined", "Track_play");
-                if (!!song.link) playButton.textContent = "play_arrow";
+                if (!!song.link) playButton.textContent = "play_circle";
 
                 var adjustedLink = song.link;
                 mainContainer.setAttribute("link", adjustedLink);
                 mainContainer.onclick = async function () {
                     let adjustedLink = mainContainer.getAttribute("link");
 
-                    if (playButton.textContent == "stop") {
-                        playButton.textContent = "play_arrow";
+                    if (playButton.textContent == "pause_circle") {
+                        playButton.textContent = "play_circle";
                         fade(audioplayer, 0);
                     } else {
                         if (previousbutton == playButton) {
-                            playButton.textContent = "stop";
+                            playButton.textContent = "pause_circle";
                             fade(audioplayer, 1);
                         } else {
                             let audiolink = await fetchaudio(adjustedLink);
-                            play_audio(audiolink, playButton);
+                            await play_audio(audiolink, playButton);
                         }
                     }
                 };
@@ -389,6 +404,17 @@ async function main() {
                     }
                 }
 
+                if (song.length != undefined) {
+                    const LengthTag = create("span", innerDiv1);
+                    LengthTag.classList.add("Track_tag__WTlmD");
+                    var LengthColors = availableColors[song.length];
+                    if (!!QualityColors) {
+                        LengthTag.style.color = LengthColors.textcolor;
+                        LengthTag.style.backgroundColor = LengthColors.background;
+                        LengthTag.textContent = song.length;
+                    }
+                }
+
                 if (song.features != undefined) {
                     const trackFeaturesDiv = create("div", innerDiv1);
                     trackFeaturesDiv.classList.add("Track_tag__WTlmD");
@@ -408,8 +434,8 @@ async function main() {
                 const songDescription = create("div", mainContainer);
                 if (song.description != undefined) {
                     songDescription.classList.add(
-                        "Track_length__yIb3d",
-                        "Track_description"
+                        "Track_description",
+                        "Track_length__yIb3d"
                     );
                     songDescription.textContent = song.description;
                 }
@@ -420,19 +446,8 @@ async function main() {
                     releaseDateDiv.textContent = song.date;
                 }
 
-                if (song.length != undefined) {
-                    const LengthTag = create("span", mainContainer);
-                    LengthTag.classList.add("Track_tag__WTlmD");
-                    var LengthColors = availableColors[song.length];
-                    if (!!QualityColors) {
-                        LengthTag.style.color = LengthColors.textcolor;
-                        LengthTag.style.backgroundColor = LengthColors.background;
-                        LengthTag.textContent = song.length;
-                    }
-                }
-
                 const releasedDiv = create("span", mainContainer);
-                releasedDiv.classList.add("Track_length__yIb3d", "Track_tag__WTlmD");
+                releasedDiv.classList.add("Track_length__yIb3d", "Track_tag__WTlmD", "ReleasedTag");
                 if (song.released != "No" && song.quality != "Lost") {
                     releasedDiv.style.color = "rgb(255, 255, 255)";
                     releasedDiv.style.backgroundColor = "rgb(76, 175, 80)";
@@ -444,6 +459,10 @@ async function main() {
                 const downloadButton = create("span", mainContainer);
                 downloadButton.classList.add("material-symbols-outlined");
                 if (!!song.link) downloadButton.textContent = "download";
+                downloadButton.onclick = async function (event) {
+                    event.stopPropagation();
+                    downloadaudio(mainContainer.getAttribute("link"));
+                };
             }
         }
     }
@@ -451,7 +470,7 @@ async function main() {
     audioplayer = select("audio");
     audioplayer.addEventListener("ended", function(){
         audioplayer.currentTime = 0;
-        if(!!previousbutton) previousbutton.textContent = "play_arrow";
+        if(!!previousbutton) previousbutton.textContent = "play_circle";
     });
 }
 
