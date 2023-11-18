@@ -11,16 +11,12 @@
     <script src="./index3.js"></script>
     <style>
         .material-symbols-outlined {
-            font-variation-settings:
-                'FILL' 0,
-                'wght' 400,
-                'GRAD' 0,
-                'opsz' 24
+            font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
         }
 
         .material-symbols-outlined {
             margin-left: 20px;
-            margin-right: 20px
+            margin-right: 20px;
         }
     </style>
     <style>
@@ -51,10 +47,12 @@
             overflow: hidden;
             scroll-behavior: smooth;
             scroll-padding-top: 4rem;
-            
         }
 
-        html,body{overflow-y: scroll; }
+        html,
+        body {
+            overflow-y: scroll;
+        }
 
         body {
             -webkit-font-smoothing: antialiased;
@@ -64,9 +62,11 @@
         .Root {
             --content-spacing: 16px;
             --content-max-width: 1955px;
-            --content-spacing: clamp(16px, 16px + (100vw - var(--left-sidebar-width, 0px) - var(--panel-width, 0px) - 600px)/424*8, 24px);
-            -webkit-transition: none .5s cubic-bezier(.3, 0, .4, 1);
-            transition: none .5s cubic-bezier(.3, 0, .4, 1);
+            --content-spacing: clamp(16px,
+                    16px + (100vw - var(--left-sidebar-width, 0px) - var(--panel-width, 0px) - 600px)/424 * 8,
+                    24px);
+            -webkit-transition: none 0.5s cubic-bezier(0.3, 0, 0.4, 1);
+            transition: none 0.5s cubic-bezier(0.3, 0, 0.4, 1);
             -webkit-transition-property: background;
             transition-property: background;
         }
@@ -134,6 +134,7 @@
             width: 300px;
             margin-left: 0%;
             overflow: shown;
+            white-space: pre;
         }
 
         .Track_description {
@@ -147,7 +148,7 @@
             overflow: shown;
         }
 
-        .Track_track__j1JOX>div {
+        .Track_track__j1JOX>div:nth-child(2) {
             width: 300px;
             overflow: shown;
         }
@@ -180,6 +181,10 @@
             border-radius: 4px;
             font-weight: 700;
             font-size: 14px;
+        }
+
+        .ReleasedTag {
+            width: 70px;
         }
 
         .SearchResults_results__mfJ5h {
@@ -266,24 +271,101 @@
         }
     </style>
     <audio id="audio" preload="metadata"></audio>
-    <div>
-        <div style="padding:10px;text-align:center">This site is dynamically generated from
-            <!-- -->
-            <a href="./example.md">this Markdown File</a>.
-            <!-- -->
-            <br>
+    <iframe id="download_helper" style="display:none;"></iframe>
+    <a id="page_opener" target="_blank" href="#"></a>
+<!-- 
+    <div id="player" class="Player_player__eidFG">
+        <div class="Player_info__2tBEq">
+            <img id="player_photo"
+                src="https://lh7-us.googleusercontent.com/sheets/ACTFsxQD0pGtH9zWC-hQJdIFlbI6A3aHu-Gii-VRv3Vcad5YObrV4mbcPU-WO4p92v_pMpJcHceO25dV2_6oKxof0Crx0FpGH8jX1tvLfgR0kNe2bHgZHbi5J4BliaFS6pEM2O466S98tcuwlrH6Oa2aAaT1QAO2laX2mNM=w256"
+                width="80" height="80" decoding="async" data-nimg="1" class="Player_cover__1MBF7" loading="lazy"
+                style="color: transparent" />
+            <div>
+                <div id="player_songname">leak</div>
+            </div>
         </div>
+        <div>
+            <div class="Player_buttons__F48gS">
+                <button
+                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-148fdm8" tabindex="0"
+                    type="button">
+                    <svg role="img" height="16" width="16" viewBox="0 0 16 16" fill="rgba(255, 255, 255, .7)">
+                        <path
+                            d="M3.3 1a.7.7 0 01.7.7v5.15l9.95-5.744a.7.7 0 011.05.606v12.575a.7.7 0 01-1.05.607L4 9.149V14.3a.7.7 0 01-.7.7H1.7a.7.7 0 01-.7-.7V1.7a.7.7 0 01.7-.7h1.6z">
+                        </path>
+                    </svg><span class="MuiTouchRipple-root css-w0pj6f"></span></button><button
+                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1vis5kg" tabindex="0"
+                    type="button">
+                    <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1d0vlgf" focusable="false"
+                        aria-hidden="true" viewBox="0 0 24 24" data-testid="PlayArrowRoundedIcon">
+                        <path
+                            d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z">
+                        </path>
+                    </svg><span class="MuiTouchRipple-root css-w0pj6f"></span></button><button
+                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-148fdm8" tabindex="0"
+                    type="button">
+                    <svg role="img" height="16" width="16" viewBox="0 0 16 16" fill="rgba(255, 255, 255, .7)">
+                        <path
+                            d="M12.7 1a.7.7 0 00-.7.7v5.15L2.05 1.107A.7.7 0 001 1.712v12.575a.7.7 0 001.05.607L12 9.149V14.3a.7.7 0 00.7.7h1.6a.7.7 0 00.7-.7V1.7a.7.7 0 00-.7-.7h-1.6z">
+                        </path>
+                    </svg><span class="MuiTouchRipple-root css-w0pj6f"></span></button>
+            </div>
+            <div class="Player_slider__CROML">
+                <div>0:04</div>
+                <span class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-1vlex1"><span
+                        class="MuiSlider-rail css-b04pc9"></span><span class="MuiSlider-track css-1t2bqnt"
+                        style="left: 0%; width: 2.94291%"></span><span data-index="0" data-focusvisible="false"
+                        class="MuiSlider-thumb MuiSlider-thumbColorPrimary MuiSlider-thumbSizeMedium css-7drnjp"
+                        style="left: 2.94291%"><input data-index="0" aria-valuenow="4.863451"
+                            aria-orientation="horizontal" aria-valuemax="165.26" aria-valuemin="0" type="range" min="0"
+                            max="165.26" step="1" value="4.863451" style="
+                  border: 0px;
+                  clip: rect(0px, 0px, 0px, 0px);
+                  height: 100%;
+                  margin: -1px;
+                  overflow: hidden;
+                  padding: 0px;
+                  position: absolute;
+                  white-space: nowrap;
+                  width: 100%;
+                  direction: ltr;
+                " /></span></span>
+                <div>2:45</div>
+            </div>
+        </div>
+        <div class="Player_volume___J19r">
+            <span class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-pfu4vs"><span
+                    class="MuiSlider-rail css-b04pc9"></span><span class="MuiSlider-track css-1t2bqnt"
+                    style="left: 0%; width: 100%"></span><span data-index="0" data-focusvisible="false"
+                    class="MuiSlider-thumb MuiSlider-thumbColorPrimary MuiSlider-thumbSizeMedium css-7drnjp"
+                    style="left: 100%"><input data-index="0" aria-valuenow="1" aria-orientation="horizontal"
+                        aria-valuemax="1" aria-valuemin="0" type="range" min="0" max="1" step="0.01" value="1" style="
+                border: 0px;
+                clip: rect(0px, 0px, 0px, 0px);
+                height: 100%;
+                margin: -1px;
+                overflow: hidden;
+                padding: 0px;
+                position: absolute;
+                white-space: nowrap;
+                width: 100%;
+                direction: ltr;
+              " /></span></span>
+        </div>
+    </div>
+-->
+    <div>
         <div class="Header_header__v0usY">
             <a class="Header_index__AMXcn" href="/">
                 <h1 class="Header_title__CHLQo">
                     <img alt="Tracker Icon" src="/website/logo (1).png" width="40" height="40" decoding="async"
-                        data-nimg="1" class="Header_logo__VzOeQ" loading="lazy" style="color:transparent">
+                        data-nimg="1" class="Header_logo__VzOeQ" loading="lazy" style="color: transparent" />
                     <span id="Tracker_Name">Loading...</span>
                     <!-- -->
                 </h1>
             </a>
         </div>
-        <div class="unreleased_container__IqK0q"> </div>
+        <div class="unreleased_container__IqK0q"></div>
     </div>
 </body>
 
