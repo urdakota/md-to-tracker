@@ -447,7 +447,7 @@ async function main() {
             }
         }
     }
-    
+
     audioplayer = select("audio");
     audioplayer.addEventListener("ended", function(){
         audioplayer.currentTime = 0;
@@ -455,4 +455,4 @@ async function main() {
     });
 }
 
-main();
+window.onload = main;
