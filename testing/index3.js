@@ -1,101 +1,6 @@
-const select = (_, el = document) => el.querySelector(_);
-const create = (_, el = document.body) => {
-    var created = document.createElement(_);
-    el.appendChild(created);
-    return created;
-};
-const wait = (t) => new Promise((_) => setTimeout(_, t * 1000));
-var fadingto = 1;
-var isfading = false;
-
-const fade = async (element, volume) => {
-    // ChatGPT 3.5 Made it :d
-    element.play();
-    if (isfading) isfading = false;
-    fadingto = volume;
-
-    isfading = true;
-    var direction = (volume >= element.volume) ? 1 : -1;
-    var step = 0.02;
-
-    do {
-        if (element.volume + (step * direction) < 0 || (direction > 0 && element.volume + (step * direction) > fadingto)) {
-            element.volume = fadingto;
-            isfading = false;
-        } else {
-            element.volume += (step * direction);
-        }
-        
-        await wait(0.01);
-    } while (element.volume != fadingto && isfading)
-    if (element.volume <= 0) element.pause();
-}
-const fetchaudio = async (link) => {
-    if (link.includes("pilowcase.zip")) {
-        let hash = link.split("/")[-1];
-        return `https://api.pillowcase.zip/api/download/${hash}`;
-    } else if (link.includes("krakenfiles.com")) {
-        let request = await fetch(link);
-        let soup = new DOMParser().parseFromString(
-            await request.text(),
-            "text/html"
-        );
-
-        let hash = link.split("/file.html")[0].split("view/")[1];
-        let downloadlink = soup.querySelector("form").action;
-        let date = soup.querySelector(
-            "body > div > div > div.nk-content.nk-content-fluid > div > div > div > div.nk-block.invest-block > div > div.col-xl-4.col-lg-5.general-information > div.invest-field.card.card-bordered.ml-lg-4.ml-xl-0 > div > div:nth-child(1) > ul > li:nth-child(1) > div.lead-text"
-        ).textContent;
-
-        return `${downloadlink.split("/download")[0]}/uploads/${date.replaceAll(
-            ".",
-            "-"
-        )}/${hash}/music.m4a`;
-    }
-    return link;
-};
-const downloadaudio = async (link) => {
-    if (link.includes("pilowcase.zip")) {
-        let hash = link.split("/")[-1];
-        select('#download_helper').src = `https://api.pillowcase.zip/api/download/${hash}`;
-    } else {
-        select("#page_opener").href = link;
-        select("#page_opener").click();
-    }
-}
-var previousbutton;
-var currentsong;
-var audioplayer = select("audio");
-const play_audio = async (link, button) => {
-    audioplayer = select("audio");
-    if (!!audioplayer.src && audioplayer.src != link) fade(audioplayer, 0);
-    if (!!previousbutton) {
-        previousbutton.textContent = "play_circle";
-        previousbutton.parentElement.style["background-color"] = "";
-    }
-    await wait(0.5);
-    if (audioplayer.src != link) audioplayer.src = link;
-    fade(audioplayer, 1);
-    button.textContent = "pause_circle";
-    button.parentElement.style["background-color"] = "hsla(0, 0%, 100%, 0.1)";
-
-    previousbutton = button;
-    // Fixes weird bug where audio gets stuck very low
-    fade(audioplayer, 1);
-};
-
-// List of all properties
-const table = [
-    "song",
-    "features",
-    "producer",
-    "description",
-    "date",
-    "length",
-    "quality",
-    "released",
-    "link",
-];
+import { lexer } from '/dependancies/lexer.js';
+import { select, create } from '/dependancies/utils.js';
+import { fade, fetchaudio, downloadaudio, play_audio, audioplayer, previousbutton } from '/dependancies/audio.js';
 
 const availableColors = {
     Snippet: {
@@ -145,122 +50,10 @@ const qualityColors = {
 
 // Main
 async function main() {
-    const md = await fetch("./testing.md").then((response) => {
-        return response.text();
-    });
+    const md = await fetch("./testing.md").then((response) => {return response.text()});
     // Read the entire md file & format into readable object
-    var lex = md.split("\n");
-    var lexed = {};
-    for (let i = 0; i < lex.length; i++) {
-        var length = Object.keys(lexed).length;
-        var previousDictionary = lexed[length];
-        var tokens = lex[i];
-
-        var cleaned = tokens.replace(tokens.split(" ")[0], "").trim();
-        var type = "Text";
-
-        if (tokens.startsWith("# ")) {
-            (type = "Album"),
-                (lexed[length + 1] = {
-                    token: "Album",
-                    value: cleaned,
-                    description: "",
-                    image: "",
-                    background: "",
-                    textcolor: "",
-                });
-        }
-        if (tokens.startsWith("## ")) {
-            (type = "Group"),
-                (lexed[length + 1] = {
-                    token: "Group",
-                    value: cleaned,
-                    description: "",
-                });
-        }
-        if (tokens.startsWith("| ")) type = "Table";
-
-        if (type == "Table") {
-            var previousDictionary = lexed[length];
-            var previousDictionaryValueLength = 0;
-
-            if (!!previousDictionary && previousDictionary.token !== "Table")
-                lexed[length + 1] = {
-                    token: "Table",
-                    index: 0,
-                    value: {},
-                };
-            if (!!previousDictionary && previousDictionary.token == "Table") {
-                previousDictionary.index++;
-                lexed[length] = previousDictionary;
-            }
-
-            var tbl = tokens.split("|");
-            if (previousDictionary) {
-                previousDictionaryValueLength = Object.keys(
-                    previousDictionary.value
-                ).length;
-                if (previousDictionary.index >= 2)
-                    previousDictionary.value[previousDictionaryValueLength + 1] = {};
-            }
-
-            for (let key = 0; key < tbl.length; key++) {
-                var value = tbl[key].trim();
-
-                if (value !== "" && previousDictionary.index >= 2) {
-                    if (value == "-") value = "";
-
-                    previousDictionary.value[previousDictionaryValueLength + 1][
-                        table[key - 1]
-                    ] = value;
-                }
-            }
-        }
-
-        if (type == "Text" && tokens !== "") {
-            if (!previousDictionary) {
-                lexed[length + 1] = {
-                    token: "Title",
-                    value: tokens.trim(),
-                    image: "",
-                };
-            } else {
-                switch (previousDictionary.token) {
-                    case "Title":
-                        if (previousDictionary.image == "") {
-                            previousDictionary.image = tokens.trim();
-                        }
-                        break;
-                    case "Album":
-                        if (previousDictionary.description == "") {
-                            previousDictionary.description = tokens.trim();
-                        } else {
-                            if (previousDictionary.image == "") {
-                                previousDictionary.image = tokens.trim();
-                            } else if (previousDictionary.background == "") {
-                                previousDictionary.background = tokens.trim();
-                            } else if (previousDictionary.textcolor == "") {
-                                previousDictionary.textcolor = tokens.trim();
-                            }
-                        }
-                        break;
-                    case "Group":
-                        previousDictionary.description = tokens.trim();
-                        break;
-                    default:
-                        alert(`Error in code!
-                                ${previousDictionary.token} is not [Title, Album, Group]!
-                                type: Text, tokens: ${tokens}
-                            `);
-                        break;
-                }
-                // Update Previous
-                lexed[length] = previousDictionary;
-            }
-        }
-
-        // More later
-    }
+    var splitmd = md.split("\n");
+    var lexed = await lexer(splitmd);
 
     console.log("Loaded Tracker & Formatted");
 
@@ -390,8 +183,8 @@ async function main() {
                 const songname = create("span", innerDiv1);
                 songname.classList.add("Track_name");
                 songname.textContent = song.song;
-                if (adjustedLink != undefined)
-                    songname.style = "color:rgb(69, 188, 255);font-weight:700";
+                if (adjustedLink == undefined)
+                    songname.style = "color:var(--light-secondary);";
 
                 if (song.quality != undefined) {
                     const QualityTag = create("span", innerDiv1);
@@ -417,28 +210,19 @@ async function main() {
 
                 if (song.features != undefined) {
                     const trackFeaturesDiv = create("div", innerDiv1);
-                    trackFeaturesDiv.classList.add("Track_tag__WTlmD");
+                    trackFeaturesDiv.classList.add("Track_aliases__Cctz8");
                     const featuresSpan = create("span", trackFeaturesDiv);
-                    featuresSpan.style.color = "rgb(255, 255, 255)";
                     featuresSpan.textContent = "(ft. " + song.features + ")";
                 }
 
                 if (song.producer != undefined) {
                     const trackProducersDiv = create("div", innerDiv1);
-                    trackProducersDiv.classList.add("Track_tag__WTlmD");
+                    trackProducersDiv.classList.add("Track_aliases__Cctz8");
                     const producersSpan = create("span", trackProducersDiv);
-                    producersSpan.style.color = "rgb(255, 255, 255)";
                     producersSpan.textContent = "(prod. " + song.producer + ")";
                 }
 
-                const songDescription = create("div", mainContainer);
-                if (song.description != undefined) {
-                    songDescription.classList.add(
-                        "Track_description",
-                        "Track_length__yIb3d"
-                    );
-                    songDescription.textContent = song.description;
-                }
+                mainContainer.setAttribute("data-content", song.description)
 
                 const releaseDateDiv = create("div", mainContainer);
                 if (song.date != undefined) {
@@ -466,12 +250,23 @@ async function main() {
             }
         }
     }
-
-    audioplayer = select("audio");
-    audioplayer.addEventListener("ended", function(){
-        audioplayer.currentTime = 0;
-        if(!!previousbutton) previousbutton.textContent = "play_circle";
-    });
 }
 
 window.onload = main;
+
+function findTooltipElement(element) {
+    while (element && !element.classList.contains('Tooltip_tooltip__q1OLA')) {
+        return findTooltipElement(element.parentElement);
+    }
+    return element;
+}
+
+document.addEventListener('mousemove', function (event) {
+    // Get the current element the mouse is over
+    var currentElement = findTooltipElement(event.target);
+    
+    if (!!currentElement && currentElement.getAttribute("data-content")) {
+        currentElement.style.setProperty('--mouse-x', event.clientX + 'px');
+        currentElement.style.setProperty('--mouse-y', event.clientY + 'px');
+    }
+});
