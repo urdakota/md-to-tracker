@@ -1,6 +1,6 @@
-import { lexer } from '/dependancies/lexer.js';
-import { select, create } from '/dependancies/utils.js';
-import { fade, fetchaudio, downloadaudio, play_audio, audioplayer, previousbutton } from '/dependancies/audio.js';
+import { lexer } from '../dependancies/lexer.js';
+import { select, create } from '../dependancies/utils.js';
+import { fade, fetchaudio, downloadaudio, play_audio, audioplayer, previousbutton } from '../dependancies/audio.js';
 
 const availableColors = {
     Snippet: {
