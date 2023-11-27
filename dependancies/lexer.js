@@ -1,13 +1,12 @@
 
 const table = [
     "song",
-    "features",
-    "producer",
+    "info",
     "description",
     "date",
+    "recordingdate",
     "length",
     "quality",
-    "released",
     "link",
 ];
 
