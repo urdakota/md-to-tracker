@@ -34,6 +34,10 @@ const qualityColors = {
         background: "rgb(251, 188, 4)",
         textcolor: "color:rgb(0, 0, 0)",
     },
+    Tagged: {
+        background: "rgb(179, 96, 6)",
+        textcolor: "color:rgb(255, 255, 0)",
+    },
     HQ: {
         background: "rgb(232, 175, 13)",
         textcolor: "color:rgb(0, 0, 0)",
@@ -144,6 +148,7 @@ async function main() {
             var Parent = previousAlbum;
 
             var Holder = select(".EraCard_tracks__rI0Kj", Parent);
+            Holder.innerHTML += "<pre>          Song                                                 Recording Date                     Leak Date   </pre>"
 
             var songs = tokens.value;
             var songsLength = Object.keys(songs).length;
@@ -208,18 +213,11 @@ async function main() {
                     }
                 }
 
-                if (song.features != undefined) {
-                    const trackFeaturesDiv = create("div", innerDiv1);
-                    trackFeaturesDiv.classList.add("Track_aliases__Cctz8");
-                    const featuresSpan = create("span", trackFeaturesDiv);
-                    featuresSpan.textContent = "(ft. " + song.features + ")";
-                }
-
-                if (song.producer != undefined) {
-                    const trackProducersDiv = create("div", innerDiv1);
-                    trackProducersDiv.classList.add("Track_aliases__Cctz8");
-                    const producersSpan = create("span", trackProducersDiv);
-                    producersSpan.textContent = "(prod. " + song.producer + ")";
+                if (song.info != undefined) {
+                    const infoDiv = create("div", innerDiv1);
+                    infoDiv.classList.add("Track_aliases__Cctz8");
+                    const infoSpan = create("span", infoDiv);
+                    infoSpan.textContent = song.info;
                 }
 
                 mainContainer.setAttribute("data-content", song.description)
@@ -229,15 +227,11 @@ async function main() {
                     releaseDateDiv.classList.add("Track_length__yIb3d", "Track_date");
                     releaseDateDiv.textContent = song.date;
                 }
-
-                const releasedDiv = create("span", mainContainer);
-                releasedDiv.classList.add("Track_length__yIb3d", "Track_tag__WTlmD", "ReleasedTag");
-                if (song.released != "No" && song.quality != "Lost") {
-                    releasedDiv.style.color = "rgb(255, 255, 255)";
-                    releasedDiv.style.backgroundColor = "rgb(76, 175, 80)";
-                    releasedDiv.textContent = "Released";
-                } else {
-                    releasedDiv.textContent = "        ";
+                
+                const leakDateDiv = create("div", mainContainer);
+                if (song.recordingdate != undefined) {
+                    leakDateDiv.classList.add("Track_length__yIb3d", "Track_date");
+                    leakDateDiv.textContent = song.recordingdate;
                 }
 
                 const downloadButton = create("span", mainContainer);
