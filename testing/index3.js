@@ -52,6 +52,33 @@ const qualityColors = {
     },
 };
 
+// ty ChatGPT
+function sortByDate(inputObject) {
+    // Convert the input object to an array
+    const dataArray = Object.values(inputObject);
+
+    // Convert date strings to a format that allows proper comparison
+    const convertToDate = (dateStr) => {
+        const [day, month, year] = dateStr.split('/').map(Number);
+
+        return new Date(`20${year}/${month}/${day}`);
+    };
+
+    // Sort the array based on the "date" property
+    dataArray.sort((a, b) => {
+        const dateA = convertToDate(a.date);
+        const dateB = convertToDate(b.date);
+        return dateB - dateA;
+    });
+
+    // If you want the result as an object with numerical keys
+    const sortedObject = dataArray.reduce((acc, curr, index) => {
+        acc[index + 1] = curr;
+        return acc;
+    }, {});
+
+    return sortedObject;
+}
 // Main
 async function main() {
     const md = await fetch("./testing.md").then((response) => {return response.text()});
@@ -148,10 +175,19 @@ async function main() {
             var Parent = previousAlbum;
 
             var Holder = select(".EraCard_tracks__rI0Kj", Parent);
-            Holder.innerHTML += "<pre>          Song                                                 Recording Date                     Leak Date   </pre>"
+            Holder.innerHTML += `
+            <div style="color: var(--light-primary); gap: 8px; padding: 8px; border-radius: 4px; font-size: 16px; display: flex; align-items: center; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; user-select: none;">
+                <div style="width: 300px;margin-left: 3.5%;overflow: shown;white-space: pre;">Song</div>
+                <div class="Track_length__yIb3d" style="width: 300px; overflow: shown;margin-right:-15%">Leak Date</div>
+                <div class="Track_length__yIb3d" style="margin-right:5%">Recording Date</div>
+            </div>
+            `
 
             var songs = tokens.value;
             var songsLength = Object.keys(songs).length;
+
+            // Sort by leak date
+            songs = sortByDate(songs);
             for (let i = 1; i < songsLength + 1; i++) {
                 var song = songs[i];
 
@@ -169,7 +205,7 @@ async function main() {
                 mainContainer.setAttribute("link", adjustedLink);
                 mainContainer.onclick = async function () {
                     let adjustedLink = mainContainer.getAttribute("link");
-
+                    console.log(adjustedLink)
                     if (playButton.textContent == "pause_circle") {
                         playButton.textContent = "play_circle";
                         fade(audioplayer, 0);
@@ -178,8 +214,7 @@ async function main() {
                             playButton.textContent = "pause_circle";
                             fade(audioplayer, 1);
                         } else {
-                            let audiolink = await fetchaudio(adjustedLink);
-                            await play_audio(audiolink, playButton);
+                            await play_audio(adjustedLink, playButton);
                         }
                     }
                 };
@@ -229,10 +264,8 @@ async function main() {
                 }
                 
                 const leakDateDiv = create("div", mainContainer);
-                if (song.recordingdate != undefined) {
-                    leakDateDiv.classList.add("Track_length__yIb3d", "Track_date");
-                    leakDateDiv.textContent = song.recordingdate;
-                }
+                leakDateDiv.classList.add("Track_date");
+                leakDateDiv.textContent = song.recordingdate;
 
                 const downloadButton = create("span", mainContainer);
                 downloadButton.classList.add("material-symbols-outlined");
@@ -244,6 +277,83 @@ async function main() {
             }
         }
     }
+
+    console.log("Loaded all songs, cleaning duplicates")
+    // Cleanup
+    const albums = document.querySelectorAll(".EraCard_tracks__rI0Kj");
+    
+    const samenamestuff = {}
+    albums.forEach(album => {
+
+        const samenametracks = {};
+        // Access the children of each album
+        const albumChildren = album.children;
+    
+        // Loop through each child of the album
+        for (let i = 0; i < albumChildren.length; i++) {
+            const child = albumChildren[i];
+
+            if (child.classList.contains("Track_track__j1JOX")) {
+                let txt = select(".Track_name", child).textContent.trim()
+                samenametracks[txt] = (samenametracks[txt] || 0) + 1;
+            }
+        }
+
+        Object.entries(samenametracks).forEach(([trackName, count]) => {
+            if (count > 1) {
+                console.log(trackName,count)
+                // Create a details element for track names with 2 or more occurrences
+                const detailsElement = document.createElement("details");
+                const summaryElement = document.createElement("summary");
+                summaryElement.textContent = `${trackName} (${count})`;
+                detailsElement.appendChild(summaryElement);
+    
+                // Append the corresponding children to the details element
+                for (let i = 0; i < albumChildren.length; i++) {
+                    const child = albumChildren[i];
+                    const trackNameElement = child.querySelector(".Track_name");
+    
+                    if (trackNameElement && trackNameElement.textContent.trim() === trackName) {
+                        const clonedChild = child.cloneNode(true);
+
+                        // Copy over the onclick attribute to the cloned element
+                        if (child.onclick) {
+                            clonedChild.onclick = async function () {
+                                let adjustedLink = clonedChild.getAttribute("link");
+                                var playButton = select("span", clonedChild)
+                                if (playButton.textContent == "pause_circle") {
+                                    playButton.textContent = "play_circle";
+                                    fade(audioplayer, 0);
+                                } else {
+                                    if (previousbutton == playButton) {
+                                        playButton.textContent = "pause_circle";
+                                        fade(audioplayer, 1);
+                                    } else {
+                                        await play_audio(adjustedLink, playButton);
+                                    }
+                                }
+                            };
+                            clonedChild.setAttribute("link", child.getAttribute("link"))
+                        }
+
+                        detailsElement.appendChild(clonedChild);
+
+                        child.remove();
+                        i--;
+                    }
+                }
+    
+                // Add the details element to the map
+                samenamestuff[trackName] = detailsElement;
+                
+                album.parentElement.appendChild(detailsElement);
+            }
+        });
+
+    });
+
+    
+
 }
 
 window.onload = main;
