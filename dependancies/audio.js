@@ -1,5 +1,5 @@
 
-import { select, wait } from '/dependancies/utils.js';
+import { select, wait } from '/../utils.js';
 
 export const autoplay = true;
 export var previousbutton;
