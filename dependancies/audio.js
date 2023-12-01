@@ -1,5 +1,5 @@
 
-import { select, wait } from './utils.js';
+import { select, wait } from '/dependancies/utils.js';
 
 export const autoplay = true;
 export var previousbutton;
@@ -31,9 +31,9 @@ export const fade = async (element, volume) => {
 }
 
 export const fetchaudio = async (link) => {
-    if (link.includes("pilowcase.zip")) {
-        let hash = link.split("/")[-1];
-        return `https://api.pillowcase.zip/api/download/${hash}`;
+    if (link.includes("pillowcase.zip")) {
+        let hash = link.split("/");
+        return `https://api.pillowcase.zip/api/get/${hash[hash.length-1]}`;
     } else if (link.includes("krakenfiles.com")) {
         let request = await fetch(link);
         let soup = new DOMParser().parseFromString(
@@ -67,14 +67,13 @@ export const downloadaudio = async (link) => {
 
 export const play_audio = async (link, button) => {
     audioplayer = select("audio");
-    if (!!audioplayer.src && audioplayer.src != link) {
-        await fade(audioplayer, 0); 
-    } 
+    link = await fetchaudio(link);
     if (!!previousbutton) {
         previousbutton.textContent = "play_circle";
         previousbutton.parentElement.style["background-color"] = "";
     }
     if (audioplayer.src != link) audioplayer.src = link;
+    audioplayer.currentTime = 0;
     fade(audioplayer, 1);
     button.textContent = "pause_circle";
     button.parentElement.style["background-color"] = "hsla(0, 0%, 100%, 0.1)";
@@ -87,9 +86,6 @@ export const play_audio = async (link, button) => {
 document.addEventListener('DOMContentLoaded', function () {
     audioplayer = select("audio");
     audioplayer.addEventListener("ended", async function () {
-        fade(audioplayer, 0);
-        audioplayer.pause();
-        audioplayer.currentTime = 0;
         if (!!previousbutton) previousbutton.textContent = "play_circle";
         if (autoplay) {
             var song = previousbutton.parentElement;
@@ -99,6 +95,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 let nextelement = songs[nextsong];
                 let audiolink = await fetchaudio(nextelement.getAttribute("link"));
                 await play_audio(audiolink, select(".Track_play",nextelement));
+            } else {
+                if (song.parentElement.parentElement.tagName.toLowerCase() === "details") {
+                    var songs = Array.from(song.parentElement.parentElement.childNodes)
+                    var nextsong = songs.indexOf(song.parentElement) + 1;
+                    if (!!songs[nextsong]) {
+                        let nextelement = songs[nextsong];
+                        if (nextelement.tagName.toLowerCase() === "details") {
+                            let audiolink = await fetchaudio(nextelement.children[1].getAttribute("link"));
+                            await play_audio(audiolink, select(".Track_play", nextelement));
+                        }
+                    }
+                }
             }
         }
     });
