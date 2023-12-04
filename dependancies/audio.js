@@ -1,4 +1,3 @@
-
 import { select, wait } from '../dependancies/utils.js';
 
 export const autoplay = true;
@@ -31,6 +30,7 @@ export const fade = async (element, volume) => {
 }
 
 export const fetchaudio = async (link) => {
+    if (link.includes("/music.m4a")) return link;
     if (link.includes("pillowcase.zip")) {
         let hash = link.split("/");
         return `https://api.pillowcase.zip/api/get/${hash[hash.length-1]}`;
