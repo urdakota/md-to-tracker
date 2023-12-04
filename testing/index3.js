@@ -68,6 +68,11 @@ function sortByDate(inputObject) {
     dataArray.sort((a, b) => {
         const dateA = convertToDate(a.date);
         const dateB = convertToDate(b.date);
+
+        if (dateA.getTime() === dateB.getTime()) {
+            return dataArray.indexOf(b) - dataArray.indexOf(a);
+        }
+
         return dateB - dateA;
     });
 
