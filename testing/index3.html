@@ -187,6 +187,7 @@
             border-radius: 4px;
             font-weight: 700;
             font-size: 14px;
+            white-space: nowrap;
         }
 
         .ReleasedTag {
@@ -295,6 +296,79 @@
             box-shadow: 0 0 8px rgba(0,0,0,.5);
             z-index: 1;
         }
+        
+        .EraGroup_era__D2P9b {
+            margin: 20px;
+            border-radius: 4px;
+            background-color: var(--dark-secondary);
+        }
+
+        .EraGroup_era__D2P9b>summary {
+            font-weight: 700;
+            padding: 8px;
+            border-radius: 4px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @keyframes details-show {
+            0% {
+                opacity: 0;
+                transform: var(--details-translate,translateY(-.5em))
+            }
+        }
+
+        details {
+            display: block;
+        }
+
+        details[open]>:not(summary) {
+            animation: details-show .15s ease-in-out
+        }
+
+        details[open]>:not(summary) {
+            animation: details-show .15s ease-in-out;
+        }
+
+        details[open] > summary:first-of-type {
+            list-style-type: disclosure-open;
+        }
+        
+        details > summary:first-of-type {
+            display: list-item;
+            counter-increment: list-item 0;
+            list-style: inside disclosure-closed;
+        }
+
+        details>summary {
+            cursor: pointer
+        }
+
+        details>summary:not(.arrow) {
+            list-style: none
+        }
+
+        details>summary:not(.arrow)::-webkit-details-marker {
+            display: none
+        }
+
+        .EraGroup_era__D2P9b>summary {
+            font-weight: 700;
+            padding: 8px;
+            border-radius: 4px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        .EraGroup_era__D2P9b>summary::marker {
+            color: inherit;
+        }
+        
+        .EraGroup_tracks__WAjOp {
+            padding: 8px;
+        }
 
         @media (hover: hover) {
             .Tooltip_tooltip__q1OLA:hover:before {
@@ -304,11 +378,12 @@
         }
 
     </style>
+    <!-- 
     <div style="padding:10px;text-align:center">
-        <!-- -->
         Update: Sorted by newest, order is accurate to leak timing
         <br>
     </div>
+    -->
     <audio  id="audio"           preload="metadata"></audio>
     <iframe id="download_helper" style="display:none;"></iframe>
     <a      id="page_opener"     target="_blank" href="#"></a>
@@ -405,29 +480,45 @@
                 </h1>
             </a>
         </div>
-        <!--
-        <div class="recent_container">
-            <div class="EraCard_tracks__rI0Kj">
-                <div style="margin-left: auto; margin-right: auto; font-size: 26px; font-weight: 700; display: flex; align-items: center;">
-                    <div>This Week (in development)</div>
-                </div>
-                <div class="Tooltip_tooltip__q1OLA Track_track__j1JOX" link="undefined"  data-content="Track 7 off of the 2001 demo tape." style="--mouse-x: 970px; --mouse-y: 278px;"><span
-                        class="material-symbols-outlined Track_play" content="Track 7 off of the 2001 demo tape."></span>
-                    <div><span class="Track_name" style="color: var(--light-secondary);">Then I'm Off</span><span
-                            class="Track_tag__WTlmD"
-                            style="color: rgb(0, 0, 0); background-color: rgb(153, 153, 153);">Lost</span>
-                        <div class="Track_tag__WTlmD"><span style="color: rgb(255, 255, 255);">(prod.
-                                Meltycanon)</span></div>
+        
+        <div class="unreleased_container__IqK0q">
+            <details class="EraGroup_era__D2P9b">
+                <summary class="arrow">
+                    <span class="thisweeksleaks">This Week's Leaks</span>
+                    <script>
+                        function formatDate(date) {
+                            const month = date.getMonth() + 1;
+                            const day = date.getDate();
+                            const year = date.getFullYear().toString().split("20")[1];
+
+                            // Ensure two digits for month and day
+                            const formattedMonth = month < 10 ? `0${month}` : `${month}`;
+                            const formattedDay = day < 10 ? `0${day}` : `${day}`;
+
+                            // Format: m/d/y
+                            return `${formattedMonth}/${formattedDay}/${year}`;
+                        }
+
+
+                        const currentDate = new Date();
+                        const oneWeekAgo = new Date(currentDate);
+                        oneWeekAgo.setDate(currentDate.getDate() - 7);
+                        
+                        const formattedOneWeekAgo = formatDate(oneWeekAgo);
+                        const formattedCurrentDate = formatDate(currentDate);
+
+                        document.querySelector(".thisweeksleaks").textContent += ` (${formattedOneWeekAgo} -> ${formattedCurrentDate})`
+                    </script>
+                </summary>
+                <div class="EraGroup_tracks__WAjOp">
+                    <div style="color: var(--light-primary); gap: 8px; font-size: 16px; display: flex; align-items: center; -webkit-user-select: none; -moz-user-select: none; user-select: none;">
+                        <div style="width: 300px;margin-left:4.5%;overflow: shown;white-space: pre;">Song</div>
+                        <div class="Track_length__yIb3d" style="width: 300px; overflow: shown;margin-right:-12%">Leak Date</div>
+                        <div class="Track_length__yIb3d" style="margin-right:5%">Recording Date</div>
                     </div>
-                    <div class="Track_description Track_length__yIb3d">Lone was 14 when Released</div>
-                    <div class="Track_length__yIb3d Track_date">1/6/2016</div><span
-                        class="Track_length__yIb3d Track_tag__WTlmD ReleasedTag"> </span><span
-                        class="material-symbols-outlined"></span>
                 </div>
-            </div>
+            </details>
         </div>
-        -->
-        <div class="unreleased_container__IqK0q"></div>
     </div>
 </body>
 
