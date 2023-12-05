@@ -53,17 +53,17 @@ const qualityColors = {
 };
 
 // ty ChatGPT
+const currentDate = new Date();
+
+const convertToDate = (dateStr) => {
+    const [day, month, year] = dateStr.split('/').map(Number);
+
+    return new Date(`20${year}/${month}/${day}`);
+};
+
 function sortByDate(inputObject) {
     // Convert the input object to an array
     const dataArray = Object.values(inputObject);
-
-    // Convert date strings to a format that allows proper comparison
-    const convertToDate = (dateStr) => {
-        const [day, month, year] = dateStr.split('/').map(Number);
-
-        return new Date(`20${year}/${month}/${day}`);
-    };
-
     // Sort the array based on the "date" property
     dataArray.sort((a, b) => {
         const dateA = convertToDate(a.date);
@@ -239,14 +239,19 @@ async function main() {
                         QualityTag.style.color = QualityColors.textcolor;
                         QualityTag.style.backgroundColor = QualityColors.background;
                         QualityTag.textContent = song.quality;
+                        if (song.length == "Original") {
+                            QualityTag.style.color = "rgb(255, 255, 255)";
+                            QualityTag.style.backgroundColor = "rgb(65, 240, 92)";
+                            QualityTag.textContent = "OG File";
+                        }
                     }
                 }
 
-                if (song.length != undefined) {
+                if (song.length != undefined && song.length != "Original") {
                     const LengthTag = create("span", innerDiv1);
                     LengthTag.classList.add("Track_tag__WTlmD");
                     var LengthColors = availableColors[song.length];
-                    if (!!QualityColors) {
+                    if (!!LengthColors) {
                         LengthTag.style.color = LengthColors.textcolor;
                         LengthTag.style.backgroundColor = LengthColors.background;
                         LengthTag.textContent = song.length;
@@ -273,12 +278,47 @@ async function main() {
                 leakDateDiv.textContent = song.recordingdate;
 
                 const downloadButton = create("span", mainContainer);
-                downloadButton.classList.add("material-symbols-outlined");
+                downloadButton.classList.add("material-symbols-outlined","downloadbtn");
                 if (!!song.link) downloadButton.textContent = "download";
                 downloadButton.onclick = async function (event) {
                     event.stopPropagation();
                     downloadaudio(mainContainer.getAttribute("link"));
                 };
+
+                if (song.date != undefined && song.length != "Snippet") {
+                    const entryDate = convertToDate(song.date);
+                    const oneWeekAgo = new Date(currentDate);
+                    oneWeekAgo.setDate(currentDate.getDate() - 7);
+            
+                    if (entryDate >= oneWeekAgo && entryDate <= currentDate) {
+                        const cloned = mainContainer.cloneNode(true);
+
+                        cloned.onclick = async function () {
+                            let adjustedLink = cloned.getAttribute("link");
+                            let playButton = select(".Track_play", cloned);
+                            console.log(adjustedLink)
+                            if (playButton.textContent == "pause_circle") {
+                                playButton.textContent = "play_circle";
+                                fade(audioplayer, 0);
+                            } else {
+                                if (previousbutton == playButton) {
+                                    playButton.textContent = "pause_circle";
+                                    fade(audioplayer, 1);
+                                } else {
+                                    await play_audio(adjustedLink, playButton);
+                                }
+                            }
+                        };
+
+                        select(".downloadbtn", cloned).onclick = async function (event) {
+                            event.stopPropagation();
+                            downloadaudio(cloned.getAttribute("link"));
+                        };
+        
+
+                        select("body > div > div.unreleased_container__IqK0q > details.EraGroup_era__D2P9b > div").appendChild(cloned)
+                    }
+                }
             }
         }
     }
