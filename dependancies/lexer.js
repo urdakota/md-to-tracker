@@ -96,7 +96,7 @@ export async function lexer(lex) {
                         if (previousDictionary.description == "") {
                             previousDictionary.description = tokens.trim();
                         } else {
-                            if (previousDictionary.image == "") {
+                            if (previousDictionary.image == "" && tokens.trim().includes("https")) {
                                 previousDictionary.image = tokens.trim();
                             } else if (previousDictionary.background == "") {
                                 previousDictionary.background = tokens.trim();
