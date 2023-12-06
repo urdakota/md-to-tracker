@@ -26,7 +26,7 @@ export const fade = async (element, volume) => {
         
         await wait(0.01);
     } while (element.volume != fadingto && isfading)
-    if (element.volume <= 0) element.pause();
+    //if (element.volume <= 0) element.pause();
 }
 
 export const fetchaudio = async (link) => {
@@ -34,6 +34,9 @@ export const fetchaudio = async (link) => {
     if (link.includes("pillowcase.zip")) {
         let hash = link.split("/");
         return `https://api.pillowcase.zip/api/get/${hash[hash.length-1]}`;
+    } else if (link.includes("pixeldrain.com")) {
+        let hash = link.split("/");
+        return `https://pixeldrain.com/api/file/${hash[hash.length-1]}`;
     } else if (link.includes("krakenfiles.com")) {
         let request = await fetch(link);
         let soup = new DOMParser().parseFromString(
@@ -69,13 +72,13 @@ export const play_audio = async (link, button) => {
     audioplayer = select("audio");
     link = await fetchaudio(link);
     if (!!previousbutton) {
-        previousbutton.textContent = "play_circle";
+        if (!!button && button.classList.contains("Track_play")) previousbutton.textContent = "play_circle";
         previousbutton.parentElement.style["background-color"] = "";
     }
     if (audioplayer.src != link) audioplayer.src = link;
     audioplayer.currentTime = 0;
     fade(audioplayer, 1);
-    button.textContent = "pause_circle";
+    if (!!button && button.classList.contains("Track_play")) button.textContent = "pause_circle";
     button.parentElement.style["background-color"] = "hsla(0, 0%, 100%, 0.1)";
 
     previousbutton = button;
