@@ -1,419 +1,439 @@
-// Just some functions
-const select = (_, el = document) => el.querySelector(_);
-const create = (_, el = document.body) => {
-  var created = document.createElement(_);
-  el.appendChild(created)
-  return created;
-}
+import { lexer } from '../dependancies/lexer.js';
+import { select, create } from '../dependancies/utils.js';
+import { fade, fetchaudio, downloadaudio, play_audio, audioplayer, previousbutton } from '../dependancies/audio.js';
 
-// constants
-const table = ["song", "features", "producer", "description", "date", "length", "type", "quality", "released", "link"];
 const availableColors = {
     Snippet: {
         background: "rgb(230, 145, 56)",
-        textcolor: "rgb(0, 0, 0)"
+        textcolor: "rgb(0, 0, 0)",
     },
     Full: {
         background: "rgb(69, 129, 142)",
-        textcolor: "rgb(255, 255, 237)"
+        textcolor: "rgb(255, 255, 237)",
     },
     Original: {
         background: "rgb(230, 145, 56)",
-        textcolor: "rgb(255, 255, 255)"
-    }
-}
+        textcolor: "rgb(255, 255, 255)",
+    },
+};
+
 const qualityColors = {
-  Lost: {
-    background: "rgb(153, 153, 153)",
-    textcolor: "rgb(0, 0, 0)"
-  },
-  Recording: {
-    background: "rgb(0, 0, 0)",
-    textcolor: "rgb(243, 243, 243)"
-  },
-  LQ: {
-    background: "rgb(255, 0, 0)",
-    textcolor: "rgb(255, 255, 255)"
-  },
-  HB: {
-    background: "rgb(251, 188, 4)",
-    textcolor: "color:rgb(0, 0, 0)"
-  },
-  HQ: {
-    background: "rgb(232, 175, 13)",
-    textcolor: "color:rgb(0, 0, 0)"
-  },
-  CDQ: {
-    background: "rgb(76, 175, 80)",
-    textcolor: "rgb(255, 255, 255)"
-  },
-  Lossless: {
-    background: "rgb(69, 188, 255)",
-    textcolor: "rgb(255, 255, 255)"
-  }
-}
+    Lost: {
+        background: "rgb(153, 153, 153)",
+        textcolor: "rgb(0, 0, 0)",
+    },
+    Recording: {
+        background: "rgb(0, 0, 0)",
+        textcolor: "rgb(243, 243, 243)",
+    },
+    LQ: {
+        background: "rgb(255, 0, 0)",
+        textcolor: "rgb(255, 255, 255)",
+    },
+    HB: {
+        background: "rgb(251, 188, 4)",
+        textcolor: "color:rgb(0, 0, 0)",
+    },
+    Tagged: {
+        background: "rgb(179, 96, 6)",
+        textcolor: "color:rgb(255, 255, 0)",
+    },
+    HQ: {
+        background: "rgb(232, 175, 13)",
+        textcolor: "color:rgb(0, 0, 0)",
+    },
+    CDQ: {
+        background: "rgb(76, 175, 80)",
+        textcolor: "rgb(255, 255, 255)",
+    },
+    Lossless: {
+        background: "rgb(69, 188, 255)",
+        textcolor: "rgb(255, 255, 255)",
+    },
+};
 
-function sortTable(columnIndex, table) {
-    const rows = Array.from(table.querySelectorAll('tbody tr'));
+// ty ChatGPT
+const currentDate = new Date();
 
-    rows.sort((a, b) => {
-        const aData = a.cells[columnIndex].querySelector("a").textContent;
-        const bData = b.cells[columnIndex].querySelector("a").textContent;
+const convertToDate = (dateStr) => {
+    const [day, month, year] = dateStr.split('/').map(Number);
 
-        if (!isNaN(aData) && !isNaN(bData)) {
-            return parseFloat(aData) - parseFloat(bData);
-        } else {
-            return aData.localeCompare(bData);
+    return new Date(`20${year}/${month}/${day}`);
+};
+
+function sortByDate(inputObject) {
+    // Convert the input object to an array
+    const dataArray = Object.values(inputObject);
+    // Sort the array based on the "date" property
+    dataArray.sort((a, b) => {
+        const dateA = convertToDate(a.date);
+        const dateB = convertToDate(b.date);
+
+        if (dateA.getTime() === dateB.getTime()) {
+            return dataArray.indexOf(b) - dataArray.indexOf(a);
         }
+
+        return dateB - dateA;
     });
 
-    rows.forEach((row) => table.querySelector('tbody').appendChild(row));
-}
+    // If you want the result as an object with numerical keys
+    const sortedObject = dataArray.reduce((acc, curr, index) => {
+        acc[index + 1] = curr;
+        return acc;
+    }, {});
 
+    return sortedObject;
+}
 // Main
 async function main() {
-    const md = await fetch("/example.md").then(response => {
-        return response.text()
-    });
-
+    const md = await fetch("./lone.md").then((response) => {return response.text()});
     // Read the entire md file & format into readable object
-    var lex = md.split('\n');
-    var lexed = {}
-    for (let i = 0; i < lex.length; i++) {
-        var length = Object.keys(lexed).length;
-        var previousDictionary = lexed[length];
-        var tokens = lex[i];
-
-        var cleaned = tokens.replace(tokens.split(" ")[0], "").trim();
-        var type = "Text";
-
-        if (tokens.startsWith("# ")) {
-        type = "Album", lexed[length + 1] = {
-            token: "Album",
-            value: cleaned,
-            description: "",
-            image: "",
-            background: "",
-            textcolor: ""
-        }
-        };
-        if (tokens.startsWith("## ")) {
-        type = "Group", lexed[length + 1] = {
-            token: "Group",
-            value: cleaned,
-            description: ""
-        }
-        };
-        if (tokens.startsWith("| ")) type = "Table";
-
-        if (type == "Table") {
-        var previousDictionary = lexed[length];
-        var previousDictionaryValueLength = 0;
-
-        if (!!previousDictionary && previousDictionary.token !== "Table") lexed[length + 1] = {
-            token: "Table",
-            index: 0,
-            value: {}
-        };
-        if (!!previousDictionary && previousDictionary.token == "Table") {
-            previousDictionary.index++;
-            lexed[length] = previousDictionary;
-        }
-
-        var tbl = tokens.split("|");
-        if (previousDictionary) {
-            previousDictionaryValueLength = Object.keys(previousDictionary.value).length;
-            if (previousDictionary.index >= 2) previousDictionary.value[previousDictionaryValueLength + 1] = {}
-        }
-
-        for (let key = 0; key < tbl.length; key++) {
-            var value = tbl[key].trim();
-
-            if (value !== "" && previousDictionary.index >= 2) {
-            if (value == "-") value = "";
-
-            previousDictionary.value[previousDictionaryValueLength + 1][table[key - 1]] = value;
-            }
-        }
-        }
-
-        if (type == "Text" && tokens !== "") {
-        if (!previousDictionary) {
-            lexed[length + 1] = {
-            token: "Title",
-            value: tokens.trim(),
-            image: ""
-            };
-        } else {
-            switch (previousDictionary.token) {
-            case "Title":
-                if (previousDictionary.image == "") {
-                previousDictionary.image = tokens.trim()
-                }
-                break;
-            case "Album":
-                if (previousDictionary.description == "") {
-                previousDictionary.description = tokens.trim();
-                } else {
-                if (previousDictionary.image == "") {
-                    previousDictionary.image = tokens.trim()
-                } else if (previousDictionary.background == "") {
-                    previousDictionary.background = tokens.trim()
-                } else if (previousDictionary.textcolor == "") {
-                    previousDictionary.textcolor = tokens.trim()
-                }
-                }
-                break;
-            case "Group":
-                previousDictionary.description = tokens.trim();
-                break;
-            default:
-                alert(`Error in code!
-                                ${previousDictionary.token} is not [Title, Album, Group]!
-                                type: Text, tokens: ${tokens}
-                            `);
-                break;
-            }
-            // Update Previous
-            lexed[length] = previousDictionary;
-        }
-        }
-
-        // More later
-    }
+    var splitmd = md.split("\n");
+    var lexed = await lexer(splitmd);
 
     console.log("Loaded Tracker & Formatted");
 
     // Update Website
-    //var Title = select(".Header_title__CHLQo");
-    //var container = select(".unreleased_container__IqK0q")
     var length = Object.keys(lexed).length;
     // Tracker Title
-    const title = create("h1")
-    title.textContent = lexed[1].value;
+    var Title = select(".Header_title__CHLQo");
+    var container = select(".unreleased_container__IqK0q");
 
-    const image = create("img")
-    image.src = lexed[1].image;
-    image.classList.add("Tracker_Image");
-
-    //select("span", Title).innerText = lexed[1].value; // Title
-    //select("img", Title).src = lexed[1].image; // Image
+    // Tracker Title
+    select("span", Title).innerText = lexed[1].value; // Title
+    select("img", Title).src = lexed[1].image; // Image
 
     // Create Albums
-    var Albums = {}
+    var Albums = {};
+    var currentAlbum = {
+        name: "",
+        color: "",
+        background: ""
+    }
+    
     for (let i = 1; i < length + 1; i++) {
         var tokens = lexed[i];
         var AlbumsLength = Object.keys(Albums).length;
         var previousAlbum = Albums[AlbumsLength];
-        var previousAlbumGroupLength;
-        if (!!previousAlbum) previousAlbumGroupLength = Object.keys(previousAlbum.groups).length;
-        
+
+        console.log(i, tokens);
+
         if (tokens.token == "Album") {
-        
-            const Holder = create("div");
-            Holder.classList.add("Album");
-            Holder.id = tokens.value
+            const detailsElement = create("details", container);
+            detailsElement.classList.add("EraCard_era__5_ZGH");
+            detailsElement.id = tokens.value;
 
-            Albums[AlbumsLength + 1] = {
-                object: Holder,
-                groups: {},
-                songs: {}
-            };
-
-            // Decorate
-
-            const TextHolder = create("div", Holder);
-            TextHolder.classList.add("Album_Text");
-
-            const AlbumImage = create("img", TextHolder);
-            AlbumImage.classList.add("Album_Image");
-            AlbumImage.src = tokens.image;
-
-            const AlbumTitle = create("div", TextHolder);
-            AlbumTitle.classList.add("Album_Title");
-
-            const AlbumTitleText = create("Span", AlbumTitle);
-            AlbumTitleText.textContent = tokens.value;
-
-            const AlbumDescription = create("div", TextHolder);
-            AlbumDescription.classList.add("Album_Description");
-
-            const AlbumDescriptionText = create("Span", AlbumDescription);
-            AlbumDescriptionText.textContent = tokens.description;
-
-            // Create Table if no Groups
-            if (!!(lexed[i+1]) && lexed[i+1].token == "Table"){
-                const Songs = create("table", Holder);
-                Songs.setAttribute("id", "sortable-table");
-
-                const TableHead = create("thead", Songs);
-                const TableRow = create("tr", TableHead);
-                
-                for (let i = 0; i < table.length; i++) {
-                    if (table[i] !== "link") {
-                        const box = create("th", TableRow);
-                        box.setAttribute('data-sort', 'quality');
-                        box.textContent = table[i];
-
-                        box.addEventListener('click', () => {
-                            sortTable(i, table);
-                        });
-                    }
-                }
+            Albums[AlbumsLength + 1] = detailsElement;
+            currentAlbum = {
+                name: tokens.value,
+                color: tokens.textcolor,
+                background: tokens.background
             }
 
-            console.log("Created " + tokens.value);
+            const summaryElement = create("summary", detailsElement);
+            summaryElement.style.backgroundColor = tokens.background;
+
+            if (!!tokens.image && tokens.image != "") {
+                const imageElement = create("img", summaryElement);
+                imageElement.alt = tokens.value + " cover";
+                imageElement.src = tokens.image;
+                imageElement.width = 136;
+                imageElement.height = 136;
+                imageElement.decoding = "async";
+                imageElement.dataset.nimg = "1";
+                imageElement.className = "EraCard_cover__6ANFI";
+                imageElement.loading = "lazy";
+                imageElement.style.color = "transparent";
+            }
+
+            const textDiv = create("div", summaryElement);
+
+            const titleDiv = create("div", textDiv);
+            titleDiv.className = "EraCard_title__Xknl9";
+
+            const titleSpan = create("span", titleDiv);
+            titleSpan.style.color = tokens.textcolor;
+            titleSpan.textContent = tokens.value;
+
+            const descDiv = create("div", textDiv);
+            descDiv.className = "EraCard_description__3MKFd";
+
+            const descSpan = create("span", descDiv);
+            descSpan.style.color = tokens.textcolor;
+            descSpan.textContent = tokens.description;
+
+            const tracksDiv = create("div", detailsElement);
+            tracksDiv.className = "EraCard_tracks__rI0Kj";
         }
+
         if (tokens.token == "Group") {
+            var Parent = previousAlbum;
+            var amount = Object.keys(lexed[i + 1].value).length;
+            var Holder = select(".EraCard_tracks__rI0Kj", Parent);
+            const mainContainer = create("div", Holder);
+            mainContainer.style = `
+            margin-left: 1.5%;
+            font-size: 26px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;`;
+            const innerDiv1 = create("div", mainContainer);
+            innerDiv1.textContent = "(" + amount + ") " + tokens.value;
 
-            const Holder = create("div", Albums[AlbumsLength].object);
-            Holder.classList.add("Group");
-            Holder.id = tokens.value
-
-            previousAlbum.groups[previousAlbumGroupLength+1] = {
-                object: Holder,
-                songs: {}
-            };
-
-        // Decorate
-
-            const TextHolder = create("div", Holder);
-            TextHolder.classList.add("Group_Text");
-
-            const AlbumTitle = create("div", TextHolder);
-            AlbumTitle.classList.add("Group_Title");
-
-            const AlbumTitleText = create("Span", AlbumTitle);
-            AlbumTitleText.textContent = tokens.value;
-                
-            const Songs = create("table", Holder);
-            Songs.setAttribute("id", "sortable-table");
-
-            const TableHead = create("thead", Songs);
-            const TableRow = create("tr", TableHead);
-            
-            for (let i = 0; i < table.length; i++) {
-                if (table[i] !== "link") {
-                    const box = create("th", TableRow);
-                    box.setAttribute('data-sort', 'quality');
-                    box.textContent = table[i];
-
-                    box.addEventListener('click', () => {
-                        sortTable(i, table);
-                    });
-                }
+            const Description = create("span", mainContainer);
+            if (tokens.description != undefined) {
+                //Description.classList.add('Track_length__yIb3d');
+                Description.style =
+                    "margin-right:auto;margin-left:auto;text-align:center;font-size: 18px;font-weight: 700;";
+                Description.textContent = tokens.description;
             }
-
-            console.log("Created " + tokens.value);
         }
+
         if (tokens.token == "Table") {
-            
-            var Parent = previousAlbum.object;
-            if(previousAlbumGroupLength > 0) Parent = previousAlbum.groups[previousAlbumGroupLength].object;
-            
-            const TableBody = create("tbody", select("table",Parent));
+            var Parent = previousAlbum;
+
+            var Holder = select(".EraCard_tracks__rI0Kj", Parent);
+            Holder.innerHTML += `
+            <div style="color: var(--light-primary); gap: 8px; padding: 8px; border-radius: 4px; font-size: 16px; display: flex; align-items: center; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; user-select: none;">
+                <div style="width: 300px;margin-left: 3.5%;overflow: shown;white-space: pre;">Song</div>
+                <div class="Track_length__yIb3d" style="width: 300px; overflow: shown;margin-right:-15%">Leak Date</div>
+                <div class="Track_length__yIb3d" style="margin-right:5%">Recording Date</div>
+            </div>
+            `
+
             var songs = tokens.value;
             var songsLength = Object.keys(songs).length;
+
+            // Sort by leak date
+            songs = sortByDate(songs);
             for (let i = 1; i < songsLength + 1; i++) {
                 var song = songs[i];
-                    
-                const tr = create("tr", TableBody);
-                for (let i = 0; i < Object.keys(song).length; i++) {
-                    if (table[i] !== "link") {
-                        const box = create("td", tr);
-                        box.setAttribute('data-sort', Object.keys(song)[i]);
-                        if (table[i] == "song") {
-                            const link = create("a", box);
-                            var adjustedLink = song.link;
-                            if (song.link == "N/A") adjustedLink = "#"
-                            link.setAttribute('href', adjustedLink);
-                            link.style.textDecoration = 'none';
-                            link.textContent = song.song;
+
+                const mainContainer = create("div", Holder);
+                mainContainer.classList.add(
+                    "Tooltip_tooltip__q1OLA",
+                    "Track_track__j1JOX"
+                );
+
+                const playButton = create("span", mainContainer);
+                playButton.classList.add("material-symbols-outlined", "Track_play");
+                if (!!song.link) playButton.textContent = "play_circle";
+
+                var adjustedLink = song.link;
+                mainContainer.setAttribute("link", adjustedLink);
+                mainContainer.onclick = async function () {
+                    let adjustedLink = mainContainer.getAttribute("link");
+                    console.log(adjustedLink)
+                    if (playButton.textContent == "pause_circle") {
+                        playButton.textContent = "play_circle";
+                        fade(audioplayer, 0);
+                    } else {
+                        if (previousbutton == playButton) {
+                            playButton.textContent = "pause_circle";
+                            fade(audioplayer, 1);
                         } else {
-                            box.textContent = song[table[i]];
+                            await play_audio(adjustedLink, playButton);
+                        }
+                    }
+                };
+
+                const innerDiv1 = create("div", mainContainer);
+                const songname = create("span", innerDiv1);
+                songname.classList.add("Track_name");
+                songname.textContent = song.song;
+                if (adjustedLink == undefined)
+                    songname.style = "color:var(--light-secondary);";
+
+                if (song.quality != undefined) {
+                    const QualityTag = create("span", innerDiv1);
+                    QualityTag.classList.add("Track_tag__WTlmD");
+                    var QualityColors = qualityColors[song.quality];
+                    if (!!QualityColors) {
+                        QualityTag.style.color = QualityColors.textcolor;
+                        QualityTag.style.backgroundColor = QualityColors.background;
+                        QualityTag.textContent = song.quality;
+                        if (song.length == "Original") {
+                            QualityTag.style.color = "rgb(255, 255, 255)";
+                            QualityTag.style.backgroundColor = "rgb(65, 240, 92)";
+                            QualityTag.textContent = "OG File";
                         }
                     }
                 }
-                /*
-                const TextHolder = create("div", Parent);
-                TextHolder.classList.add("Song");
-                            
-                const SongName = create("div", TextHolder);
-                SongName.classList.add("Song_Name");
 
-                const SongNameText = create("Span", SongName);
-                SongNameText.textContent = song.song;
+                if (song.length != undefined && song.length != "Original") {
+                    const LengthTag = create("span", innerDiv1);
+                    LengthTag.classList.add("Track_tag__WTlmD");
+                    var LengthColors = availableColors[song.length];
+                    if (!!LengthColors) {
+                        LengthTag.style.color = LengthColors.textcolor;
+                        LengthTag.style.backgroundColor = LengthColors.background;
+                        LengthTag.textContent = song.length;
+                    }
+                }
+
+                if (song.info != undefined) {
+                    const infoDiv = create("div", innerDiv1);
+                    infoDiv.classList.add("Track_aliases__Cctz8");
+                    const infoSpan = create("span", infoDiv);
+                    infoSpan.textContent = song.info;
+                }
+
+                mainContainer.setAttribute("data-content", !!song.description ? song.description : "")
+
+                const releaseDateDiv = create("div", mainContainer);
+                if (song.date != undefined) {
+                    releaseDateDiv.classList.add("Track_length__yIb3d", "Track_date");
+                    releaseDateDiv.textContent = song.date;
+                }
+                
+                const leakDateDiv = create("div", mainContainer);
+                leakDateDiv.classList.add("Track_date");
+                leakDateDiv.textContent = song.recordingdate;
+
+                const downloadButton = create("span", mainContainer);
+                downloadButton.classList.add("material-symbols-outlined","downloadbtn");
+                if (!!song.link) downloadButton.textContent = "download";
+                downloadButton.onclick = async function (event) {
+                    event.stopPropagation();
+                    downloadaudio(mainContainer.getAttribute("link"));
+                };
+
+                if (song.date != undefined && song.length != "Snippet") {
+                    const entryDate = convertToDate(song.date);
+                    const oneWeekAgo = new Date(currentDate);
+                    oneWeekAgo.setDate(currentDate.getDate() - 7);
             
-                const SongDescription = create("div", TextHolder);
-                SongDescription.classList.add("Song_Description");
+                    if (entryDate >= oneWeekAgo && entryDate <= currentDate) {
+                        const cloned = mainContainer.cloneNode(true);
+                        const playButton = select("span", cloned);
+                        const clonedplayButton = playButton.cloneNode(true);
+                        //playButton.insertAdjacentElement('afterend', clonedplayButton)
+                        
+                        playButton.classList.remove("material-symbols-outlined", "Track_play");
+                        playButton.classList.add("albumname");
+                        playButton.textContent = currentAlbum.name;
+                        playButton.style.color = currentAlbum.color;
+                        playButton.style.background = currentAlbum.background;
 
-                const SongDescriptionText = create("Span", SongDescription);
-                SongDescriptionText.textContent = song.description;
-                            
-                const SongDate = create("div", TextHolder);
-                SongDate.classList.add("Song_Date");
+                        cloned.onclick = async function () {
+                            let adjustedLink = cloned.getAttribute("link");
+                            let playButton = select("span", cloned);
+                            console.log(adjustedLink)
+                            if (previousbutton == playButton && !!playButton) {
+                                if (!audioplayer.paused) {
+                                    await fade(audioplayer, 0);
+                                    audioplayer.pause();
+                                } else {
+                                    fade(audioplayer, 1);
+                                }
+                            } else {
+                                await play_audio(adjustedLink, playButton);
+                            }
+                        };
 
-                const SongDateText = create("Span", SongDate);
-                SongDateText.textContent = song.date;
-                    
-                const SongLength = create("div", TextHolder);
-                SongLength.classList.add("Song_Length");
-
-                const SongLengthText = create("Span", SongLength);
-                SongLengthText.textContent = song.length;
-                    
-                const SongType = create("div", TextHolder);
-                SongType.classList.add("Song_Type");
-
-                const SongTypeText = create("Span", SongType);
-                SongTypeText.textContent = song.type;
-                    
-                const SongQuality = create("div", TextHolder);
-                SongQuality.classList.add("Song_Quality");
-
-                const SongQualityText = create("Span", SongQuality);
-                SongQualityText.textContent = song.quality;
-                    
-                const SongReleased = create("div", TextHolder);
-                SongReleased.classList.add("Song_Released");
-
-                const SongReleasedText = create("Span", SongReleased);
-                SongReleasedText.textContent = song.released;
-                    
-                const SongLink = create("div", TextHolder);
-                SongLink.classList.add("Song_Link");
-
-                const SongLinkText = create("Span", SongLink);
-                SongLinkText.textContent = song.link;
-                */
-                
-                console.log(song);
+                        select(".downloadbtn", cloned).onclick = async function (event) {
+                            event.stopPropagation();
+                            downloadaudio(cloned.getAttribute("link"));
+                        };
+        
+                        select("body > div > div.unreleased_container__IqK0q > details.EraGroup_era__D2P9b > div").appendChild(cloned)
+                    }
+                }
             }
-                
         }
     }
 
-  // Add the class attribute
+    console.log("Loaded all songs, cleaning duplicates")
+    // Cleanup
+    const albums = document.querySelectorAll(".EraCard_tracks__rI0Kj");
+    
+    const samenamestuff = {}
+    albums.forEach(album => {
 
-  // Append the details element to the document or another container element
+        const samenametracks = {};
+        // Access the children of each album
+        const albumChildren = album.children;
+    
+        // Loop through each child of the album
+        for (let i = 0; i < albumChildren.length; i++) {
+            const child = albumChildren[i];
 
-  /*
-  <details class="EraCard_era__5_ZGH">
-      <div class="EraCard_tracks__rI0Kj">
-          <div id="b46fee5b199307af84ee2bc370d94488" tag="div" class="Tooltip_tooltip__q1OLA Track_track__j1JOX" content="No description available." data-content="No description available.">
-          <div>
-              <div>Hohner Melodica #1
-              <!-- -->
-              <span class="Track_tag__WTlmD" style="color:rgb(255, 255, 255);background-color:rgb(69, 188, 255)">Lossless</span>
-              </div>
-          </div>
-          <div class="Track_length__yIb3d">0:02</div>
-          </div>
-      </div>
-  </details>
-  */
+            if (child.classList.contains("Track_track__j1JOX")) {
+                let txt = select(".Track_name", child).textContent.trim()
+                samenametracks[txt] = (samenametracks[txt] || 0) + 1;
+            }
+        }
+
+        Object.entries(samenametracks).forEach(([trackName, count]) => {
+            if (count > 1) {
+                console.log(trackName,count)
+                // Create a details element for track names with 2 or more occurrences
+                const detailsElement = document.createElement("details");
+                const summaryElement = document.createElement("summary");
+                summaryElement.textContent = `${trackName} (${count})`;
+                detailsElement.appendChild(summaryElement);
+    
+                // Append the corresponding children to the details element
+                for (let i = 0; i < albumChildren.length; i++) {
+                    const child = albumChildren[i];
+                    const trackNameElement = child.querySelector(".Track_name");
+    
+                    if (trackNameElement && trackNameElement.textContent.trim() === trackName) {
+                        const clonedChild = child.cloneNode(true);
+
+                        // Copy over the onclick attribute to the cloned element
+                        if (child.onclick) {
+                            clonedChild.onclick = async function () {
+                                let adjustedLink = clonedChild.getAttribute("link");
+                                var playButton = select("span", clonedChild)
+                                if (playButton.textContent == "pause_circle") {
+                                    playButton.textContent = "play_circle";
+                                    fade(audioplayer, 0);
+                                } else {
+                                    if (previousbutton == playButton) {
+                                        playButton.textContent = "pause_circle";
+                                        fade(audioplayer, 1);
+                                    } else {
+                                        await play_audio(adjustedLink, playButton);
+                                    }
+                                }
+                            };
+                            clonedChild.setAttribute("link", child.getAttribute("link"))
+                        }
+
+                        detailsElement.appendChild(clonedChild);
+
+                        child.remove();
+                        i--;
+                    }
+                }
+    
+                // Add the details element to the map
+                samenamestuff[trackName] = detailsElement;
+                
+                album.parentElement.appendChild(detailsElement);
+            }
+        });
+
+    });
+
 }
 
-main();
+window.onload = main;
 
-// Begin Modifying Website
+function findTooltipElement(element) {
+    while (element && !element.classList.contains('Tooltip_tooltip__q1OLA')) {
+        return findTooltipElement(element.parentElement);
+    }
+    return element;
+}
+
+document.addEventListener('mousemove', function (event) {
+    // Get the current element the mouse is over
+    var currentElement = findTooltipElement(event.target);
+    
+    if (!!currentElement && currentElement.getAttribute("data-content")) {
+        currentElement.style.setProperty('--mouse-x', event.clientX + 'px');
+        currentElement.style.setProperty('--mouse-y', event.clientY + 'px');
+    }
+});
