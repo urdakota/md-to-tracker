@@ -109,10 +109,10 @@ export async function lexer(lex) {
                         previousDictionary.description = tokens.trim();
                         break;
                     default:
-                        alert(`Error in code!
-                                ${previousDictionary.token} is not [Title, Album, Group]!
-                                type: Text, tokens: ${tokens}
-                            `);
+                        //alert(`Error in code!
+                        //         ${previousDictionary.token} is not [Title, Album, Group]!
+                        //        type: Text, tokens: ${tokens}
+                        //    `);
                         break;
                 }
                 // Update Previous
