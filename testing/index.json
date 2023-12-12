@@ -1,0 +1,62 @@
+{
+    "name": "Destroy Lonely Tracker",
+    "image": "https://i.redd.it/6d40e3x59ns61.jpg",
+    "tracker": {
+        "If Looks Could Kill": {
+            "description": "Destroy Lonely's latest album",
+            "image": "",
+            "background": "rgb(43, 2, 66)",
+            "textcolor": "rgb(255, 0, 0)",
+            "songs": [
+                {
+                    "name": "6 AM",
+                    "info": "",
+                    "desc": "in 200x zip, 102822 THREE_6AM.mp3",
+                    "leakdate": "12/5/23",
+                    "recorded": "10/28/22",
+                    "length": "Original",
+                    "quality": "CDQ",
+                    "link": "https://krakenfiles.com/view/Hk2KAGXale/file.html"
+                }
+            ]
+        },
+        "No Stylist v3": {
+            "description": "Nov 1st, 2020 - Aug 12, 2022 (almost all clayco)",
+            "image": "",
+            "background": "rgb(43, 2, 66)",
+            "textcolor": "rgb(255, 0, 0)",
+            "songs": {}
+        },
+        "No Stylist v2": {
+            "description": "Nov 1st, 2020 - Oct 31, 2021",
+            "image": "",
+            "background": "rgb(43, 2, 66)",
+            "textcolor": "rgb(255, 0, 0)",
+            "songs": {
+                "Racks Up": {
+                    "info": "[prod. xdkole]",
+                    "desc": "leaked at 12 AM with 5 songs",
+                    "leakdate": "12/5/23",
+                    "recorded": "?/?/21",
+                    "length": "Full",
+                    "quality": "CDQ",
+                    "link": "https://krakenfiles.com/view/elpI8QqBsa/file.html"
+                }
+            }
+        },
+        "</3²": {
+            "description": "(</3 Deluxe) March 15, 2020 - 2021",
+            "image": "",
+            "background": "rgb(43, 2, 66)",
+            "textcolor": "rgb(255, 0, 0)",
+            "songs": {}
+        },
+        "</3": {
+            "description": "(No Stylist v1) 2019 - Oct 31, 2020",
+            "image": "",
+            "background": "rgb(43, 2, 66)",
+            "textcolor": "rgb(255, 0, 0)",
+            "songs": {}
+        }
+    }
+}
