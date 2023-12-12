@@ -86,86 +86,70 @@ function sortByDate(inputObject) {
 }
 // Main
 async function main() {
-    const md = await fetch("./lone.md").then((response) => {return response.text()});
+    const md = await fetch("./index.json").then((response) => {return response.text()});
     // Read the entire md file & format into readable object
-    var splitmd = md.split("\n");
-    var lexed = await lexer(splitmd);
 
-    console.log("Loaded Tracker & Formatted");
+    const parsed = JSON.parse(md)
 
-    // Update Website
-    var length = Object.keys(lexed).length;
     // Tracker Title
     var Title = select(".Header_title__CHLQo");
     var container = select(".unreleased_container__IqK0q");
 
     // Tracker Title
-    select("span", Title).innerText = lexed[1].value; // Title
-    select("img", Title).src = lexed[1].image; // Image
+    select("span", Title).innerText = parsed.name; // Title
+    select("img", Title).src = parsed.image; // Image
 
-    // Create Albums
-    var Albums = {};
-    var currentAlbum = {
-        name: "",
-        color: "",
-        background: ""
-    }
-    
-    for (let i = 1; i < length + 1; i++) {
-        var tokens = lexed[i];
-        var AlbumsLength = Object.keys(Albums).length;
-        var previousAlbum = Albums[AlbumsLength];
+    for (const Album in parsed.tracker) {
+        var albuminfo = parsed.tracker[Album];
+        console.log(Album, albuminfo);
 
-        console.log(i, tokens);
+        const detailsElement = create("details", container);
+        detailsElement.classList.add("EraCard_era__5_ZGH");
+        detailsElement.id = Album;
 
-        if (tokens.token == "Album") {
-            const detailsElement = create("details", container);
-            detailsElement.classList.add("EraCard_era__5_ZGH");
-            detailsElement.id = tokens.value;
+        const summaryElement = create("summary", detailsElement);
+        summaryElement.style.backgroundColor = albuminfo.background;
 
-            Albums[AlbumsLength + 1] = detailsElement;
-            currentAlbum = {
-                name: tokens.value,
-                color: tokens.textcolor,
-                background: tokens.background
-            }
-
-            const summaryElement = create("summary", detailsElement);
-            summaryElement.style.backgroundColor = tokens.background;
-
-            if (!!tokens.image && tokens.image != "") {
-                const imageElement = create("img", summaryElement);
-                imageElement.alt = tokens.value + " cover";
-                imageElement.src = tokens.image;
-                imageElement.width = 136;
-                imageElement.height = 136;
-                imageElement.decoding = "async";
-                imageElement.dataset.nimg = "1";
-                imageElement.className = "EraCard_cover__6ANFI";
-                imageElement.loading = "lazy";
-                imageElement.style.color = "transparent";
-            }
-
-            const textDiv = create("div", summaryElement);
-
-            const titleDiv = create("div", textDiv);
-            titleDiv.className = "EraCard_title__Xknl9";
-
-            const titleSpan = create("span", titleDiv);
-            titleSpan.style.color = tokens.textcolor;
-            titleSpan.textContent = tokens.value;
-
-            const descDiv = create("div", textDiv);
-            descDiv.className = "EraCard_description__3MKFd";
-
-            const descSpan = create("span", descDiv);
-            descSpan.style.color = tokens.textcolor;
-            descSpan.textContent = tokens.description;
-
-            const tracksDiv = create("div", detailsElement);
-            tracksDiv.className = "EraCard_tracks__rI0Kj";
+        if (!!albuminfo.image && albuminfo.image != "") {
+            const imageElement = create("img", summaryElement);
+            imageElement.alt = Album + " cover";
+            imageElement.src = albuminfo.image;
+            imageElement.width = 136;
+            imageElement.height = 136;
+            imageElement.decoding = "async";
+            imageElement.dataset.nimg = "1";
+            imageElement.className = "EraCard_cover__6ANFI";
+            imageElement.loading = "lazy";
+            imageElement.style.color = "transparent";
         }
 
+        const textDiv = create("div", summaryElement);
+
+        const titleDiv = create("div", textDiv);
+        titleDiv.className = "EraCard_title__Xknl9";
+
+        const titleSpan = create("span", titleDiv);
+        titleSpan.style.color = albuminfo.textcolor;
+        titleSpan.textContent = Album;
+
+        const descDiv = create("div", textDiv);
+        descDiv.className = "EraCard_description__3MKFd";
+
+        const descSpan = create("span", descDiv);
+        descSpan.style.color = albuminfo.textcolor;
+        descSpan.textContent = albuminfo.description;
+
+        const tracksDiv = create("div", detailsElement);
+        tracksDiv.className = "EraCard_tracks__rI0Kj";
+
+        tracksDiv.innerHTML += `
+        <div style="color: var(--light-primary); gap: 8px; padding: 8px; border-radius: 4px; font-size: 16px; display: flex; align-items: center; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; user-select: none;">
+            <div style="width: 300px;margin-left: 3.5%;overflow: shown;white-space: pre;">Song</div>
+            <div class="Track_length__yIb3d" style="width: 300px; overflow: shown;margin-right:-15%">Leak Date</div>
+            <div class="Track_length__yIb3d" style="margin-right:5%">Recording Date</div>
+        </div>
+        `
+        /*
         if (tokens.token == "Group") {
             var Parent = previousAlbum;
             var amount = Object.keys(lexed[i + 1].value).length;
@@ -188,156 +172,142 @@ async function main() {
                 Description.textContent = tokens.description;
             }
         }
+        */
 
-        if (tokens.token == "Table") {
-            var Parent = previousAlbum;
+        const songs = sortByDate(albuminfo.songs);
+        for (const Song in songs) {
+            var songinfo = songs[Song];
 
-            var Holder = select(".EraCard_tracks__rI0Kj", Parent);
-            Holder.innerHTML += `
-            <div style="color: var(--light-primary); gap: 8px; padding: 8px; border-radius: 4px; font-size: 16px; display: flex; align-items: center; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; user-select: none;">
-                <div style="width: 300px;margin-left: 3.5%;overflow: shown;white-space: pre;">Song</div>
-                <div class="Track_length__yIb3d" style="width: 300px; overflow: shown;margin-right:-15%">Leak Date</div>
-                <div class="Track_length__yIb3d" style="margin-right:5%">Recording Date</div>
-            </div>
-            `
+            console.log(Song, songinfo)
 
-            var songs = tokens.value;
-            var songsLength = Object.keys(songs).length;
+            const mainContainer = create("div", tracksDiv);
+            mainContainer.classList.add(
+                "Tooltip_tooltip__q1OLA",
+                "Track_track__j1JOX"
+            );
 
-            // Sort by leak date
-            songs = sortByDate(songs);
-            for (let i = 1; i < songsLength + 1; i++) {
-                var song = songs[i];
+            const playButton = create("span", mainContainer);
+            playButton.classList.add("material-symbols-outlined", "Track_play");
+            if (!!songinfo.link) playButton.textContent = "play_circle";
 
-                const mainContainer = create("div", Holder);
-                mainContainer.classList.add(
-                    "Tooltip_tooltip__q1OLA",
-                    "Track_track__j1JOX"
-                );
-
-                const playButton = create("span", mainContainer);
-                playButton.classList.add("material-symbols-outlined", "Track_play");
-                if (!!song.link) playButton.textContent = "play_circle";
-
-                var adjustedLink = song.link;
-                mainContainer.setAttribute("link", adjustedLink);
-                mainContainer.onclick = async function () {
-                    let adjustedLink = mainContainer.getAttribute("link");
-                    console.log(adjustedLink)
-                    if (playButton.textContent == "pause_circle") {
-                        playButton.textContent = "play_circle";
-                        fade(audioplayer, 0);
+            var adjustedLink = songinfo.link;
+            mainContainer.setAttribute("link", adjustedLink);
+            mainContainer.onclick = async function () {
+                let adjustedLink = mainContainer.getAttribute("link");
+                console.log(adjustedLink)
+                if (playButton.textContent == "pause_circle") {
+                    playButton.textContent = "play_circle";
+                    fade(audioplayer, 0);
+                } else {
+                    if (previousbutton == playButton) {
+                        playButton.textContent = "pause_circle";
+                        fade(audioplayer, 1);
                     } else {
-                        if (previousbutton == playButton) {
-                            playButton.textContent = "pause_circle";
-                            fade(audioplayer, 1);
+                        await play_audio(adjustedLink, playButton);
+                    }
+                }
+            };
+
+            const innerDiv1 = create("div", mainContainer);
+            const songname = create("span", innerDiv1);
+            songname.classList.add("Track_name");
+            songname.textContent = songinfo.name;
+            if (adjustedLink == undefined)
+                songname.style = "color:var(--light-secondary);";
+
+            if (songinfo.quality != undefined) {
+                const QualityTag = create("span", innerDiv1);
+                QualityTag.classList.add("Track_tag__WTlmD");
+                var QualityColors = qualityColors[songinfo.quality];
+                if (!!QualityColors) {
+                    QualityTag.style.color = QualityColors.textcolor;
+                    QualityTag.style.backgroundColor = QualityColors.background;
+                    QualityTag.textContent = songinfo.quality;
+                    if (songinfo.length == "Original") {
+                        QualityTag.style.color = "rgb(255, 255, 255)";
+                        QualityTag.style.backgroundColor = "rgb(65, 240, 92)";
+                        QualityTag.textContent = "OG File";
+                    }
+                }
+            }
+
+            if (songinfo.length != undefined && songinfo.length != "Original") {
+                const LengthTag = create("span", innerDiv1);
+                LengthTag.classList.add("Track_tag__WTlmD");
+                var LengthColors = availableColors[songinfo.length];
+                if (!!LengthColors) {
+                    LengthTag.style.color = LengthColors.textcolor;
+                    LengthTag.style.backgroundColor = LengthColors.background;
+                    LengthTag.textContent = songinfo.length;
+                }
+            }
+
+            if (songinfo.info != undefined) {
+                const infoDiv = create("div", innerDiv1);
+                infoDiv.classList.add("Track_aliases__Cctz8");
+                const infoSpan = create("span", infoDiv);
+                infoSpan.textContent = songinfo.info;
+            }
+
+            mainContainer.setAttribute("data-content", !!songinfo.description ? songinfo.description : "")
+
+            const releaseDateDiv = create("div", mainContainer);
+            if (songinfo.date != undefined) {
+                releaseDateDiv.classList.add("Track_length__yIb3d", "Track_date");
+                releaseDateDiv.textContent = songinfo.date;
+            }
+            
+            const leakDateDiv = create("div", mainContainer);
+            leakDateDiv.classList.add("Track_date");
+            leakDateDiv.textContent = songinfo.recordingdate;
+
+            const downloadButton = create("span", mainContainer);
+            downloadButton.classList.add("material-symbols-outlined","downloadbtn");
+            if (!!songinfo.link) downloadButton.textContent = "download";
+            downloadButton.onclick = async function (event) {
+                event.stopPropagation();
+                downloadaudio(mainContainer.getAttribute("link"));
+            };
+
+            if (songinfo.date != undefined && songinfo.length != "Snippet") {
+                const entryDate = convertToDate(songinfo.date);
+                const oneWeekAgo = new Date(currentDate);
+                oneWeekAgo.setDate(currentDate.getDate() - 7);
+        
+                if (entryDate >= oneWeekAgo && entryDate <= currentDate) {
+                    const cloned = mainContainer.cloneNode(true);
+                    const playButton = select("span", cloned);
+                    const clonedplayButton = playButton.cloneNode(true);
+                    //playButton.insertAdjacentElement('afterend', clonedplayButton)
+                    
+                    playButton.classList.remove("material-symbols-outlined", "Track_play");
+                    playButton.classList.add("albumname");
+                    playButton.textContent = currentAlbum.name;
+                    playButton.style.color = currentAlbum.color;
+                    playButton.style.background = currentAlbum.background;
+
+                    cloned.onclick = async function () {
+                        let adjustedLink = cloned.getAttribute("link");
+                        let playButton = select("span", cloned);
+                        console.log(adjustedLink)
+                        if (previousbutton == playButton && !!playButton) {
+                            if (!audioplayer.paused) {
+                                await fade(audioplayer, 0);
+                                audioplayer.pause();
+                            } else {
+                                fade(audioplayer, 1);
+                            }
                         } else {
                             await play_audio(adjustedLink, playButton);
                         }
-                    }
-                };
+                    };
 
-                const innerDiv1 = create("div", mainContainer);
-                const songname = create("span", innerDiv1);
-                songname.classList.add("Track_name");
-                songname.textContent = song.song;
-                if (adjustedLink == undefined)
-                    songname.style = "color:var(--light-secondary);";
-
-                if (song.quality != undefined) {
-                    const QualityTag = create("span", innerDiv1);
-                    QualityTag.classList.add("Track_tag__WTlmD");
-                    var QualityColors = qualityColors[song.quality];
-                    if (!!QualityColors) {
-                        QualityTag.style.color = QualityColors.textcolor;
-                        QualityTag.style.backgroundColor = QualityColors.background;
-                        QualityTag.textContent = song.quality;
-                        if (song.length == "Original") {
-                            QualityTag.style.color = "rgb(255, 255, 255)";
-                            QualityTag.style.backgroundColor = "rgb(65, 240, 92)";
-                            QualityTag.textContent = "OG File";
-                        }
-                    }
-                }
-
-                if (song.length != undefined && song.length != "Original") {
-                    const LengthTag = create("span", innerDiv1);
-                    LengthTag.classList.add("Track_tag__WTlmD");
-                    var LengthColors = availableColors[song.length];
-                    if (!!LengthColors) {
-                        LengthTag.style.color = LengthColors.textcolor;
-                        LengthTag.style.backgroundColor = LengthColors.background;
-                        LengthTag.textContent = song.length;
-                    }
-                }
-
-                if (song.info != undefined) {
-                    const infoDiv = create("div", innerDiv1);
-                    infoDiv.classList.add("Track_aliases__Cctz8");
-                    const infoSpan = create("span", infoDiv);
-                    infoSpan.textContent = song.info;
-                }
-
-                mainContainer.setAttribute("data-content", !!song.description ? song.description : "")
-
-                const releaseDateDiv = create("div", mainContainer);
-                if (song.date != undefined) {
-                    releaseDateDiv.classList.add("Track_length__yIb3d", "Track_date");
-                    releaseDateDiv.textContent = song.date;
-                }
-                
-                const leakDateDiv = create("div", mainContainer);
-                leakDateDiv.classList.add("Track_date");
-                leakDateDiv.textContent = song.recordingdate;
-
-                const downloadButton = create("span", mainContainer);
-                downloadButton.classList.add("material-symbols-outlined","downloadbtn");
-                if (!!song.link) downloadButton.textContent = "download";
-                downloadButton.onclick = async function (event) {
-                    event.stopPropagation();
-                    downloadaudio(mainContainer.getAttribute("link"));
-                };
-
-                if (song.date != undefined && song.length != "Snippet") {
-                    const entryDate = convertToDate(song.date);
-                    const oneWeekAgo = new Date(currentDate);
-                    oneWeekAgo.setDate(currentDate.getDate() - 7);
-            
-                    if (entryDate >= oneWeekAgo && entryDate <= currentDate) {
-                        const cloned = mainContainer.cloneNode(true);
-                        const playButton = select("span", cloned);
-                        const clonedplayButton = playButton.cloneNode(true);
-                        //playButton.insertAdjacentElement('afterend', clonedplayButton)
-                        
-                        playButton.classList.remove("material-symbols-outlined", "Track_play");
-                        playButton.classList.add("albumname");
-                        playButton.textContent = currentAlbum.name;
-                        playButton.style.color = currentAlbum.color;
-                        playButton.style.background = currentAlbum.background;
-
-                        cloned.onclick = async function () {
-                            let adjustedLink = cloned.getAttribute("link");
-                            let playButton = select("span", cloned);
-                            console.log(adjustedLink)
-                            if (previousbutton == playButton && !!playButton) {
-                                if (!audioplayer.paused) {
-                                    await fade(audioplayer, 0);
-                                    audioplayer.pause();
-                                } else {
-                                    fade(audioplayer, 1);
-                                }
-                            } else {
-                                await play_audio(adjustedLink, playButton);
-                            }
-                        };
-
-                        select(".downloadbtn", cloned).onclick = async function (event) {
-                            event.stopPropagation();
-                            downloadaudio(cloned.getAttribute("link"));
-                        };
-        
-                        select("body > div > div.unreleased_container__IqK0q > details.EraGroup_era__D2P9b > div").appendChild(cloned)
-                    }
+                    select(".downloadbtn", cloned).onclick = async function (event) {
+                        event.stopPropagation();
+                        downloadaudio(cloned.getAttribute("link"));
+                    };
+    
+                    select("body > div > div.unreleased_container__IqK0q > details.EraGroup_era__D2P9b > div").appendChild(cloned)
                 }
             }
         }
