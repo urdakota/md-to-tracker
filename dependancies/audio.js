@@ -89,25 +89,27 @@ export const play_audio = async (link, button) => {
 document.addEventListener('DOMContentLoaded', function () {
     audioplayer = select("audio");
     audioplayer.addEventListener("ended", async function () {
-        if (!!previousbutton) previousbutton.textContent = "play_circle";
-        if (autoplay) {
-            if (this.currentTime >= this.duration - 1) {
-                var song = previousbutton.parentElement;
-                var songs = Array.from(song.parentElement.childNodes)
-                var nextsong = songs.indexOf(song) + 1;
-                if (!!songs[nextsong]) {
-                    let nextelement = songs[nextsong];
-                    let audiolink = await fetchaudio(nextelement.getAttribute("link"));
-                    await play_audio(audiolink, select(".Track_play", nextelement));
-                } else {
-                    if (song.parentElement.parentElement.tagName.toLowerCase() === "details") {
-                        var songs = Array.from(song.parentElement.parentElement.childNodes)
-                        var nextsong = songs.indexOf(song.parentElement) + 1;
-                        if (!!songs[nextsong]) {
-                            let nextelement = songs[nextsong];
-                            if (nextelement.tagName.toLowerCase() === "details") {
-                                let audiolink = await fetchaudio(nextelement.children[1].getAttribute("link"));
-                                await play_audio(audiolink, select(".Track_play", nextelement));
+        if (!!previousbutton && previousbutton.textContent != "play_circle"){ // fixes weird skipping bug when paused for too long
+            if (!!previousbutton) previousbutton.textContent = "play_circle";
+            if (autoplay) {
+                if (this.currentTime >= this.duration - 1) {
+                    var song = previousbutton.parentElement;
+                    var songs = Array.from(song.parentElement.childNodes)
+                    var nextsong = songs.indexOf(song) + 1;
+                    if (!!songs[nextsong]) {
+                        let nextelement = songs[nextsong];
+                        let audiolink = await fetchaudio(nextelement.getAttribute("link"));
+                        await play_audio(audiolink, select(".Track_play", nextelement));
+                    } else {
+                        if (song.parentElement.parentElement.tagName.toLowerCase() === "details") {
+                            var songs = Array.from(song.parentElement.parentElement.childNodes)
+                            var nextsong = songs.indexOf(song.parentElement) + 1;
+                            if (!!songs[nextsong]) {
+                                let nextelement = songs[nextsong];
+                                if (nextelement.tagName.toLowerCase() === "details") {
+                                    let audiolink = await fetchaudio(nextelement.children[1].getAttribute("link"));
+                                    await play_audio(audiolink, select(".Track_play", nextelement));
+                                }
                             }
                         }
                     }
