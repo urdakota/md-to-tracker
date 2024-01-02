@@ -26,7 +26,7 @@ export const fade = async (element, volume) => {
         
         await wait(0.01);
     } while (element.volume != fadingto && isfading)
-    //if (element.volume <= 0) element.pause();
+    if (element.volume <= 0) element.pause();
 }
 
 export const fetchaudio = async (link) => {
