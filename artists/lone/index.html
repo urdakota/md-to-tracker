@@ -1,0 +1,553 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Unreleased | Destroy Lonely</title>
+    <meta name="og:title" content="Unreleased | Destroy Lonely">
+    <meta name="og:site_name" content="Unreleased Music Thingy">
+    <meta name="title" content="Unreleased | Destroy Lonely">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+
+<body>
+    <script type="module" src="./index.js"></script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+        }
+
+        .material-symbols-outlined {
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+    </style>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+
+        :root {
+            color-scheme: dark;
+            --dark-primary: #0a0a0a;
+            --dark-secondary: #191919;
+            --light-primary: #fff;
+            --light-secondary: #d3d3d3;
+        }
+
+        * {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            font-family: Inter, sans-serif;
+            color: var(--light-primary);
+            background-color: var(--dark-primary);
+            overflow: hidden;
+            scroll-behavior: smooth;
+            scroll-padding-top: 4rem;
+        }
+
+        html,
+        body {
+            overflow-y: scroll;
+        }
+
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .Root {
+            --content-spacing: 16px;
+            --content-max-width: 1955px;
+            --content-spacing: clamp(16px,
+                    16px + (100vw - var(--left-sidebar-width, 0px) - var(--panel-width, 0px) - 600px)/424 * 8,
+                    24px);
+            -webkit-transition: none 0.5s cubic-bezier(0.3, 0, 0.4, 1);
+            transition: none 0.5s cubic-bezier(0.3, 0, 0.4, 1);
+            -webkit-transition-property: background;
+            transition-property: background;
+        }
+
+        .contentSpacing {
+            margin: 0;
+            max-width: var(--content-max-width);
+            padding: 0 var(--content-spacing);
+        }
+
+        .Header_header__v0usY {
+            display: flex;
+            justify-content: space-between;
+            padding: 24px;
+            background-color: var(--dark-secondary);
+        }
+
+        .Header_logo__VzOeQ {
+            border-radius: 4px;
+            margin-right: 10px;
+            vertical-align: sub;
+        }
+
+        .Header_index__AMXcn {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .Header_title__CHLQo {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        .Header_links___Fa_y {
+            font-size: 16px;
+        }
+
+        @media screen and (max-width: 1200px) {
+            .Header_links___Fa_y {
+                display: none !important;
+            }
+        }
+
+        .Track_track__j1JOX {
+            color: var(--light-primary);
+            gap: 8px;
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+            border-top: 1px solid grey;
+        }
+
+        .Track_play {
+            width: 25px;
+            margin-left: 1%;
+            overflow: shown;
+        }
+
+        .Track_name {
+            width: 500px;
+            margin-left: 0%;
+            overflow: shown;
+            white-space: pre;
+        }
+        
+        .Track_aliases__Cctz8 {
+            width: 500px;
+        }
+        .Track_description {
+            width: 600px;
+            margin-left: 5%;
+            overflow: shown;
+        }
+
+        .Track_date {
+            color: var(--light-secondary);
+            margin-left: auto;
+            margin-right: 0%;
+            width: 100px;
+            overflow: shown;
+        }
+
+        .Track_track__j1JOX>div:nth-child(2) {
+            width: 300px;
+            overflow: shown;
+        }
+
+        .Track_track__j1JOX:hover {
+            background-color: hsla(0, 0%, 100%, 0.1);
+            border-bottom: 1px solid grey;
+        }
+
+        .Track_play__O_A_T {
+            display: none !important;
+        }
+
+        .Track_track__j1JOX:hover>.Track_play__O_A_T {
+            display: block !important;
+        }
+
+        .Track_aliases__Cctz8,
+        .Track_artists__Ea865,
+        .Track_length__yIb3d {
+            color: var(--light-secondary);
+        }
+
+        .Track_length__yIb3d {
+            margin-left: auto;
+        }
+
+        .Track_tag__WTlmD {
+            padding: 4px;
+            margin-left: 4px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .ReleasedTag {
+            width: 70px;
+        }
+
+        .SearchResults_results__mfJ5h {
+            margin: 20px;
+            padding: 8px;
+            border-radius: 4px;
+            background-color: var(--dark-secondary);
+        }
+
+        .TrackGroup_track_group__1QpGC {
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .TrackGroup_track_group__1QpGC:hover {
+            background-color: hsla(0, 0%, 100%, 0.1);
+        }
+
+        .TrackGroup_tracks__cO4Vr {
+            margin-left: 32px;
+        }
+
+        .EraCard_era__5_ZGH {
+            margin: 20px;
+            border-radius: 4px;
+            background-color: var(--dark-secondary);
+        }
+
+        .EraCard_era__5_ZGH>summary {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            border-radius: 4px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        .EraCard_cover__6ANFI {
+            height: auto;
+            min-width: 136px;
+            max-height: 136px;
+            box-shadow: 0 4px 60px rgba(0, 0, 0, 0.5);
+            border-radius: 4px;
+        }
+
+        .EraCard_title__Xknl9 {
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .EraCard_description__3MKFd {
+            font-size: 14px;
+        }
+
+        .Track_aliases__Cctz8, .Track_artists__Ea865, .Track_length__yIb3d {
+            color: var(--light-secondary);
+        }
+
+        @media screen and (max-width: 600px) {
+            .EraCard_era__5_ZGH>summary {
+                text-align: center;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            .EraCard_description__3MKFd {
+                display: none;
+            }
+        }
+
+        .EraCard_tracks__rI0Kj {
+            padding: 16px;
+        }
+
+        .EraCard_subera__uRCRb {
+            background-color: var(--light-primary);
+            color: #000;
+            padding: 8px;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+
+        .unreleased_container__IqK0q {
+            margin: 0 auto;
+            width: 100%;
+            max-width: 90%;
+        }
+
+        .Tooltip_tooltip__q1OLA:before {
+            position: fixed;
+            display: none;
+            content: attr(data-content);
+            left: var(--mouse-x,0);
+            top: var(--mouse-y,0);
+            min-width: 200px;
+            max-width: 400px;
+            padding: 8px;
+            border-radius: 4px;
+            transform: translate(8px,-8px);
+            background-color: var(--dark-secondary);
+            box-shadow: 0 0 8px rgba(0,0,0,.5);
+            z-index: 1;
+        }
+        
+        .EraGroup_era__D2P9b {
+            margin: 20px;
+            border-radius: 4px;
+            background-color: var(--dark-secondary);
+        }
+
+        .EraGroup_era__D2P9b>summary {
+            font-weight: 700;
+            padding: 8px;
+            border-radius: 4px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @keyframes details-show {
+            0% {
+                opacity: 0;
+                transform: var(--details-translate,translateY(-.5em))
+            }
+        }
+
+        details {
+            display: block;
+        }
+
+        details[open]>:not(summary) {
+            animation: details-show .15s ease-in-out
+        }
+
+        details[open]>:not(summary) {
+            animation: details-show .15s ease-in-out;
+        }
+
+        details[open] > summary:first-of-type {
+            list-style-type: disclosure-open;
+        }
+        
+        details > summary:first-of-type {
+            display: list-item;
+            counter-increment: list-item 0;
+            list-style: inside disclosure-closed;
+        }
+
+        details>summary {
+            cursor: pointer
+        }
+
+        details>summary:not(.arrow) {
+            list-style: none
+        }
+
+        details>summary:not(.arrow)::-webkit-details-marker {
+            display: none
+        }
+
+        .EraGroup_era__D2P9b>summary {
+            font-weight: 700;
+            padding: 8px;
+            border-radius: 4px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        .EraGroup_era__D2P9b>summary::marker {
+            color: inherit;
+        }
+        
+        .EraGroup_tracks__WAjOp {
+            padding: 8px;
+        }
+
+        @media (hover: hover) {
+            .Tooltip_tooltip__q1OLA:hover:before {
+                display:block;
+                white-space: pre-wrap
+            }
+        }
+
+        .albumname {
+            border-radius: 4px;
+            padding-right: 4px;
+            padding-left: 4px;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            width: 135px;
+            text-align: center;
+        }
+
+        .downloadbtn {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .Tooltip_tooltip__q1OLA:hover .downloadbtn {
+            opacity: 1;
+        }
+
+    </style>
+    <!--
+    <div style="padding:10px;text-align:center">
+        217 New Leaks are being added with album-sorting! expect to be released by thursday-friday
+        <br>
+    </div>
+    -->
+    <audio  id="audio"           preload="metadata"></audio>
+    <iframe id="download_helper" style="display:none;"></iframe>
+    <a      id="page_opener"     target="_blank" href="#"></a>
+    
+    <!-- 
+    <div id="player" class="Player_player__eidFG">
+        <div class="Player_info__2tBEq">
+            <img id="player_photo"
+                src="https://lh7-us.googleusercontent.com/sheets/ACTFsxQD0pGtH9zWC-hQJdIFlbI6A3aHu-Gii-VRv3Vcad5YObrV4mbcPU-WO4p92v_pMpJcHceO25dV2_6oKxof0Crx0FpGH8jX1tvLfgR0kNe2bHgZHbi5J4BliaFS6pEM2O466S98tcuwlrH6Oa2aAaT1QAO2laX2mNM=w256"
+                width="80" height="80" decoding="async" data-nimg="1" class="Player_cover__1MBF7" loading="lazy"
+                style="color: transparent" />
+            <div>
+                <div id="player_songname">leak</div>
+            </div>
+        </div>
+        <div>
+            <div class="Player_buttons__F48gS">
+                <button
+                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-148fdm8" tabindex="0"
+                    type="button">
+                    <svg role="img" height="16" width="16" viewBox="0 0 16 16" fill="rgba(255, 255, 255, .7)">
+                        <path
+                            d="M3.3 1a.7.7 0 01.7.7v5.15l9.95-5.744a.7.7 0 011.05.606v12.575a.7.7 0 01-1.05.607L4 9.149V14.3a.7.7 0 01-.7.7H1.7a.7.7 0 01-.7-.7V1.7a.7.7 0 01.7-.7h1.6z">
+                        </path>
+                    </svg><span class="MuiTouchRipple-root css-w0pj6f"></span></button><button
+                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1vis5kg" tabindex="0"
+                    type="button">
+                    <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1d0vlgf" focusable="false"
+                        aria-hidden="true" viewBox="0 0 24 24" data-testid="PlayArrowRoundedIcon">
+                        <path
+                            d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z">
+                        </path>
+                    </svg><span class="MuiTouchRipple-root css-w0pj6f"></span></button><button
+                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-148fdm8" tabindex="0"
+                    type="button">
+                    <svg role="img" height="16" width="16" viewBox="0 0 16 16" fill="rgba(255, 255, 255, .7)">
+                        <path
+                            d="M12.7 1a.7.7 0 00-.7.7v5.15L2.05 1.107A.7.7 0 001 1.712v12.575a.7.7 0 001.05.607L12 9.149V14.3a.7.7 0 00.7.7h1.6a.7.7 0 00.7-.7V1.7a.7.7 0 00-.7-.7h-1.6z">
+                        </path>
+                    </svg><span class="MuiTouchRipple-root css-w0pj6f"></span></button>
+            </div>
+            <div class="Player_slider__CROML">
+                <div>0:04</div>
+                <span class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-1vlex1"><span
+                        class="MuiSlider-rail css-b04pc9"></span><span class="MuiSlider-track css-1t2bqnt"
+                        style="left: 0%; width: 2.94291%"></span><span data-index="0" data-focusvisible="false"
+                        class="MuiSlider-thumb MuiSlider-thumbColorPrimary MuiSlider-thumbSizeMedium css-7drnjp"
+                        style="left: 2.94291%"><input data-index="0" aria-valuenow="4.863451"
+                            aria-orientation="horizontal" aria-valuemax="165.26" aria-valuemin="0" type="range" min="0"
+                            max="165.26" step="1" value="4.863451" style="
+                  border: 0px;
+                  clip: rect(0px, 0px, 0px, 0px);
+                  height: 100%;
+                  margin: -1px;
+                  overflow: hidden;
+                  padding: 0px;
+                  position: absolute;
+                  white-space: nowrap;
+                  width: 100%;
+                  direction: ltr;
+                " /></span></span>
+                <div>2:45</div>
+            </div>
+        </div>
+        <div class="Player_volume___J19r">
+            <span class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-pfu4vs"><span
+                    class="MuiSlider-rail css-b04pc9"></span><span class="MuiSlider-track css-1t2bqnt"
+                    style="left: 0%; width: 100%"></span><span data-index="0" data-focusvisible="false"
+                    class="MuiSlider-thumb MuiSlider-thumbColorPrimary MuiSlider-thumbSizeMedium css-7drnjp"
+                    style="left: 100%"><input data-index="0" aria-valuenow="1" aria-orientation="horizontal"
+                        aria-valuemax="1" aria-valuemin="0" type="range" min="0" max="1" step="0.01" value="1" style="
+                border: 0px;
+                clip: rect(0px, 0px, 0px, 0px);
+                height: 100%;
+                margin: -1px;
+                overflow: hidden;
+                padding: 0px;
+                position: absolute;
+                white-space: nowrap;
+                width: 100%;
+                direction: ltr;
+              " /></span></span>
+        </div>
+    </div>
+-->
+    <div>
+        <div class="Header_header__v0usY">
+            <a class="Header_index__AMXcn" href="../../">
+                <h1 class="Header_title__CHLQo">
+                    <img alt="Tracker Icon" src="/website/logo (1).png" width="40" height="40" decoding="async"
+                        data-nimg="1" class="Header_logo__VzOeQ" loading="lazy" style="color: transparent" />
+                    <span id="Tracker_Name">Loading...</span>
+                    <!-- -->
+                </h1>
+            </a>
+        </div>
+        
+        <div class="unreleased_container__IqK0q">
+            <details class="EraGroup_era__D2P9b">
+                <summary class="arrow">
+                    <span class="thisweeksleaks">This Week's Leaks</span>
+                    <script>
+                        function formatDate(date) {
+                            const month = date.getMonth() + 1;
+                            const day = date.getDate();
+                            const year = date.getFullYear().toString().split("20")[1];
+
+                            // Ensure two digits for month and day
+                            const formattedMonth = month < 10 ? `0${month}` : `${month}`;
+                            const formattedDay = day < 10 ? `0${day}` : `${day}`;
+
+                            // Format: m/d/y
+                            return `${formattedMonth}/${formattedDay}/${year}`;
+                        }
+
+
+                        const currentDate = new Date();
+                        const oneWeekAgo = new Date(currentDate);
+                        oneWeekAgo.setDate(currentDate.getDate() - 7);
+                        
+                        const formattedOneWeekAgo = formatDate(oneWeekAgo);
+                        const formattedCurrentDate = formatDate(currentDate);
+
+                        document.querySelector(".thisweeksleaks").textContent += ` (${formattedOneWeekAgo} -> ${formattedCurrentDate})`
+                    </script>
+                </summary>
+                <div class="EraGroup_tracks__WAjOp">
+                    <div style="color: var(--light-primary); gap: 8px; font-size: 16px; display: flex; align-items: center; -webkit-user-select: none; -moz-user-select: none; user-select: none;">
+                        <div style="width: 125px;margin-left:2%;overflow: shown;white-space: pre;">Era</div>
+                        <div style="width: 300px;margin-left:-1%;overflow: shown;white-space: pre;">Song</div>
+                        <div class="Track_length__yIb3d" style="width: 300px; overflow: shown;margin-right:-9%">Leak Date</div>
+                        <div class="Track_length__yIb3d" style="margin-right:8%">Recording Date</div>
+                    </div>
+                </div>
+            </details>
+        </div>
+    </div>
+</body>
+
+</html>
