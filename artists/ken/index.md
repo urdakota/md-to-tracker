@@ -9,6 +9,7 @@ rgb(180, 27, 20)
 | ---------------------- | ------------------------------ | -------------------------------------------- | -------------------------------- | ---------------------- | -------- | ------- | ------------------------------------------------- |
 | Designer               | Ken Carson (feat. Destroy Lonely) | Leaked by soundcloud account chaoschaoschaos in EP named "MORE CHAOS", DESIGNER X LONE | 30/12/23 |   | Full     | HQ      | https://pillowcase.zip/f/59560683e31c7c56273b0b3da741b4b6 |
 | Rick                   | Ken Carson (feat. Destroy Lonely) | Leaked by soundcloud account chaoschaoschaos in EP named "MORE CHAOS", RICK | 30/12/23 |              | Full     | HQ      | https://pillowcase.zip/f/4888a5494261ab2ed4aa9097a66238d2 |
+| Black                  | Ken Carson                     | 2K GB took 2 days (1/15-16/24)               | 1/16/24                          | 10/31/23               | Original | CDQ     | https://krakenfiles.com/view/iDTUf3Ofbh/file.html |
 # A Great Chaos
 XTENDED (October 31, 2022) - (October 13, 2023) A Great Chaos
 https://upload.wikimedia.org/wikipedia/en/f/f5/Ken_Carson_-_A_Great_Chaos.jpg
@@ -27,7 +28,7 @@ rgb(0, 27, 20)
 | Song                   | Info                           | Description                                  | Leak Date (d/m/y)                | Recording Date (d/m/y) | Length   | Quality | Link                                              |
 | ---------------------- | ------------------------------ | -------------------------------------------- | -------------------------------- | ---------------------- | -------- | ------- | ------------------------------------------------- |
 | Someone                | Ken Carson [prod. starboy, artdealer] | $700 Group Buy                        | 31/12/23                         | ?/?/21                 | Full     | HDQ     | https://pillowcase.zip/f/2b2f33e39161df34ed1a289806c49e54 |
-| Aint No Way            | Ken Carson (feat. Destroy Lonely, Homixide Gang) | Leaked after $800 GB with Lone only     | 30/12/23                         | ?/?/21                 | Original | HQ      | https://pillowcase.zip/f/ee32bc78c53a5160ced75edab39a3420 |
+| Aint No Way            | Ken Carson (feat. Destroy Lonely, Homixide Gang) | Leaked after $800 GB with Lone only | 30/12/23                | ?/?/21                 | Original | HQ      | https://pillowcase.zip/f/ee32bc78c53a5160ced75edab39a3420 |
 | Peel                   | Ken Carson (Rich as Hell)    | $800 Group Buy, Finished before, File after MoreChaos sc leak, og file leaked same day | 30/12/23 | ?/?/21 | Original | CDQ     | https://krakenfiles.com/view/thdj0jiDoB/file.html |
 | I Serve X              | Ken Carson [prod. F1lthy]      | 2nd Group Buy, file at 12:05 AM              | 30/12/23                         | ?/?/21                 | Full     | CDQ     | https://krakenfiles.com/view/vXT8Z7Y9ap/file.html |
 | FWM                    | Ken Carson (feat. SoFaygo)     | $2,000 Group Buy                             | 29/12/23                         | ?/?/21                 | Full     | CDQ     | https://pillowcase.zip/f/e04ba7a0dee377a656e6218109ff8509 |
@@ -53,3 +54,4 @@ rgb(200,200,200)
 rgb(69, 120, 255)
 | Song                   | Info                           | Description                                  | Leak Date (d/m/y)                | Recording Date (d/m/y) | Length   | Quality | Link                                              |
 | ---------------------- | ------------------------------ | -------------------------------------------- | -------------------------------- | ---------------------- | -------- | ------- | ------------------------------------------------- |
+| All Season             | ??? (feat. Ken Car$on)         | Bonus for Black GB (1/16/24) because of bitcoin delay | 1/16/24                 | ?/?/2018               | Full     | CDQ     | https://krakenfiles.com/view/CMfkpsGgh5/file.html |
