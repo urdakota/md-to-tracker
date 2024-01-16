@@ -9,7 +9,7 @@ rgb(180, 27, 20)
 | ---------------------- | ------------------------------ | -------------------------------------------- | -------------------------------- | ---------------------- | -------- | ------- | ------------------------------------------------- |
 | Designer               | Ken Carson (feat. Destroy Lonely) | Leaked by soundcloud account chaoschaoschaos in EP named "MORE CHAOS", DESIGNER X LONE | 30/12/23 |   | Full     | HQ      | https://pillowcase.zip/f/59560683e31c7c56273b0b3da741b4b6 |
 | Rick                   | Ken Carson (feat. Destroy Lonely) | Leaked by soundcloud account chaoschaoschaos in EP named "MORE CHAOS", RICK | 30/12/23 |              | Full     | HQ      | https://pillowcase.zip/f/4888a5494261ab2ed4aa9097a66238d2 |
-| Black                  | Ken Carson                     | 2K GB took 2 days (1/15-16/24)               | 1/16/24                          | 10/31/23               | Original | CDQ     | https://krakenfiles.com/view/iDTUf3Ofbh/file.html |
+| Black                  | Ken Carson                     | 2K GB took 2 days (1/15-16/24)               | 16/01/24                         | 31/10/23               | Original | CDQ     | https://krakenfiles.com/view/iDTUf3Ofbh/file.html |
 # A Great Chaos
 XTENDED (October 31, 2022) - (October 13, 2023) A Great Chaos
 https://upload.wikimedia.org/wikipedia/en/f/f5/Ken_Carson_-_A_Great_Chaos.jpg
@@ -54,4 +54,4 @@ rgb(200,200,200)
 rgb(69, 120, 255)
 | Song                   | Info                           | Description                                  | Leak Date (d/m/y)                | Recording Date (d/m/y) | Length   | Quality | Link                                              |
 | ---------------------- | ------------------------------ | -------------------------------------------- | -------------------------------- | ---------------------- | -------- | ------- | ------------------------------------------------- |
-| All Season             | ??? (feat. Ken Car$on)         | Bonus for Black GB (1/16/24) because of bitcoin delay | 1/16/24                 | ?/?/2018               | Full     | CDQ     | https://krakenfiles.com/view/CMfkpsGgh5/file.html |
+| All Season             | ??? (feat. Ken Car$on)         | Bonus for Black GB (1/16/24) because of bitcoin delay | 16/01/24                | ?/?/18                 | Full     | CDQ     | https://krakenfiles.com/view/CMfkpsGgh5/file.html |
