@@ -9,7 +9,8 @@ rgb(180, 27, 20)
 | ---------------------- | ------------------------------ | -------------------------------------------- | -------------------------------- | ---------------------- | -------- | ------- | ------------------------------------------------- |
 | Designer               | Ken Carson (feat. Destroy Lonely) | Leaked by soundcloud account chaoschaoschaos in EP named "MORE CHAOS", DESIGNER X LONE | 30/12/23 |   | Full     | HQ      | https://pillowcase.zip/f/59560683e31c7c56273b0b3da741b4b6 |
 | Rick                   | Ken Carson (feat. Destroy Lonely) | Leaked by soundcloud account chaoschaoschaos in EP named "MORE CHAOS", RICK | 30/12/23 |              | Full     | HQ      | https://pillowcase.zip/f/4888a5494261ab2ed4aa9097a66238d2 |
-| Black                  | Ken Carson                     | 2K GB took 2 days (1/15-16/24)               | 16/01/24                         | 31/10/23               | Original | CDQ     | https://krakenfiles.com/view/iDTUf3Ofbh/file.html |
+| Black                  | Ken Carson                     | 2K Blind GB took 2 days (1/15-16/24)         | 16/01/24                         | 31/10/23               | Original | CDQ     | https://krakenfiles.com/view/iDTUf3Ofbh/file.html |
+| Private                | Ken Carson                     | 4K Blind "Grail" GB took 2 days (1/17-18/24) | 18/01/24                         | 1/11/23                | Original | CDQ     | https://krakenfiles.com/view/97vnvDlWVm/file.html |
 # A Great Chaos
 XTENDED (October 31, 2022) - (October 13, 2023) A Great Chaos
 https://upload.wikimedia.org/wikipedia/en/f/f5/Ken_Carson_-_A_Great_Chaos.jpg
@@ -20,7 +21,7 @@ rgb(180, 27, 20)
 | Jumanji                | Ken Carson (Swaggin/ Balenci Boots) | Leaked by soundcloud account chaoschaoschaos in EP named "MORE CHAOS", JUMANJI | 30/12/23 |         | Full     | HQ      | https://pillowcase.zip/f/dbd91f952f419e4fc47edf3bf07be307 |
 | Just Might             | Ken Carson (X on my Buckle)    | Leaked by soundcloud account chaoschaoschaos in EP named "MORE CHAOS", JUST MIGHT | 30/12/23 |           | Full     | HQ      | https://pillowcase.zip/f/f82737715a2369567c393656b114777c |
 | Rick Owens             | UFO361 (ft. Ken Carson)        | Jersey Beat Ken Feature                      | 11/12/23                         |                        | Full     | CDQ     | https://pillowcase.zip/f/f8d02e43d0d32146b60061f655c39a63 |
-| ???                    | Ken Carson                     | 2K GB took 2 days (1/16-17/24)               | 17/01/24                         | 12/12/22               | Original | CDQ     | https://krakenfiles.com/view/p62g7Lnezx/file.html |
+| Get Off                | Ken Carson                     | 2K Blind GB took 2 days (1/16-17/24)         | 17/01/24                         | 12/12/22               | Original | CDQ     | https://krakenfiles.com/view/p62g7Lnezx/file.html |
 # X
 X (July 8, 2022) - (October 31, 2022) XTENDED
 https://upload.wikimedia.org/wikipedia/en/thumb/f/f8/X_Ken_Carson.jpeg/220px-X_Ken_Carson.jpeg
