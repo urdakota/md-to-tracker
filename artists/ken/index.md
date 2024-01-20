@@ -21,7 +21,8 @@ rgb(180, 27, 20)
 | Jumanji                | Ken Carson (Swaggin/ Balenci Boots) | Leaked by soundcloud account chaoschaoschaos in EP named "MORE CHAOS", JUMANJI | 30/12/23 |         | Full     | HQ      | https://pillowcase.zip/f/dbd91f952f419e4fc47edf3bf07be307 |
 | Just Might             | Ken Carson (X on my Buckle)    | Leaked by soundcloud account chaoschaoschaos in EP named "MORE CHAOS", JUST MIGHT | 30/12/23 |           | Full     | HQ      | https://pillowcase.zip/f/f82737715a2369567c393656b114777c |
 | Rick Owens             | UFO361 (ft. Ken Carson)        | Jersey Beat Ken Feature                      | 11/12/23                         |                        | Full     | CDQ     | https://pillowcase.zip/f/f8d02e43d0d32146b60061f655c39a63 |
-| Get Off                | Ken Carson                     | 2K Blind GB took 2 days (1/16-17/24)         | 17/01/24                         | 12/12/22               | Original | CDQ     | https://krakenfiles.com/view/p62g7Lnezx/file.html |
+| Get Off                | Ken Carson                     | 2K Blind GB took 2 days (1/16-17/24)         | 17/01/24                         | 12/12/23               | Original | CDQ     | https://krakenfiles.com/view/p62g7Lnezx/file.html |
+| Sydney Sweeny (Open Verse) | Ken Carson                 | 4K GB took 2 days (1/19-20/24)               | 20/01/24                         | 13/8/23                | Original | CDQ     | https://krakenfiles.com/view/AREQPTDyYq/file.html |
 # X
 X (July 8, 2022) - (October 31, 2022) XTENDED
 https://upload.wikimedia.org/wikipedia/en/thumb/f/f8/X_Ken_Carson.jpeg/220px-X_Ken_Carson.jpeg
