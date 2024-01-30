@@ -169,11 +169,11 @@
             -moz-user-select: none;
             user-select: none;
         }
+
         .current-song {
             display: flex;
             justify-content: space-between;
             position: fixed;
-            bottom: 0;
             border-radius: 12px;
             left: 1%;
             right: 1%;
@@ -181,6 +181,8 @@
             padding: 12px;
             bottom: 0.5%;
             background-color: var(--dark-secondary);
+            opacity: 0.85;
+            transition: 0.3s ease-out;
             border-top: 1px solid rgba(0, 0, 0, 0.2);
         }
 
@@ -194,14 +196,14 @@
         .current-song-info {
             padding-left: 60px;
             top: 0%;
-            width: 100%;
+            width: calc(100%-24px);
             position: absolute;
         }
 
         .current-song-info h1 {
             color: var(--light-primary);
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: 1.15rem;
         }
 
         .current-song-info span {
@@ -214,10 +216,18 @@
         
         .current-song-pause {
             cursor: pointer;
+            margin-bottom: 50;
             top: 0.5;
             right: 12px;
             position: absolute;
         }
+        
+        .current-song-pause svg {
+            position: absolute;
+            margin-left: -47px;
+            top: 7px;
+        }
+        
         .material-symbols-outlined {
             font-size: 3rem;
             font-variation-settings:
@@ -283,31 +293,38 @@
             </div>
         </div>
     -->
-    <div class="current-song">
+    <div class="current-song" style="display:flex">
         <img src="https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg" width="50" height="50" class="noselect"/>
         <div class="current-song-info">
             <h1>Rick (feat. Destroy Lonely)</h1>
             <span>Ken Carson, Destroy Lonely</span>
         </div>
         <div class="current-song-pause noselect">
-            <span class="material-symbols-outlined">
-                play_arrow
-            </span>
+            <svg width="35" height="35" viewBox="0 0 16 16" id="current-song-play" style="display:block">
+                <path fill="var(--light-primary)" d="m4.4 15.14 10.386-6.096c.842-.459.794-1.64 0-2.097L4.401.85c-.87-.53-2-.12-2 .82v12.625c0 .966 1.06 1.4 2 .844z"></path>
+            </svg>
+            <svg width="35" height="35" viewBox="0 0 16 16" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" id="current-song-pause" style="display:none">
+                <path fill="var(--light-primary)" d="M9.918.464h2.672a.89.89 0 0 1 .89.89v13.291a.89.89 0 0 1-.89.891H9.918a.89.89 0 0 1-.89-.89V1.354a.89.89 0 0 1 .89-.891zm-6.371 0h2.398c.567 0 1.027.46 1.027 1.028v13.016c0 .568-.46 1.028-1.027 1.028H3.547c-.567 0-1.028-.46-1.028-1.028V1.492c0-.568.46-1.028 1.028-1.028z" fill-rule="nonzero"></path>
+            </svg>
         </div>
     </div>
 
     <script>
         const select = (_, el = document) => el.querySelector(_);
 
-        // Add a click event listener to the element
-        var parentdiv = select('.current-song-pause')
-        var btn = select('span', parentdiv)
+        var currsongmini = select(".current-song");
+        var currsongmax = select(".current-song-max");
+        var parentdiv = select('.current-song-pause');
+        var playbtn = select('#current-song-play', parentdiv);
+        var pausebtn = select('#current-song-pause', parentdiv);
         parentdiv.addEventListener('click', togglePlayPause);
         function togglePlayPause() {
-            if (btn.innerText == "play_arrow") {
-                btn.innerText="pause";
+            if (playbtn.style.display !== "none") {
+                playbtn.style.display = "none";
+                pausebtn.style.display = "block";
             } else {
-                btn.innerText="play_arrow";
+                pausebtn.style.display = "none";
+                playbtn.style.display = "block";
             }
         }
     </script>
