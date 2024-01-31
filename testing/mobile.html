@@ -276,7 +276,7 @@
 </head>
 
 <body>
-    <audio id="audio" preload="metadata" controls title="Audio Title" artist="Artist Name"></audio>
+    <audio id="audio" preload="metadata" title="Audio Title" artist="Artist Name" album="More Chaos"></audio>
     <div class="Page_Header">
         <a href="../../">
             <h1 class="">
@@ -442,8 +442,14 @@
                                 pausebtn.style.display = "block";
                                 audioplayer.play();
                             }
-                            audioplayer.setAttribute('title', data[0]);
-                            audioplayer.setAttribute('artist', data[1]);
+                            audioplayer.metadata = new MediaMetadata({
+                                title: data[0],
+                                artist: data[1],
+                                album: 'More Chaos',
+                                artwork: [
+                                { src: 'https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg', sizes: '500x500', type: 'image/png' }
+                                ]
+                            });
                             audioplayer.currentTime = parseFloat(data[4]);
                             audiodata = data[3]
                         })
@@ -482,8 +488,14 @@
                                 var blobUrl = URL.createObjectURL(blob);
                                 audioplayer.src = blobUrl;
                                 audioplayer.play();
-                                audioplayer.setAttribute('title', songName.innerText);
-                                audioplayer.setAttribute('artist', songArtist.innerText);
+                                audioplayer.metadata = new MediaMetadata({
+                                    title: songName.innerText,
+                                    artist: songArtist.innerText,
+                                    album: 'More Chaos',
+                                    artwork: [
+                                    { src: 'https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg', sizes: '500x500', type: 'image/png' }
+                                    ]
+                                });
                                 songElement.classList.remove('loading');
                                 // save
                                 audiodata = songUrl
