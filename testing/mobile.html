@@ -272,7 +272,7 @@
 </head>
 
 <body>
-    <audio id="audio" preload="metadata"></audio>
+    <audio id="audio" preload="metadata" controls title="Audio Title" artist="Artist Name"></audio>
     <div class="Page_Header">
         <a href="../../">
             <h1 class="">
@@ -400,8 +400,9 @@
                 
                 if(data[3]){
                     fetch(data[3])
-                        .then(response => response.blob())
-                        .then(blob => {
+                        .then(function(response) {
+                            return response.arrayBuffer();
+                        }).then(function(buffer) {
                             // change to pause btn
                             playbtn.style.display = "none";
                             pausebtn.style.display = "block";
@@ -409,6 +410,7 @@
                             songArtist.innerText = data[1]
                             currsongimg.src = data[2]
 
+                            var blob = new Blob([buffer], { type: 'audio/mpeg' });
                             var blobUrl = URL.createObjectURL(blob);
                             audioplayer.src = blobUrl;
                             if (!data[5]){
@@ -416,6 +418,8 @@
                                 pausebtn.style.display = "block";
                                 audioplayer.play();
                             }
+                            audioplayer.setAttribute('title', data[0]);
+                            audioplayer.setAttribute('artist', data[1]);
                             audioplayer.currentTime = parseFloat(data[4]);
                             audiodata = data[3]
                         })
@@ -440,8 +444,9 @@
                         } 
 
                         fetch(songUrl)
-                            .then(response => response.blob())
-                            .then(blob => {
+                            .then(function(response) {
+                                return response.arrayBuffer();
+                            }).then(function(buffer) {
                                 // change to pause btn
                                 playbtn.style.display = "none";
                                 pausebtn.style.display = "block";
@@ -449,9 +454,12 @@
                                 songName.innerText = select(".song-name", songElement).innerText;
                                 songArtist.innerText = select(".song-artist", songElement).innerText;
                                 // load audio
+                                var blob = new Blob([buffer], { type: 'audio/mpeg' });
                                 var blobUrl = URL.createObjectURL(blob);
                                 audioplayer.src = blobUrl;
                                 audioplayer.play();
+                                audioplayer.setAttribute('title', songName.innerText);
+                                audioplayer.setAttribute('artist', songArtist.innerText);
                                 songElement.classList.remove('loading');
                                 // save
                                 audiodata = songUrl
