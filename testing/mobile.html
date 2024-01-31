@@ -34,6 +34,7 @@
             overflow: hidden;
             scroll-behavior: smooth;
             scroll-padding-top: 4rem;
+            
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
@@ -45,47 +46,6 @@
 
         body::-webkit-scrollbar {
             width: 0; /* Set width to 0 to hide the scrollbar */
-        }
-
-        .song-list {
-            width: 400px;
-            background-color: #1e1e1e;
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-        }
-
-        .song {
-            padding: 15px;
-            border-bottom: 1px solid #2c2c2c;
-            transition: background-color 0.3s;
-            cursor: pointer;
-        }
-
-        .song:hover {
-            background-color: #2c2c2c;
-        }
-
-        .song-name {
-            font-weight: bold;
-            font-size: 1.2em;
-            margin-bottom: 5px;
-        }
-
-        .song-info {
-            font-size: 0.9em;
-            color: #bbb;
-        }
-
-        .extra-info {
-            display: none;
-            font-size: 0.8em;
-            color: #999;
-            margin-top: 5px;
-        }
-
-        .song:hover .extra-info {
-            display: block;
         }
     </style>
     <!-- Header Styling -->
@@ -178,7 +138,7 @@
             left: 1%;
             right: 1%;
             width: 98%;
-            padding: 12px;
+            padding: 8px;
             bottom: 0.5%;
             background-color: var(--dark-secondary);
             opacity: 0.85;
@@ -188,15 +148,12 @@
 
         .current-song img {
             border-radius: 6px;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
         }
 
         .current-song-info {
             padding-left: 60px;
             top: 0%;
-            width: calc(100%-24px);
+            width: 100%;
             position: absolute;
         }
 
@@ -237,19 +194,96 @@
             'opsz' 24
         }
     </style>
+    <!-- Song List -->
+    <style>
+        .song-list {
+            width: calc(100%-24px);
+            margin-left: 16px;
+            margin-right: 16px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .album-name {
+            width: 100%;
+            height: 12px;
+            margin-bottom: 20px;
+            padding-left: 4px;
+            padding-right: 4px;
+            font-weight: 600;
+            font-size: 24px;
+            color: var(--light-secondary);
+        }
+
+        .song {
+            position: relative;
+            display: flex;
+            padding-bottom: 5px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+
+        .song:hover {
+            background-color: #2c2c2c;
+        }
+
+        .song.loading {
+            opacity: 0.7;
+        }
+
+        .song-info {
+            margin-top: 5px;
+            width: 100%;
+            height: 100%;
+            border-bottom: 1px solid #2c2c2c;
+        }
+
+        .song-name {
+            font-weight: 600;
+            font-size: 1em;
+            margin-bottom: 1px;
+        }
+
+        .song-artist {
+            font-size: 0.9em;
+            color: #bbb;
+            margin-bottom: 5px;
+        }
+
+        .song-img {
+            position: relative;
+            margin-right: 15px; /* Adjust margin as needed */
+            top: 5px;
+            left: 5px;
+            width: 45px;
+            height: 45px;
+            border-radius: 6px;
+        }
+        
+        .album-info {
+            padding-left: 4px;
+            padding-right: 4px;
+            color: var(--light-secondary);
+            font-size: 12px;
+        }
+
+    </style>
 </head>
 
 <body>
+    <audio id="audio" preload="metadata"></audio>
     <div class="Page_Header">
         <a href="../../">
             <h1 class="">
                 <img src="https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg" width="40" height="40"/>
-                <span> Untitled Tracker
+                <span> Album Name
                 </span>
                 <!-- -->
             </h1>
         </a>
     </div>
+    <!-- Side Panel Not finished
     <div class="Side_Panel">
         <div>
             <div class="Side_Panel_Album">
@@ -260,50 +294,73 @@
             </div>
         </div>
     </div>
-    <!-- Song list Not finished
-        <div class="song-list">
-            <div class="song">
-                <div class="song-name">Song 1</div>
-                <div class="song-info">
-                    Artist: Artist 1<br>
-                    Album: Album 1<br>
-                    Features: Feature 1, Feature 2<br>
-                    Producers: Producer 1, Producer 2<br>
-                    Creation Date: YYYY-MM-DD<br>
-                    Release Date: YYYY-MM-DD
-                </div>
-                <div class="extra-info">
-                    Extra information about the song goes here.
-                </div>
-            </div>
-
-            <div class="song">
-                <div class="song-name">Song 2</div>
-                <div class="song-info">
-                    Artist: Artist 2<br>
-                    Album: Album 2<br>
-                    Features: Feature 3<br>
-                    Producers: Producer 3<br>
-                    Creation Date: YYYY-MM-DD<br>
-                    Release Date: YYYY-MM-DD
-                </div>
-                <div class="extra-info">
-                    Extra information about the song goes here.
+    -->
+    <div class="song-list">
+        <p class="album-name">
+            More Chaos
+        </p>
+        <div class="song" song-url="https://pillowcase.zip/f/424e52c73a9528a6bb5015e0f74f6db2">
+            <img src="https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg" class="song-img noselect"/>
+            <div class="song-info">
+                <div class="song-name">Private</div>
+                <div class="song-artist">
+                    Ken Carson
                 </div>
             </div>
         </div>
-    -->
-    <div class="current-song" style="display:flex">
-        <img src="https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg" width="50" height="50" class="noselect"/>
+
+        <div class="song" song-url="https://pillowcase.zip/f/5c56d38c03abd3aa334a8afa11584cfd">
+            <img src="https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg" class="song-img noselect"/>
+            <div class="song-info">
+                <div class="song-name">Black</div>
+                <div class="song-artist">
+                    Ken Carson
+                </div>
+            </div>
+        </div>
+
+        <div class="song" song-url="https://pillowcase.zip/f/4888a5494261ab2ed4aa9097a66238d2">
+            <img src="https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg" class="song-img noselect"/>
+            <div class="song-info">
+                <div class="song-name">Rick (feat. Destroy Lonely)</div>
+                <div class="song-artist">
+                    Ken Carson, Destroy Lonely
+                </div>
+            </div>
+        </div>
+
+        <div class="song" song-url="https://pillowcase.zip/f/59560683e31c7c56273b0b3da741b4b6">
+            <img src="https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg" class="song-img noselect"/>
+            <div class="song-info">
+                <div class="song-name">Designer (feat. Destroy Lonely)</div>
+                <div class="song-artist">
+                    Ken Carson, Destroy Lonely
+                </div>
+            </div>
+        </div>
+
+        <p class="album-info">
+            4 Full
+            0 Snippets
+            <br>
+            (October 13, 2023) A Great Chaos is released
+            <br>
+            (Current) Ken is working on new songs
+        </p>
+    </div>
+
+
+    <div class="current-song">
+        <img src="" width="50" height="50" class="noselect"/>
         <div class="current-song-info">
-            <h1>Rick (feat. Destroy Lonely)</h1>
-            <span>Ken Carson, Destroy Lonely</span>
+            <h1>Not Playing</h1>
+            <span></span>
         </div>
         <div class="current-song-pause noselect">
-            <svg width="35" height="35" viewBox="0 0 16 16" id="current-song-play" style="display:block">
+            <svg width="30" height="30" viewBox="0 0 16 16" id="current-song-play" style="display:block">
                 <path fill="var(--light-primary)" d="m4.4 15.14 10.386-6.096c.842-.459.794-1.64 0-2.097L4.401.85c-.87-.53-2-.12-2 .82v12.625c0 .966 1.06 1.4 2 .844z"></path>
             </svg>
-            <svg width="35" height="35" viewBox="0 0 16 16" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" id="current-song-pause" style="display:none">
+            <svg width="30" height="30" viewBox="0 0 16 16" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" id="current-song-pause" style="display:none">
                 <path fill="var(--light-primary)" d="M9.918.464h2.672a.89.89 0 0 1 .89.89v13.291a.89.89 0 0 1-.89.891H9.918a.89.89 0 0 1-.89-.89V1.354a.89.89 0 0 1 .89-.891zm-6.371 0h2.398c.567 0 1.027.46 1.027 1.028v13.016c0 .568-.46 1.028-1.027 1.028H3.547c-.567 0-1.028-.46-1.028-1.028V1.492c0-.568.46-1.028 1.028-1.028z" fill-rule="nonzero"></path>
             </svg>
         </div>
@@ -311,22 +368,123 @@
 
     <script>
         const select = (_, el = document) => el.querySelector(_);
+        var currsongmini; var currsonginfo; var currsongimg; var songName; var songArtist; var audioplayer;
+        var audiodata = undefined;
 
-        var currsongmini = select(".current-song");
-        var currsongmax = select(".current-song-max");
-        var parentdiv = select('.current-song-pause');
-        var playbtn = select('#current-song-play', parentdiv);
-        var pausebtn = select('#current-song-pause', parentdiv);
-        parentdiv.addEventListener('click', togglePlayPause);
-        function togglePlayPause() {
-            if (playbtn.style.display !== "none") {
-                playbtn.style.display = "none";
-                pausebtn.style.display = "block";
-            } else {
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            audioplayer = select("#audio");
+
+            currsongmini = select(".current-song");
+            currsonginfo = select(".current-song-info");
+            currsongimg = select("img", currsongmini);
+            songName = select("h1",currsonginfo);
+            songArtist = select("span",currsonginfo);
+
+            var parentdiv = select('.current-song-pause');
+            var playbtn = select('#current-song-play', parentdiv);
+            var pausebtn = select('#current-song-pause', parentdiv);
+
+            audioplayer.addEventListener("ended", async function () {
                 pausebtn.style.display = "none";
                 playbtn.style.display = "block";
+                audioplayer.currentTime = 0;
+                audioplayer.pause();
+            })  
+
+            var data = JSON.parse(localStorage.getItem("current-song"));
+            if(data && data.length == 6) {
+                songName.innerText = data[0];
+                songArtist.innerText = data[1];
+                currsongimg.src = data[2];
+                
+                if(data[3]){
+                    fetch(data[3])
+                        .then(response => response.blob())
+                        .then(blob => {
+                            // change to pause btn
+                            playbtn.style.display = "none";
+                            pausebtn.style.display = "block";
+                            songName.innerText = data[0]
+                            songArtist.innerText = data[1]
+                            currsongimg.src = data[2]
+
+                            var blobUrl = URL.createObjectURL(blob);
+                            audioplayer.src = blobUrl;
+                            if (!data[5]){
+                                playbtn.style.display = "none";
+                                pausebtn.style.display = "block";
+                                audioplayer.play();
+                            }
+                            audioplayer.currentTime = parseFloat(data[4]);
+                            audiodata = data[3]
+                        })
+                }
             }
-        }
+
+            var songElements = document.querySelectorAll('.song');
+
+            songElements.forEach(function(songElement) {
+                songElement.addEventListener('click', function() {
+                    var songUrl = songElement.getAttribute('song-url');
+                    
+                    var currentlyloading = document.querySelectorAll(".song.loading");
+                    currentlyloading.forEach(function(songLoading){songLoading.classList.remove("loading")})
+                    
+                    songElement.classList.add('loading');
+                    
+                    if (songUrl && (songName.innerText != select(".song-name", songElement).innerText || !select(".song-artist", songElement).innerText)){
+                        if(songUrl.includes("pillowcase.zip")){
+                            let hash = songUrl.split("/");
+                            songUrl = `https://api.pillowcase.zip/api/download/${hash[hash.length-1]}`;
+                        } 
+
+                        fetch(songUrl)
+                            .then(response => response.blob())
+                            .then(blob => {
+                                // change to pause btn
+                                playbtn.style.display = "none";
+                                pausebtn.style.display = "block";
+                                currsongimg.src = select("img", songElement).src;
+                                songName.innerText = select(".song-name", songElement).innerText;
+                                songArtist.innerText = select(".song-artist", songElement).innerText;
+                                // load audio
+                                var blobUrl = URL.createObjectURL(blob);
+                                audioplayer.src = blobUrl;
+                                audioplayer.play();
+                                songElement.classList.remove('loading');
+                                // save
+                                audiodata = songUrl
+                            }).catch(error => {
+                                console.error('Error:', error);
+
+                                songElement.classList.remove('loading');
+                            });
+                    } else songElement.classList.remove('loading');
+                });
+            });
+
+            parentdiv.addEventListener('click', togglePlayPause);
+            function togglePlayPause() {
+                if (audioplayer.src){
+                    if (playbtn.style.display !== "none") {
+                        playbtn.style.display = "none";
+                        pausebtn.style.display = "block";
+                        audioplayer.play();
+                    } else {
+                        pausebtn.style.display = "none";
+                        playbtn.style.display = "block";
+                        audioplayer.pause()
+                    }
+                }
+            }
+        });
+
+        window.addEventListener("beforeunload", function() {
+            var data = [songName.innerText, songArtist.innerText, currsongimg.src, audiodata, audioplayer.currentTime, audioplayer.paused];
+            localStorage.setItem("current-song", JSON.stringify(data));
+        });
+
     </script>
 </body>
 
