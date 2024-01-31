@@ -193,6 +193,10 @@
             'GRAD' 0,
             'opsz' 24
         }
+
+        .current-song-progress {
+            display: none;
+        }
     </style>
     <!-- Song List -->
     <style>
@@ -364,6 +368,10 @@
                 <path fill="var(--light-primary)" d="M9.918.464h2.672a.89.89 0 0 1 .89.89v13.291a.89.89 0 0 1-.89.891H9.918a.89.89 0 0 1-.89-.89V1.354a.89.89 0 0 1 .89-.891zm-6.371 0h2.398c.567 0 1.027.46 1.027 1.028v13.016c0 .568-.46 1.028-1.027 1.028H3.547c-.567 0-1.028-.46-1.028-1.028V1.492c0-.568.46-1.028 1.028-1.028z" fill-rule="nonzero"></path>
             </svg>
         </div>
+        <div class="current-song-progress">
+            <p id="loadedDuration"></p> <!-- Display loaded duration -->
+            <p id="totalDuration"></p> <!-- Display total duration -->
+        </div>
     </div>
 
     <script>
@@ -384,6 +392,22 @@
             var parentdiv = select('.current-song-pause');
             var playbtn = select('#current-song-play', parentdiv);
             var pausebtn = select('#current-song-pause', parentdiv);
+
+            var loadedDuration = select('#loadedDuration');
+            var totalDuration = select('#totalDuration');
+
+            audioplayer.addEventListener('loadedmetadata', function() {
+                // When metadata is loaded, display the total duration
+                totalDuration.textContent = 'Total Duration: ' + formatTime(audioplayer.duration);
+            });
+
+            audioplayer.addEventListener('progress', function() {
+                // Calculate and display the loaded duration compared to the total duration
+                if (audioplayer.duration > 0) {
+                var loadedPercent = (audioplayer.buffered.end(0) / audioplayer.duration) * 100;
+                loadedDuration.textContent = 'Loaded Duration: ' + formatTime(audioplayer.buffered.end(0)) + ' (' + loadedPercent.toFixed(2) + '%)';
+                }
+            });
 
             audioplayer.addEventListener("ended", async function () {
                 pausebtn.style.display = "none";
