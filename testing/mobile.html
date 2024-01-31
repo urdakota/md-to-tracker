@@ -480,9 +480,11 @@
             }
         });
 
-        window.addEventListener("beforeunload", function() {
-            var data = [songName.innerText, songArtist.innerText, currsongimg.src, audiodata, audioplayer.currentTime, audioplayer.paused];
-            localStorage.setItem("current-song", JSON.stringify(data));
+        window.addEventListener("visibilitychange", () => {
+            if (document.visibilityState === "hidden"){
+                var data = [songName.innerText, songArtist.innerText, currsongimg.src, audiodata, audioplayer.currentTime, audioplayer.paused];
+                localStorage.setItem("current-song", JSON.stringify(data));
+            }
         });
 
     </script>
