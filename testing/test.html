@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audio Player</title>
+</head>
+<body>
+  <button id="playButton">Play Audio</button>
+
+  <script>
+    document.getElementById('playButton').addEventListener('click', function() {
+      var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      var NUM_CHANNELS = 1;
+      var SAMPLE_RATE;
+      var NUM_SAMPLES;
+      var AUDIO_CHUNKS = [];
+      document.body.innerHTML += "fetching";
+      fetch('https://api.pillowcase.zip/api/download/59560683e31c7c56273b0b3da741b4b6')
+        .then(response => response.arrayBuffer())
+        .then(buffer => audioCtx.decodeAudioData(buffer))
+        .then(decodedData => {
+          SAMPLE_RATE = decodedData.sampleRate;
+          NUM_SAMPLES = decodedData.length;
+          for (var i = 0; i < decodedData.numberOfChannels; i++) {
+            AUDIO_CHUNKS.push(decodedData.getChannelData(i));
+          }
+
+          var startTime = 0;
+          for (var i = 0, audioChunk; audioChunk = AUDIO_CHUNKS[i]; ++i) {
+            document.body.innerHTML += `loaded Chunk: ${i}`;
+            var audioBuffer = audioCtx.createBuffer(NUM_CHANNELS, audioChunk.length, SAMPLE_RATE);
+            audioBuffer.getChannelData(0).set(audioChunk);
+
+            var source = audioCtx.createBufferSource();
+            source.buffer = audioBuffer;
+            source.start(startTime);
+            source.connect(audioCtx.destination);
+
+            startTime += audioBuffer.duration;
+          });
+        })
+        .catch(error => document.body.innerHTML += `Error fetching or decoding audio file: ${error}`);
+    });
+  </script>
+</body>
+</html>
