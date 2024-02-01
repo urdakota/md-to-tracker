@@ -2,292 +2,325 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <title>My Song List</title>
-    <style>
-        @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <title>My Song List</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
 
-        :root {
-            color-scheme: dark;
-            --dark-primary: #0a0a0a;
-            --dark-secondary: #191919;
-            --light-primary: #fff;
-            --light-secondary: #d3d3d3;
-        }
+    :root {
+      color-scheme: dark;
+      --dark-primary: #0a0a0a;
+      --dark-secondary: #191919;
+      --light-primary: #fff;
+      --light-secondary: #d3d3d3;
+    }
 
-        * {
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-        }
+    * {
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+    }
 
-        body,
-        html {
-            width: 100%;
-            height: 100%;
-            padding: 0;
-            margin: 0;
-            font-family: Inter, sans-serif;
-            color: var(--light-primary);
-            background-color: var(--dark-primary);
-            overflow: hidden;
-            scroll-behavior: smooth;
-            scroll-padding-top: 4rem;
-            
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
+    body,
+    html {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+      font-family: Inter, sans-serif;
+      color: var(--light-primary);
+      background-color: var(--dark-primary);
+      overflow: hidden;
+      scroll-behavior: smooth;
+      scroll-padding-top: 4rem;
 
-        body {
-            overflow-y: scroll;
-            scrollbar-width: none;
-        }
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
 
-        body::-webkit-scrollbar {
-            width: 0; /* Set width to 0 to hide the scrollbar */
-        }
-    </style>
-    <!-- Header Styling -->
-    <style> 
-        .Page_Header {
-            display: flex;
-            justify-content: space-between;
-            padding: 24px;
-            margin-bottom: 0.5%;
-            background-color: var(--dark-secondary);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-        }
+    body {
+      overflow-y: scroll;
+      scrollbar-width: none;
+    }
 
-        .Page_Header a {
-            color: #fff;
-            text-decoration: none;
-        }
+    body::-webkit-scrollbar {
+      width: 0;
+      /* Set width to 0 to hide the scrollbar */
+    }
+  </style>
+  <!-- Header Styling -->
+  <style>
+    .Page_Header {
+      display: flex;
+      justify-content: space-between;
+      padding: 24px;
+      margin-bottom: 0.5%;
+      background-color: var(--dark-secondary);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    }
 
-        .Page_Header h1 {
-            margin: 0;
-            font-size: 32px;
-        }
+    .Page_Header a {
+      color: #fff;
+      text-decoration: none;
+    }
 
-        .Page_Header img {
-            border-radius: 4px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-            margin-right: 10px;
-            vertical-align: sub;
-        }
-    </style>
-    <!-- Side Styling -->
-    <style>
-        .Side_Panel {
-            width: calc(25vw + 12px);
-            height: 100vh;
-            border-top: 1px solid rgba(0, 0, 0, 0.2);
-            border-left: 1px solid rgba(0, 0, 0, 0.2);
-            background-color: var(--dark-secondary);
-            position: fixed;
-            margin-right: -12px;
-            border-radius: 4px;
-            right: 0;
-        }
+    .Page_Header h1 {
+      margin: 0;
+      font-size: 32px;
+    }
 
-        .Side_Panel div {
-            padding-top: 16px;
-            padding-left: 16px;
-            padding-right: 16px;
-            padding-bottom: 8px;
-            margin-bottom: -16px;
-        }
+    .Page_Header img {
+      border-radius: 4px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      margin-right: 10px;
+      vertical-align: sub;
+    }
+  </style>
+  <!-- Side Styling -->
+  <style>
+    .Side_Panel {
+      width: calc(25vw + 12px);
+      height: 100vh;
+      border-top: 1px solid rgba(0, 0, 0, 0.2);
+      border-left: 1px solid rgba(0, 0, 0, 0.2);
+      background-color: var(--dark-secondary);
+      position: fixed;
+      margin-right: -12px;
+      border-radius: 4px;
+      right: 0;
+    }
 
-        .Side_Panel_Album img {
-            height: 10%;
-            width: 10%;
-            background-repeat: no-repeat;
-            background-size: contain;
-            left: 0;
-            position: absolute;
-            top: 0;
-            object-fit: cover;      
-            object-position: center center;
-        }
+    .Side_Panel div {
+      padding-top: 16px;
+      padding-left: 16px;
+      padding-right: 16px;
+      padding-bottom: 8px;
+      margin-bottom: -16px;
+    }
 
-        .Side_Panel_Album span {
-            font-weight: 700;
-            font-size: 1rem;
-        }
+    .Side_Panel_Album img {
+      height: 10%;
+      width: 10%;
+      background-repeat: no-repeat;
+      background-size: contain;
+      left: 0;
+      position: absolute;
+      top: 0;
+      object-fit: cover;
+      object-position: center center;
+    }
 
-        @media (max-width: 767px) {
-            /* Styles for screens smaller than 768px (e.g., mobile) */
-            .Side_Panel {
-                display: none; /* Hide the div on smaller screens */
-            }
-        }
-    </style>
-    <!-- Mobile Display -->
-    <style>
-        .noselect {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
+    .Side_Panel_Album span {
+      font-weight: 700;
+      font-size: 1rem;
+    }
 
-        .current-song {
-            display: flex;
-            justify-content: space-between;
-            position: fixed;
-            border-radius: 12px;
-            left: 1%;
-            right: 1%;
-            width: 98%;
-            padding: 8px;
-            bottom: 0.5%;
-            background-color: var(--dark-secondary);
-            opacity: 0.85;
-            transition: 0.3s ease-out;
-            border-top: 1px solid rgba(0, 0, 0, 0.2);
-        }
+    @media (max-width: 767px) {
 
-        .current-song img {
-            border-radius: 6px;
-        }
+      /* Styles for screens smaller than 768px (e.g., mobile) */
+      .Side_Panel {
+        display: none;
+        /* Hide the div on smaller screens */
+      }
+    }
+  </style>
+  <!-- Mobile Display -->
+  <style>
+    .noselect {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
 
-        .current-song-info {
-            padding-left: 60px;
-            top: 0%;
-            width: 100%;
-            position: absolute;
-        }
+    .song-thing {
+      display: flex;
+      justify-content: space-between;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      padding: 8px;
+      top: calc(0%);
+      background: rgba(25, 25, 25, 0);
+      transform: translateY(calc(100% - 60px - 0.5%));
+      transition: transform 0.5s ease-out, background 0.1s ease-out;
+    }
 
-        .current-song-info h1 {
-            color: var(--light-primary);
-            font-weight: 700;
-            font-size: 1.15rem;
-        }
+    .current-song {
+      display: flex;
+      justify-content: space-between;
+      position: absolute;
+      border-radius: 12px;
+      left: 1%;
+      right: 1%;
+      width: 98%;
+      height: 60px;
+      padding: 8px;
+      top: 0;
+      background-color: var(--dark-secondary);
+      opacity: 0.85;
+      transition: 0.3s ease-out;
+      border-top: 1px solid rgba(0, 0, 0, 0.2);
+    }
 
-        .current-song-info span {
-            top: 85%;
-            position: absolute;
-            font-weight: 500;
-            font-size: 0.9rem;
-            color: var(--light-secondary);
-        }
-        
-        .current-song-pause {
-            cursor: pointer;
-            margin-bottom: 50;
-            top: 0.5;
-            right: 12px;
-            position: absolute;
-        }
-        
-        .current-song-pause svg {
-            position: absolute;
-            margin-left: -47px;
-            top: 7px;
-        }
-        
-        .material-symbols-outlined {
-            font-size: 3rem;
-            font-variation-settings:
-            'FILL' 1,
-            'wght' 400,
-            'GRAD' 0,
-            'opsz' 24
-        }
+    .current-song img {
+      border-radius: 6px;
+    }
 
-        .current-song-progress {
-            display: none;
-        }
-    </style>
-    <!-- Song List -->
-    <style>
-        .song-list {
-            width: calc(100%-24px);
-            margin-left: 16px;
-            margin-right: 16px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-        }
+    .current-song-info {
+      padding-left: 60px;
+      top: 0%;
+      width: 100%;
+      position: absolute;
+    }
 
-        .album-name {
-            width: 100%;
-            height: 12px;
-            margin-bottom: 20px;
-            padding-left: 4px;
-            padding-right: 4px;
-            font-weight: 600;
-            font-size: 24px;
-            color: var(--light-secondary);
-        }
+    .current-song-info h1 {
+      color: var(--light-primary);
+      font-weight: 700;
+      font-size: 1.15rem;
+    }
 
-        .song {
-            position: relative;
-            display: flex;
-            padding-bottom: 5px;
-            transition: background-color 0.3s;
-            cursor: pointer;
-            border-radius: 6px;
-        }
+    .current-song-info span {
+      top: 85%;
+      position: absolute;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--light-secondary);
+    }
 
-        .song:hover {
-            background-color: #2c2c2c;
-        }
+    .current-song-pause {
+      cursor: pointer;
+      margin-bottom: 50;
+      top: 0.5;
+      right: 12px;
+      position: absolute;
+    }
 
-        .song.loading {
-            opacity: 0.7;
-        }
+    .current-song-pause svg {
+      position: absolute;
+      margin-left: -47px;
+      top: 7px;
+    }
 
-        .song-info {
-            margin-top: 5px;
-            width: 100%;
-            height: 100%;
-            border-bottom: 1px solid #2c2c2c;
-        }
+    .material-symbols-outlined {
+      font-size: 3rem;
+      font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+    }
 
-        .song-name {
-            font-weight: 600;
-            font-size: 1em;
-            margin-bottom: 1px;
-        }
+    .current-song .material-symbols-outlined {
+      position: absolute;
+      top: 4.5px;
+      height: 50px;
+      width: 50px;
+      background-color: grey;
+      border-radius: 6px;
+    }
 
-        .song-artist {
-            font-size: 0.9em;
-            color: #bbb;
-            margin-bottom: 5px;
-        }
+    .idfk {
+      display: flex;
+      justify-content: space-between;
+      position: absolute;
+      border-radius: 12px;
+      left: 1%;
+      right: 1%;
+      width: 98%;
+      height: 60px;
+      padding: 8px;
+      top: 10%;
+      background-color: var(--dark-primary);
+      transition: 0.3s ease-out;
+    }
+  </style>
+  <!-- Song List -->
+  <style>
+    .song-list {
+      width: calc(100%-24px);
+      margin-left: 16px;
+      margin-right: 16px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+    }
 
-        .song-img {
-            position: relative;
-            margin-right: 15px; /* Adjust margin as needed */
-            top: 5px;
-            left: 5px;
-            width: 45px;
-            height: 45px;
-            border-radius: 6px;
-        }
-        
-        .album-info {
-            padding-left: 4px;
-            padding-right: 4px;
-            color: var(--light-secondary);
-            font-size: 12px;
-        }
+    .album-name {
+      width: 100%;
+      height: 12px;
+      margin-bottom: 20px;
+      padding-left: 4px;
+      padding-right: 4px;
+      font-weight: 600;
+      font-size: 24px;
+      color: var(--light-secondary);
+    }
 
-    </style>
+    .song {
+      position: relative;
+      display: flex;
+      padding-bottom: 5px;
+      transition: background-color 0.3s;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+
+    .song:hover {
+      background-color: #2c2c2c;
+    }
+
+    .song.loading {
+      opacity: 0.7;
+    }
+
+    .song-info {
+      margin-top: 5px;
+      width: 100%;
+      height: 100%;
+      border-bottom: 1px solid #2c2c2c;
+    }
+
+    .song-name {
+      font-weight: 600;
+      font-size: 1em;
+      margin-bottom: 1px;
+    }
+
+    .song-artist {
+      font-size: 0.9em;
+      color: #bbb;
+      margin-bottom: 5px;
+    }
+
+    .song-img {
+      position: relative;
+      margin-right: 15px;
+      /* Adjust margin as needed */
+      top: 5px;
+      left: 5px;
+      width: 45px;
+      height: 45px;
+      border-radius: 6px;
+    }
+
+    .album-info {
+      padding-left: 4px;
+      padding-right: 4px;
+      color: var(--light-secondary);
+      font-size: 12px;
+    }
+  </style>
 </head>
 
 <body>
-    <audio id="audio" preload="metadata" title="Audio Title" artist="Artist Name" album="More Chaos"></audio>
-    <div class="Page_Header">
-        <a href="../../">
-            <h1 class="">
-                <img src="https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg" width="40" height="40"/>
-                <span> Album Name
-                </span>
-                <!-- -->
-            </h1>
-        </a>
-    </div>
-    <!-- Side Panel Not finished
+  <audio id="audio" preload="metadata" title="Audio Title" artist="Artist Name" album="More Chaos"></audio>
+  <div class="Page_Header">
+    <a href="../">
+      <h1 class="">
+        <img src="https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg" width="40" height="40" />
+        <span> Album Name </span>
+        <!-- -->
+      </h1>
+    </a>
+  </div>
+  <!-- Side Panel Not finished
     <div class="Side_Panel">
         <div>
             <div class="Side_Panel_Album">
@@ -299,239 +332,296 @@
         </div>
     </div>
     -->
-    <div class="song-list">
-        <p class="album-name">
-            More Chaos
-        </p>
-        <div class="song" song-url="https://pillowcase.zip/f/424e52c73a9528a6bb5015e0f74f6db2">
-            <img src="https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg" class="song-img noselect"/>
-            <div class="song-info">
-                <div class="song-name">Private</div>
-                <div class="song-artist">
-                    Ken Carson
-                </div>
-            </div>
-        </div>
-
-        <div class="song" song-url="https://pillowcase.zip/f/5c56d38c03abd3aa334a8afa11584cfd">
-            <img src="https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg" class="song-img noselect"/>
-            <div class="song-info">
-                <div class="song-name">Black</div>
-                <div class="song-artist">
-                    Ken Carson
-                </div>
-            </div>
-        </div>
-
-        <div class="song" song-url="https://pillowcase.zip/f/4888a5494261ab2ed4aa9097a66238d2">
-            <img src="https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg" class="song-img noselect"/>
-            <div class="song-info">
-                <div class="song-name">Rick (feat. Destroy Lonely)</div>
-                <div class="song-artist">
-                    Ken Carson, Destroy Lonely
-                </div>
-            </div>
-        </div>
-
-        <div class="song" song-url="https://pillowcase.zip/f/59560683e31c7c56273b0b3da741b4b6">
-            <img src="https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg" class="song-img noselect"/>
-            <div class="song-info">
-                <div class="song-name">Designer (feat. Destroy Lonely)</div>
-                <div class="song-artist">
-                    Ken Carson, Destroy Lonely
-                </div>
-            </div>
-        </div>
-
-        <p class="album-info">
-            4 Full
-            0 Snippets
-            <br>
-            (October 13, 2023) A Great Chaos is released
-            <br>
-            (Current) Ken is working on new songs
-        </p>
+  <div class="song-list">
+    <p class="album-name">More Chaos</p>
+    <div class="song" song-url="https://pillowcase.zip/f/424e52c73a9528a6bb5015e0f74f6db2" track-num="1">
+      <img src="https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg" class="song-img noselect" />
+      <div class="song-info">
+        <div class="song-name">Private</div>
+        <div class="song-artist">Ken Carson</div>
+      </div>
     </div>
 
+    <div class="song" song-url="https://pillowcase.zip/f/5c56d38c03abd3aa334a8afa11584cfd" track-num="2">
+      <img src="https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg" class="song-img noselect" />
+      <div class="song-info">
+        <div class="song-name">Black</div>
+        <div class="song-artist">Ken Carson</div>
+      </div>
+    </div>
 
+    <div class="song" song-url="https://pillowcase.zip/f/4888a5494261ab2ed4aa9097a66238d2" track-num="3">
+      <img src="https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg" class="song-img noselect" />
+      <div class="song-info">
+        <div class="song-name">Rick (feat. Destroy Lonely)</div>
+        <div class="song-artist">Ken Carson, Destroy Lonely</div>
+      </div>
+    </div>
+
+    <div class="song" song-url="https://pillowcase.zip/f/59560683e31c7c56273b0b3da741b4b6" track-num="4">
+      <img src="https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg" class="song-img noselect" />
+      <div class="song-info">
+        <div class="song-name">Designer (feat. Destroy Lonely)</div>
+        <div class="song-artist">Ken Carson, Destroy Lonely</div>
+      </div>
+    </div>
+
+    <p class="album-info">
+      4 Full 0 Snippets
+      <br />
+      (October 13, 2023) A Great Chaos is released
+      <br />
+      (Current) Ken is working on new songs
+    </p>
+  </div>
+
+  <div class="song-thing">
+    <!-- Mobile -->
     <div class="current-song">
-        <img src="" width="50" height="50" class="noselect"/>
-        <div class="current-song-info">
-            <h1>Not Playing</h1>
-            <span></span>
-        </div>
-        <div class="current-song-pause noselect">
-            <svg width="30" height="30" viewBox="0 0 16 16" id="current-song-play" style="display:block">
-                <path fill="var(--light-primary)" d="m4.4 15.14 10.386-6.096c.842-.459.794-1.64 0-2.097L4.401.85c-.87-.53-2-.12-2 .82v12.625c0 .966 1.06 1.4 2 .844z"></path>
-            </svg>
-            <svg width="30" height="30" viewBox="0 0 16 16" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" id="current-song-pause" style="display:none">
-                <path fill="var(--light-primary)" d="M9.918.464h2.672a.89.89 0 0 1 .89.89v13.291a.89.89 0 0 1-.89.891H9.918a.89.89 0 0 1-.89-.89V1.354a.89.89 0 0 1 .89-.891zm-6.371 0h2.398c.567 0 1.027.46 1.027 1.028v13.016c0 .568-.46 1.028-1.027 1.028H3.547c-.567 0-1.028-.46-1.028-1.028V1.492c0-.568.46-1.028 1.028-1.028z" fill-rule="nonzero"></path>
-            </svg>
-        </div>
-        <div class="current-song-progress">
-            <p id="loadedDuration"></p> <!-- Display loaded duration -->
-            <p id="totalDuration"></p> <!-- Display total duration -->
-        </div>
+      <img src="" width="50" height="50" class="noselect" style="display: none;" />
+      <span class="material-symbols-outlined">
+        music_off
+      </span>
+      <div class="current-song-info">
+        <h1>Not Playing</h1>
+        <span></span>
+      </div>
+      <div class="current-song-pause noselect">
+        <svg width="30" height="30" viewBox="0 0 16 16" id="current-song-play" style="display: block">
+          <path fill="var(--light-primary)"
+            d="m4.4 15.14 10.386-6.096c.842-.459.794-1.64 0-2.097L4.401.85c-.87-.53-2-.12-2 .82v12.625c0 .966 1.06 1.4 2 .844z">
+          </path>
+        </svg>
+        <svg width="30" height="30" viewBox="0 0 16 16" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round"
+          stroke-miterlimit="2" id="current-song-pause" style="display: none">
+          <path fill="var(--light-primary)"
+            d="M9.918.464h2.672a.89.89 0 0 1 .89.89v13.291a.89.89 0 0 1-.89.891H9.918a.89.89 0 0 1-.89-.89V1.354a.89.89 0 0 1 .89-.891zm-6.371 0h2.398c.567 0 1.027.46 1.027 1.028v13.016c0 .568-.46 1.028-1.027 1.028H3.547c-.567 0-1.028-.46-1.028-1.028V1.492c0-.568.46-1.028 1.028-1.028z"
+            fill-rule="nonzero"></path>
+        </svg>
+      </div>
     </div>
+    <div class="idfk">
+      balls smack touch wee wee
+    </div>
+  </div>
 
-    <script>
-        const select = (_, el = document) => el.querySelector(_);
-        var currsongmini; var currsonginfo; var currsongimg; var songName; var songArtist; var audioplayer;
-        var audiodata = undefined;
+  <script>
+    const select = (_, el = document) => el.querySelector(_);
+    var currsongmax;
+    var currsongmini;
+    var currsonginfo;
+    var currsongimg;
+    var songName;
+    var songArtist;
+    var audioplayer;
 
-        document.addEventListener("DOMContentLoaded", function() {
-            
-            audioplayer = select("#audio");
+    var currentlymaximized = false;
+    var currentsong = {
+      title: "Not Playing",
+      artist: undefined,
+      album: "More Chaos",
+      artwork:
+        "https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg",
+      tracknumber: 1,
+    };
 
-            currsongmini = select(".current-song");
-            currsonginfo = select(".current-song-info");
-            currsongimg = select("img", currsongmini);
-            songName = select("h1",currsonginfo);
-            songArtist = select("span",currsonginfo);
+    var switchAudioMode; var playSong;
+    const updateAudioData = function () {
+      navigator.mediaSession.playbackState = "playing";
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: currentsong.title,
+        artist: currentsong.artist,
+        album: currentsong.album,
+        artwork: [{ src: currentsong.artwork }],
+      });
+      songName.innerText = currentsong.title;
+      songArtist.innerText = currentsong.artist;
+      currsongimg.src = currentsong.artwork;
+      currsongimg.style.display = "block";
+      select(".material-symbols-outlined", currsongmini).style.display = "none";
+    };
 
-            var parentdiv = select('.current-song-pause');
-            var playbtn = select('#current-song-play', parentdiv);
-            var pausebtn = select('#current-song-pause', parentdiv);
+    document.addEventListener("DOMContentLoaded", function () {
+      audioplayer = select("#audio");
 
-            var loadedDuration = select('#loadedDuration');
-            var totalDuration = select('#totalDuration');
+      currsongmax = select(".song-thing");
+      currsongmini = select(".current-song");
+      currsonginfo = select(".current-song-info");
+      currsongimg = select("img", currsongmini);
+      songName = select("h1", currsonginfo);
+      songArtist = select("span", currsonginfo);
 
-            audioplayer.addEventListener('loadedmetadata', function() {
-                // When metadata is loaded, display the total duration
-                totalDuration.textContent = 'Total Duration: ' + formatTime(audioplayer.duration);
-            });
+      var parentdiv = select(".current-song-pause");
+      var playbtn = select("#current-song-play", parentdiv);
+      var pausebtn = select("#current-song-pause", parentdiv);
 
-            audioplayer.addEventListener('progress', function() {
-                // Calculate and display the loaded duration compared to the total duration
-                if (audioplayer.duration > 0) {
-                var loadedPercent = (audioplayer.buffered.end(0) / audioplayer.duration) * 100;
-                loadedDuration.textContent = 'Loaded Duration: ' + formatTime(audioplayer.buffered.end(0)) + ' (' + loadedPercent.toFixed(2) + '%)';
-                }
-            });
+      audioplayer.addEventListener("ended", async function () {
+        audioplayer.currentTime = 0;
+        switchAudioMode(false);
+        audioplayer.pause();
+      });
 
-            audioplayer.addEventListener("ended", async function () {
-                pausebtn.style.display = "none";
-                playbtn.style.display = "block";
-                audioplayer.currentTime = 0;
-                audioplayer.pause();
-            })  
+      var songElements = document.querySelectorAll(".song");
 
-            var data = JSON.parse(localStorage.getItem("current-song"));
-            if(data && data.length == 6) {
-                songName.innerText = data[0];
-                songArtist.innerText = data[1];
-                currsongimg.src = data[2];
-                
-                if(data[3]){
-                    fetch(data[3])
-                        .then(function(response) {
-                            return response.arrayBuffer();
-                        }).then(function(buffer) {
-                            // change to pause btn
-                            playbtn.style.display = "none";
-                            pausebtn.style.display = "block";
-                            songName.innerText = data[0]
-                            songArtist.innerText = data[1]
-                            currsongimg.src = data[2]
+      songElements.forEach(function (songElement) {
+        songElement.addEventListener("click", function () {
+          playSong(songElement.getAttribute("track-num"), songElement);
+        });
+      });
 
-                            var blob = new Blob([buffer], { type: 'audio/mpeg' });
-                            var blobUrl = URL.createObjectURL(blob);
-                            audioplayer.src = blobUrl;
-                            if (!data[5]){
-                                playbtn.style.display = "none";
-                                pausebtn.style.display = "block";
-                                audioplayer.play();
-                            }
-                            audioplayer.metadata = new MediaMetadata({
-                                title: data[0],
-                                artist: data[1],
-                                album: 'More Chaos',
-                                artwork: [
-                                { src: 'https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg', sizes: '500x500', type: 'image/png' }
-                                ]
-                            });
-                            audioplayer.currentTime = parseFloat(data[4]);
-                            audiodata = data[3]
-                        })
-                }
-            }
+      switchAudioMode = function (mode) {
+        if (audioplayer.src) {
+          if (mode) {
+            // Set to pause btn
+            playbtn.style.display = "none";
+            pausebtn.style.display = "block";
+            audioplayer.play();
+          } else {
+            // Set to play btn
+            pausebtn.style.display = "none";
+            playbtn.style.display = "block";
+            audioplayer.pause();
+          }
+        }
+      };
 
-            var songElements = document.querySelectorAll('.song');
+      playSong = function (tracknum, songElement = undefined) {
+        var songElement = songElement || select(`div[track-num="${tracknum}"]`, select(".song-list"));
+        var songUrl = songElement.getAttribute("song-url");
 
-            songElements.forEach(function(songElement) {
-                songElement.addEventListener('click', function() {
-                    var songUrl = songElement.getAttribute('song-url');
-                    
-                    var currentlyloading = document.querySelectorAll(".song.loading");
-                    currentlyloading.forEach(function(songLoading){songLoading.classList.remove("loading")})
-                    
-                    songElement.classList.add('loading');
-                    
-                    if (songUrl && (songName.innerText != select(".song-name", songElement).innerText || !select(".song-artist", songElement).innerText)){
-                        if(songUrl.includes("pillowcase.zip")){
-                            let hash = songUrl.split("/");
-                            songUrl = `https://api.pillowcase.zip/api/download/${hash[hash.length-1]}`;
-                        } 
-
-                        fetch(songUrl)
-                            .then(function(response) {
-                                return response.arrayBuffer();
-                            }).then(function(buffer) {
-                                // change to pause btn
-                                playbtn.style.display = "none";
-                                pausebtn.style.display = "block";
-                                currsongimg.src = select("img", songElement).src;
-                                songName.innerText = select(".song-name", songElement).innerText;
-                                songArtist.innerText = select(".song-artist", songElement).innerText;
-                                // load audio
-                                var blob = new Blob([buffer], { type: 'audio/mpeg' });
-                                var blobUrl = URL.createObjectURL(blob);
-                                audioplayer.src = blobUrl;
-                                audioplayer.play();
-                                audioplayer.metadata = new MediaMetadata({
-                                    title: songName.innerText,
-                                    artist: songArtist.innerText,
-                                    album: 'More Chaos',
-                                    artwork: [
-                                    { src: 'https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg', sizes: '500x500', type: 'image/png' }
-                                    ]
-                                });
-                                songElement.classList.remove('loading');
-                                // save
-                                audiodata = songUrl
-                            }).catch(error => {
-                                console.error('Error:', error);
-
-                                songElement.classList.remove('loading');
-                            });
-                    } else songElement.classList.remove('loading');
-                });
-            });
-
-            parentdiv.addEventListener('click', togglePlayPause);
-            function togglePlayPause() {
-                if (audioplayer.src){
-                    if (playbtn.style.display !== "none") {
-                        playbtn.style.display = "none";
-                        pausebtn.style.display = "block";
-                        audioplayer.play();
-                    } else {
-                        pausebtn.style.display = "none";
-                        playbtn.style.display = "block";
-                        audioplayer.pause()
-                    }
-                }
-            }
+        var currentlyloading = document.querySelectorAll(".song.loading");
+        currentlyloading.forEach(function (songLoading) {
+          songLoading.classList.remove("loading");
         });
 
-        window.addEventListener("visibilitychange", () => {
-            if (document.visibilityState === "hidden"){
-                var data = [songName.innerText, songArtist.innerText, currsongimg.src, audiodata, audioplayer.currentTime, audioplayer.paused];
-                localStorage.setItem("current-song", JSON.stringify(data));
-            }
-        });
+        songElement.classList.add("loading");
 
-    </script>
+        if (
+          songUrl &&
+          (songName.innerText !=
+            select(".song-name", songElement).innerText ||
+            !select(".song-artist", songElement).innerText)
+        ) {
+          if (songUrl.includes("pillowcase.zip")) {
+            let hash = songUrl.split("/");
+            songUrl = `https://api.pillowcase.zip/api/download/${hash[hash.length - 1]
+              }`;
+          }
+
+          fetch(songUrl)
+            .then(function (response) {
+              return response.arrayBuffer();
+            })
+            .then(function (buffer) {
+              var blob = new Blob([buffer], { type: "audio/mpeg" });
+              var blobUrl = URL.createObjectURL(blob);
+              audioplayer.src = blobUrl;
+              // change to pause btn
+              switchAudioMode(true);
+              currentsong = {
+                title: select(".song-name", songElement).innerText,
+                artist: select(".song-artist", songElement).innerText,
+                album: "More Chaos",
+                artwork: select("img", songElement).src,
+                tracknumber: songElement.getAttribute("track-num"),
+              };
+              // load audio
+              updateAudioData();
+              songElement.classList.remove("loading");
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+
+              songElement.classList.remove("loading");
+            });
+        } else songElement.classList.remove("loading");
+      }
+
+      parentdiv.addEventListener("click", function () {
+        switchAudioMode(playbtn.style.display === "block")
+      });
+
+      document.addEventListener('touchstart', touchStart);
+      document.addEventListener('touchmove', touchMove);
+      document.addEventListener('touchend', touchEnd);
+
+      function touchStart(event) {
+        // Check if the touch started on the handle
+        if (event.target === currsongmini) {
+          startY = event.touches[0].clientY;
+          currsongmax.style.background = "rgba(25, 25, 25, 0.95)";
+        }
+      }
+
+      function touchMove(event) {
+        if (!startY) return;
+
+        let currentY = event.touches[0].clientY;
+        let deltaY = currentY - startY;
+
+        currsongmax.style.transition = 'none'; // Disable transition during dragging
+
+        if (deltaY > 0) {
+            // Dragging downward, close the panel
+            currsongmax.style.transform = "translateY(calc(100% - 60px - 0.5%))";
+        } else {
+            // Dragging upward, open the panel
+            panel.style.transform = `translateY(${deltaY}px))`;
+        }
+      }
+
+      function touchEnd() {
+        if (!startY) return;
+
+        currsongmax.style.transition = 'transform 0.3s ease-out, background 0.3s ease-out';
+
+        if (currsongmini.getBoundingClientRect().top > window.innerHeight / 3) {
+          currsongmax.style.transform = "translateY(calc(100% - 60px - 0.5%))";
+          currentlymaximized = false;
+          currsongmax.style.background = "rgba(25, 25, 25, 0)";
+        } else {
+          currsongmax.style.background = "rgba(25, 25, 25, 1)";
+          currsongmax.style.transform = "translateY(0%)";
+          currentlymaximized = true;
+        }
+      }
+
+      currsongmini.addEventListener("click", function () {
+        if (!currentlymaximized) {
+          currsongmax.style.background = "rgba(25, 25, 25, 1)";
+          currsongmax.style.transform = "translateY(0%)";
+          currentlymaximized = true;
+        } else {
+          currsongmax.style.transform = "translateY(calc(100% - 60px - 0.5%))";
+          currentlymaximized = false;
+          currsongmax.style.background = "rgba(25, 25, 25, 0)";
+        }
+      });
+    });
+
+    // Amazing Mobile Code
+    navigator.mediaSession.setActionHandler("play", () => {
+      switchAudioMode(true)
+    });
+    navigator.mediaSession.setActionHandler("pause", () => {
+      switchAudioMode(false)
+    });
+    navigator.mediaSession.setActionHandler("previoustrack", () => {
+      var previoustrack = math.max(currentsong.tracknumber - 1, 1)
+      playSong(previoustrack);
+    });
+    navigator.mediaSession.setActionHandler("nexttrack", () => {
+      var nexttrack = currentsong.tracknumber + 1
+      var nexttrackElement = select(`div[track-num="${nexttrack}"]`, select(".song-list"));
+      if (nexttrackElement) {
+        playSong(nexttrack, nexttrackElement);
+      } else {
+        audioplayer.currentTime = 0;
+        switchAudioMode(false);
+        audioplayer.pause();
+      }
+    });
+  </script>
 </body>
 
 </html>
