@@ -142,7 +142,7 @@
       height: 100%;
       padding: 8px;
       top: calc(0%);
-      background: rgba(25, 25, 25, 0);
+      background: rgba(25, 25, 25, .9);
       transform: translateY(calc(100% - 60px - 0.5%));
       transition: transform 0.5s ease-out, background 0.1s ease-out;
     }
@@ -165,12 +165,16 @@
     }
 
     .current-song img {
+      margin-bottom: 50;
+      top: 4.5px;
+      left: 8px;
+      position: absolute;
       border-radius: 6px;
     }
 
     .current-song-info {
       padding-left: 60px;
-      top: 0%;
+      top: -7px;
       width: 100%;
       position: absolute;
     }
@@ -195,6 +199,7 @@
       top: 0.5;
       right: 12px;
       position: absolute;
+      transition: 0.3s ease-out;
     }
 
     .current-song-pause svg {
@@ -211,13 +216,68 @@
     .current-song .material-symbols-outlined {
       position: absolute;
       top: 4.5px;
-      height: 50px;
+      height: 48px;
       width: 50px;
       background-color: grey;
       border-radius: 6px;
     }
 
-    .idfk {
+    .current-song-slider {
+      cursor: pointer; /* Change cursor to pointer on hover */
+      display: flex;
+      justify-content: space-between;
+      position: absolute;
+      left: 8px;
+      width: calc(100% - 18px);
+      height: 3px;
+      bottom: 0;
+      background-color: rgba(255,255,255,0.15);
+      transition: 0.3s ease-out;
+    }
+
+    .current-song-slider .slider-loaded {
+      width: 0%;
+      height: 100%;
+      background-color: var(--light-secondary);
+      opacity: .3;
+      position: absolute;
+      z-index: 1;
+    }
+
+    .current-song-slider .slider-progress {
+      width: 0%;
+      height: 100%;
+      background-color: var(--light-secondary);
+      position: absolute;
+      z-index: 1;
+    }
+  </style>
+  <style>
+    .lyrics {
+      position: absolute;
+      border-radius: 12px;
+      left: 1%;
+      right: 1%;
+      width: 98%;
+      height: 50%;
+      padding: 8px;
+      top: 5%;
+      transition: 0.3s ease-out;
+      overflow: hidden;
+      font-family: Inter, sans-serif;
+      font-weight: 800;
+      font-size: 50px;
+    }
+
+    .lyrics span {
+      color: rgba(80,80,80,1);
+    }
+
+    .lyrics .seen {
+      color: var(--light-primary);
+    }
+
+    .audiocontrols {
       display: flex;
       justify-content: space-between;
       position: absolute;
@@ -225,11 +285,92 @@
       left: 1%;
       right: 1%;
       width: 98%;
-      height: 60px;
+      height: 6.5%;
       padding: 8px;
-      top: 10%;
-      background-color: var(--dark-primary);
-      transition: 0.3s ease-out;
+      top: 56%;
+    }
+
+    .audiocontrols .current-song-pause {
+      bottom: 20%;
+      left: 45%;
+      border-radius: 50%;
+      background-color: var(--light-primary);
+      height: 50px;
+      width: 50px;
+    }
+
+    .audiocontrols .current-song-pause svg {
+      position: absolute;
+      left: 122%;
+      transform: translateY(20%);
+    }
+    .audiocontrols .current-song-pause path {
+      fill: var(--dark-primary)
+    }
+
+    .audiocontrols .current-song-pause #current-song-pause {
+      left: 119%;
+    }
+    .slider-progress div {
+      position: absolute;
+      border-radius: 50%;
+      background-color: var(--light-primary);
+      height: 10px;
+      width: 10px;
+      top: -3px;
+      right: -10px;
+    }
+
+    .audiocontrols #timeDisplay {
+      position: absolute;
+      top: 5px;
+    }
+
+    .audiocontrols #durationDisplay {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+    }
+
+    .history {
+      display: flex;
+      justify-content: space-between;
+      position: absolute;
+      background-color: #0a0a0a;
+      color: var(--light-primary);
+      border-radius: 12px;
+      left: 1%;
+      right: 1%;
+      width: 98%;
+      height: 30%;
+      padding: 8px;
+      top:69.5%;
+    }
+
+    .history h2 {
+      width: 100%;
+      color: var(--light-primary);
+      text-align: center;
+      font-size: 30px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+
+    .history div {
+      position: absolute;
+      top: 15%;
+      width: 96%;
+      height: 30%;
+      left: 2%;
+      right: 2%;
+      height: 85%;
+      padding: 8px;
+    }
+
+    .history h3 {
+      margin-top: 0px;
+      margin-bottom: 5px;
+      font-size: .95rem;
     }
   </style>
   <!-- Song List -->
@@ -245,6 +386,7 @@
     .album-name {
       width: 100%;
       height: 12px;
+      margin-top: 8px;
       margin-bottom: 20px;
       padding-left: 4px;
       padding-right: 4px;
@@ -310,31 +452,20 @@
 </head>
 
 <body>
-  <audio id="audio" preload="metadata" title="Audio Title" artist="Artist Name" album="More Chaos"></audio>
+  <audio id="audio" preload="none" title="Audio Title" artist="Artist Name" album="More Chaos"></audio>
+
   <div class="Page_Header">
     <a href="../">
       <h1 class="">
         <img src="https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg" width="40" height="40" />
         <span> Album Name </span>
-        <!-- -->
       </h1>
     </a>
   </div>
-  <!-- Side Panel Not finished
-    <div class="Side_Panel">
-        <div>
-            <div class="Side_Panel_Album">
-                <span>
-                    Album Title
-                </span>
-                <img src="https://i.scdn.co/image/ab67616d00001e02c5649add07ed3720be9d5526">
-            </div>
-        </div>
-    </div>
-    -->
+
   <div class="song-list">
     <p class="album-name">More Chaos</p>
-    <div class="song" song-url="https://pillowcase.zip/f/424e52c73a9528a6bb5015e0f74f6db2" track-num="1">
+    <div class="song" song-url="https://pillowcase.zip/f/424e52c73a9528a6bb5015e0f74f6db2" track-num="1" producer="Lil88 & Dylxn" leakdate="1/18/24" recording="11/1/23" songtype="Throwaway" portion="Full" quality="CDQ" ogfilename="01_ken_11.1_2.mp3" history="$4,000 Blind &quot;Grail&quot; Group buy, took 2 days (1/17-18/24)">
       <img src="https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg" class="song-img noselect" />
       <div class="song-info">
         <div class="song-name">Private</div>
@@ -342,7 +473,7 @@
       </div>
     </div>
 
-    <div class="song" song-url="https://pillowcase.zip/f/5c56d38c03abd3aa334a8afa11584cfd" track-num="2">
+    <div class="song" song-url="https://pillowcase.zip/f/5c56d38c03abd3aa334a8afa11584cfd" track-num="2" producer="Lil88 & Dylxn" leakdate="1/16/24" recording="10/31/23" songtype="Throwaway" portion="Full" quality="CDQ" ogfilename="ken_10.31_2_blk.mp3" history="$2,000 Blind Group buy, took 2 days (1/15-16/24)">
       <img src="https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg" class="song-img noselect" />
       <div class="song-info">
         <div class="song-name">Black</div>
@@ -350,7 +481,7 @@
       </div>
     </div>
 
-    <div class="song" song-url="https://pillowcase.zip/f/4888a5494261ab2ed4aa9097a66238d2" track-num="3">
+    <div class="song" song-url="https://pillowcase.zip/f/4888a5494261ab2ed4aa9097a66238d2" track-num="3" producer="F1LTHY" leakdate="12/30/23" recording="Unknown" songtype="Throwaway" portion="Full" quality="HQ" ogfilename="Unknown" history="Previously unheard. Leaked by soundcloud account chaoschaoschaos in a playlist named &quot;MORE CHAOS&quot;">
       <img src="https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg" class="song-img noselect" />
       <div class="song-info">
         <div class="song-name">Rick (feat. Destroy Lonely)</div>
@@ -358,7 +489,7 @@
       </div>
     </div>
 
-    <div class="song" song-url="https://pillowcase.zip/f/59560683e31c7c56273b0b3da741b4b6" track-num="4">
+    <div class="song" song-url="https://pillowcase.zip/f/96d0e0f765b5227e3bca6eeeb3494b83" track-num="4" producer="F1LTHY & AM" leakdate="12/30/23" recording="Unknown" songtype="Throwaway" portion="Full" quality="CDQ" ogfilename="Unknown" history="Previously unheard. Leaked by soundcloud account chaoschaoschaos in a playlist named &quot;MORE CHAOS&quot;">
       <img src="https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg" class="song-img noselect" />
       <div class="song-info">
         <div class="song-name">Designer (feat. Destroy Lonely)</div>
@@ -373,18 +504,88 @@
       <br />
       (Current) Ken is working on new songs
     </p>
-  </div>
+    <p class="album-name">
+      <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Ken_Carson_-_A_Great_Chaos.jpg" width="60" height="60" class="noselect"/><br>
+      A Great Chaos
+    </p><br><br><br>
+    
+    <div class="song" song-url="https://pillowcase.zip/f/be9cc0ef391f0917a3362867c3a82f5d" track-num="1" producer="star boy" leakdate="1/17/24" recording="8/13/23" songtype="Throwaway" portion="Full" quality="CDQ" ogfilename="ken_8.13_2.mp3" history="First previewed by Homixide Beno September 29th, 2023. Snippets would later leak January 2nd, 2024, and January 12th 2024. Leaked after a $4,000 Group Buy. Open verse, probably for Homixide Gang">
+      <div class="song-info">
+        <div class="song-name">Sydney Sweeney <span style="font-size: small; color: lightgray">(open verse)</span></div>
+        <div class="song-artist">Ken Carson</div>
+      </div>
+    </div>
 
+    <div class="song" song-url="https://pillowcase.zip/f/a594e90704e30416280e6c694e3b492d" track-num="2" producer="Unknown" leakdate="1/17/24" recording="12/12/22" songtype="Throwaway" portion="Full" quality="CDQ" ogfilename="ken_12.12.mp3" history="Previously Unheard. Leaked in a $2,000 Blind Group Buy, took 2 days (1/16-17/24)">
+      <div class="song-info">
+        <div class="song-name">Get Off</div>
+        <div class="song-artist">Ken Carson</div>
+      </div>
+    </div>
+
+    <div class="song" song-url="https://pillowcase.zip/f/dbd91f952f419e4fc47edf3bf07be307" track-num="3" producer="F1LTHY, Carter Bryson, ssort & Lucian" leakdate="12/30/23" recording="Unknown" songtype="Throwaway" portion="Full" quality="HQ" ogfilename="Unknown" history="Snippet was posted by a random instagram account April 12, 2023. Leaked by soundcloud account chaoschaoschaos in a playlist named &quot;MORE CHAOS&quot;">
+      <div class="song-info">
+        <div class="song-name">Jumanji <span style="font-size: small; color: lightgray">(aka: Swaggin / Balenci Boots)</span></div>
+        <div class="song-artist">Ken Carson</div>
+      </div>
+    </div>
+
+    <div class="song" song-url="https://pillowcase.zip/f/f82737715a2369567c393656b114777c" track-num="4" producer="Lukrative & Lucian" leakdate="12/30/23" recording="Unknown" songtype="Throwaway" portion="Full" quality="HQ" ogfilename="Unknown" history="Snippet was leaked from a Ken groupchat on August 2, 2023. Leaked by soundcloud account chaoschaoschaos in a playlist named &quot;MORE CHAOS&quot;">
+      <div class="song-info">
+        <div class="song-name">Just Might <span style="font-size: small; color: lightgray">(aka: X on my buckle)</span></div>
+        <div class="song-artist">Ken Carson</div>
+      </div>
+    </div>
+
+    <div class="song" song-url="https://pillowcase.zip/f/f8d02e43d0d32146b60061f655c39a63" track-num="5" producer="lucidbeatz, Yung Swisher, Neal & Alex & Jimmy Torrio" leakdate="12/11/23" recording="Unknown" songtype="Feature" portion="Full" quality="CDQ" ogfilename="Unknown" history="Tracklist posted May 25th, 2023. leaked December 11th, 2023, the song was released January 5th, 2024">
+      <div class="song-info">
+        <div class="song-name">Rick Owens (feat. Ken Carson)</div>
+        <div class="song-artist">UFO361, Ken Carson</div>
+      </div>
+    </div>
+
+    <div class="song" song-url="https://pillowcase.zip/f/971dfcc7f3f04797f1ec60a55b389b80" track-num="6" producer="F1LTHY" leakdate="12/3/23" recording="Unknown" songtype="Throwaway" portion="Full" quality="CDQ" ogfilename="Unknown" history="First snippet was by Mia Owens on December 11th, 2022. @Dairy (instagram) posted new snippet December 2nd, 2023, Leaked December 3rd, 2023">
+      <div class="song-info">
+        <div class="song-name">Flexing <span style="font-size: small; color: lightgray">(aka: Exotic)</span></div>
+        <div class="song-artist">Ken Carson</div>
+      </div>
+    </div>
+
+    <div class="song" song-url="https://pillowcase.zip/f/a9d85232205c7652ae0942218e671941" track-num="7" producer="Lukrative & Lucian" leakdate="10/5/23" recording="11/27/22" songtype="Throwaway" portion="Full" quality="CDQ" ogfilename="ken 11-27-22" history="First snippet was posted by kingbob on Twitter April 11, 2023. Leaked as a bonus to the Vetements Jeans (Justin Beiber) Carti x Uzi Group Buy on October 5th 2023">
+      <div class="song-info">
+        <div class="song-name">What I need <span style="font-size: small; color: lightgray">(aka: Balenciaga Boots)</span></div>
+        <div class="song-artist">Ken Carson</div>
+      </div>
+    </div>
+
+    <div class="song" song-url="https://pillowcase.zip/f/942978fe1e7b509df723676d7ca6fd84" track-num="8" producer="Clover Beats & Trgc" leakdate="8/4/23" recording="Unknown" songtype="Throwaway" portion="Full" quality="CDQ" ogfilename="Unknown" history="First previewed by Mia Owens, Later previewed on Ken's story on his alt instagram @user00xman. Not to be confused with &quot;Ready&quot; by Yeat featuring Ken and Lone. Leaked August 4th, 2023">
+      <div class="song-info">
+        <div class="song-name">Ready (feat. Destroy Lonely)</div>
+        <div class="song-artist">Ken Carson, Destroy Lonely</div>
+      </div>
+    </div>
+
+    <p class="album-info">
+      5 Full 0 Snippets
+      <br />
+      (October 31, 2022) - (October 13, 2023)
+      <br />
+      XTENDED released - A Great Chaos released
+    </p>
+  </div>
+  <br><br><br><br>
   <div class="song-thing">
     <!-- Mobile -->
     <div class="current-song">
       <img src="" width="50" height="50" class="noselect" style="display: none;" />
-      <span class="material-symbols-outlined">
-        music_off
-      </span>
+      <span class="material-symbols-outlined">music_off</span>
       <div class="current-song-info">
         <h1>Not Playing</h1>
         <span></span>
+      </div>
+      <div class="current-song-slider">
+        <div class="slider-loaded"></div>
+        <div class="slider-progress"></div>
       </div>
       <div class="current-song-pause noselect">
         <svg width="30" height="30" viewBox="0 0 16 16" id="current-song-play" style="display: block">
@@ -400,8 +601,45 @@
         </svg>
       </div>
     </div>
-    <div class="idfk">
-      balls smack touch wee wee
+    <div class="lyrics">
+      <h1 style="display: flex;justify-content: center;align-items: center;">
+        <img id="weirdalbumartthing" src="https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg" style="position:absolute;top: 5%" width=auto height="55%"/>
+        <span style="font-size: 4rem;position: absolute;top:65.5%;right:0%;width:100%;text-align: center;color:var(--light-primary);"> Album 
+          <span style="font-size: 1.3rem;position: absolute;top:100%;left:0%;width:100%;color:var(--light-secondary)"> Ken Carson </span>
+          <span style="font-size: .9rem;position: absolute;top:125%;left:0%;width:100%;color:var(--light-secondary)"> No lyrics im lazy </span>
+        </span>
+      </h1>
+    </div>
+    <div class="audiocontrols">
+      <div class="current-song-slider">
+        <div class="slider-loaded"></div>
+        <div class="slider-progress">
+          <div></div> <!-- Circle -->
+        </div>
+        <div id="timeDisplay">0:00</div>
+        <div id="durationDisplay">0:00</div>
+      </div>
+      <div class="current-song-pause noselect">
+        <svg width="25" height="25" viewBox="0 0 16 16" id="current-song-play" style="display: block">
+          <path fill="var(--light-primary)" d="m4.4 15.14 10.386-6.096c.842-.459.794-1.64 0-2.097L4.401.85c-.87-.53-2-.12-2 .82v12.625c0 .966 1.06 1.4 2 .844z"></path>
+        </svg>
+        <svg width="25" height="25" viewBox="0 0 16 16" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" id="current-song-pause" style="display: none; transform: translateX(-8px), translateY(2px)">
+          <path fill="var(--light-primary)" d="M9.918.464h2.672a.89.89 0 0 1 .89.89v13.291a.89.89 0 0 1-.89.891H9.918a.89.89 0 0 1-.89-.89V1.354a.89.89 0 0 1 .89-.891zm-6.371 0h2.398c.567 0 1.027.46 1.027 1.028v13.016c0 .568-.46 1.028-1.027 1.028H3.547c-.567 0-1.028-.46-1.028-1.028V1.492c0-.568.46-1.028 1.028-1.028z" fill-rule="nonzero"></path>
+        </svg>
+      </div>
+    </div>
+    <div class="history">
+      <h2>About the song</h2>
+      <div>
+        <h3 id="producer"> </h3>
+        <h3 id="leakdate"> </h3>
+        <h3 id="recording"> </h3>
+        <h3 id="songtype"> </h3>
+        <h3 id="portion"> </h3>
+        <h3 id="quality"> </h3>
+        <h3 id="ogfilename"> </h3>
+        <h3 id="history"> </h3>
+      </div>
     </div>
   </div>
 
@@ -416,6 +654,8 @@
     var audioplayer;
 
     var currentlymaximized = false;
+    var previoussong = undefined;
+    var currenttrack;
     var currentsong = {
       title: "Not Playing",
       artist: undefined,
@@ -425,7 +665,7 @@
       tracknumber: 1,
     };
 
-    var switchAudioMode; var playSong;
+    var switchAudioMode; var playSong; 
     const updateAudioData = function () {
       navigator.mediaSession.playbackState = "playing";
       navigator.mediaSession.metadata = new MediaMetadata({
@@ -451,6 +691,22 @@
       songName = select("h1", currsonginfo);
       songArtist = select("span", currsonginfo);
 
+      var albumart = select("#weirdalbumartthing", currsongmax);
+
+      var minisongsliderBar = select(".current-song-slider", currsongmini);
+      var miniprogressBar = select(".slider-progress", minisongsliderBar);
+      var miniloadedBar = select(".slider-loaded", minisongsliderBar);
+
+      var audiocontrols = select(".audiocontrols", currsongmax)
+      var maxsongsliderBar = select(".current-song-slider", audiocontrols);
+      var maxplaypausething = select(".current-song-pause", audiocontrols)
+      var maxplaybtn = select("#current-song-play", maxplaypausething);
+      var maxpausebtn = select("#current-song-pause", maxplaypausething);
+      var maxprogressBar = select(".slider-progress", maxsongsliderBar);
+      var maxloadedBar = select(".slider-loaded", maxsongsliderBar);
+      var timeDisplay = select("#timeDisplay");
+      var durationDisplay = select("#durationDisplay");
+
       var parentdiv = select(".current-song-pause");
       var playbtn = select("#current-song-play", parentdiv);
       var pausebtn = select("#current-song-pause", parentdiv);
@@ -460,10 +716,42 @@
         switchAudioMode(false);
         audioplayer.pause();
       });
+      audioplayer.addEventListener("canplay", function(){
+        if(currenttrack) currenttrack.classList.remove("loading");
+      });
+      audioplayer.addEventListener("timeupdate", function(){
+        var progress = (audioplayer.currentTime / audioplayer.duration) * 100;
+        miniprogressBar.style.width = progress + "%";
+        maxprogressBar.style.width = progress + "%";
+        timeDisplay.textContent = formatTime(audioplayer.currentTime);
+      });
+      audioplayer.addEventListener("progress", function(){
+        if (audioplayer.buffered.length > 0) {
+          var loadedProgress = (audioplayer.buffered.end(0) / audioplayer.duration) * 100;
+          miniloadedBar.style.width = loadedProgress + "%";
+          maxloadedBar.style.width = loadedProgress + "%";
+          durationDisplay.textContent = formatTime(audioplayer.duration);
+        }
+      });
 
-      var songElements = document.querySelectorAll(".song");
+      maxsongsliderBar.addEventListener("click", handleProgressBarClick);
 
-      songElements.forEach(function (songElement) {
+      function handleProgressBarClick(event) {
+        event.stopPropagation();
+          var clickX = event.clientX - maxsongsliderBar.getBoundingClientRect().left;
+          var containerWidth = maxsongsliderBar.clientWidth;
+          var clickPercentage = clickX / containerWidth;
+          var newTime = clickPercentage * audioplayer.duration;
+          audioplayer.currentTime = newTime;
+      }
+
+      function formatTime(timeInSeconds) {
+          var minutes = Math.floor(timeInSeconds / 60);
+          var seconds = Math.floor(timeInSeconds % 60);
+          return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+      }
+
+      document.querySelectorAll(".song").forEach(function (songElement) {
         songElement.addEventListener("click", function () {
           playSong(songElement.getAttribute("track-num"), songElement);
         });
@@ -474,12 +762,16 @@
           if (mode) {
             // Set to pause btn
             playbtn.style.display = "none";
+            maxplaybtn.style.display = "none";
             pausebtn.style.display = "block";
+            maxpausebtn.style.display = "block";
             audioplayer.play();
           } else {
             // Set to play btn
             pausebtn.style.display = "none";
+            maxpausebtn.style.display = "none";
             playbtn.style.display = "block";
+            maxplaybtn.style.display = "block";
             audioplayer.pause();
           }
         }
@@ -496,104 +788,61 @@
 
         songElement.classList.add("loading");
 
-        if (
-          songUrl &&
-          (songName.innerText !=
-            select(".song-name", songElement).innerText ||
-            !select(".song-artist", songElement).innerText)
-        ) {
+        if (songUrl && (select(".song-name", songElement).innerText != currentsong.title || !currenttrack)) {
           if (songUrl.includes("pillowcase.zip")) {
             let hash = songUrl.split("/");
-            songUrl = `https://api.pillowcase.zip/api/download/${hash[hash.length - 1]
-              }`;
+            songUrl = `https://api.pillowcase.zip/api/download/${hash[hash.length - 1]}`;
           }
 
-          fetch(songUrl)
-            .then(function (response) {
-              return response.arrayBuffer();
-            })
-            .then(function (buffer) {
-              var blob = new Blob([buffer], { type: "audio/mpeg" });
-              var blobUrl = URL.createObjectURL(blob);
-              audioplayer.src = blobUrl;
-              // change to pause btn
-              switchAudioMode(true);
-              currentsong = {
-                title: select(".song-name", songElement).innerText,
-                artist: select(".song-artist", songElement).innerText,
-                album: "More Chaos",
-                artwork: select("img", songElement).src,
-                tracknumber: songElement.getAttribute("track-num"),
-              };
-              // load audio
-              updateAudioData();
-              songElement.classList.remove("loading");
-            })
-            .catch((error) => {
-              console.error("Error:", error);
-
-              songElement.classList.remove("loading");
-            });
-        } else songElement.classList.remove("loading");
+          audioplayer.src = songUrl;
+          switchAudioMode(true);
+          var imgiconwhatever = "https://upload.wikimedia.org/wikipedia/en/f/f5/Ken_Carson_-_A_Great_Chaos.jpg";
+          var iconforalbum = select("img", songElement)
+          if(!!iconforalbum) imgiconwhatever = iconforalbum.src;
+          currentsong = {
+            title: select(".song-name", songElement).innerText,
+            artist: select(".song-artist", songElement).innerText,
+            album: "More Chaos",
+            artwork: imgiconwhatever,
+            tracknumber: songElement.getAttribute("track-num"),
+          };
+          albumart.src = imgiconwhatever;
+          updateAudioData();
+          select("#producer").innerText = `Produced by: ${songElement.getAttribute("producer")}`;
+          select("#leakdate").innerText = `Leak Date: ${songElement.getAttribute("leakdate")}`;
+          select("#recording").innerText = `Recording Date: ${songElement.getAttribute("recording")}`;
+          select("#songtype").innerText = `Song Type: ${songElement.getAttribute("songtype")}`;
+          select("#portion").innerText = `Portion: ${songElement.getAttribute("portion")}`;
+          select("#quality").innerText = `Quality: ${songElement.getAttribute("quality")}`;
+          select("#ogfilename").innerText = `OG File: ${songElement.getAttribute("ogfilename")}`;
+          select("#history").innerText = `History: ${songElement.getAttribute("history")}`;
+          currenttrack = songElement;
+        } else {
+          songElement.classList.remove("loading");
+        }
       }
 
       parentdiv.addEventListener("click", function () {
+        event.stopPropagation();
         switchAudioMode(playbtn.style.display === "block")
       });
-
-      document.addEventListener('touchstart', touchStart);
-      document.addEventListener('touchmove', touchMove);
-      document.addEventListener('touchend', touchEnd);
-
-      function touchStart(event) {
-        // Check if the touch started on the handle
-        if (event.target === currsongmini) {
-          startY = event.touches[0].clientY;
-          currsongmax.style.background = "rgba(25, 25, 25, 0.95)";
-        }
-      }
-
-      function touchMove(event) {
-        if (!startY) return;
-
-        let currentY = event.touches[0].clientY;
-        let deltaY = currentY - startY;
-
-        currsongmax.style.transition = 'none'; // Disable transition during dragging
-
-        if (deltaY > 0) {
-            // Dragging downward, close the panel
-            currsongmax.style.transform = "translateY(calc(100% - 60px - 0.5%))";
-        } else {
-            // Dragging upward, open the panel
-            panel.style.transform = `translateY(${deltaY}px))`;
-        }
-      }
-
-      function touchEnd() {
-        if (!startY) return;
-
-        currsongmax.style.transition = 'transform 0.3s ease-out, background 0.3s ease-out';
-
-        if (currsongmini.getBoundingClientRect().top > window.innerHeight / 3) {
-          currsongmax.style.transform = "translateY(calc(100% - 60px - 0.5%))";
-          currentlymaximized = false;
-          currsongmax.style.background = "rgba(25, 25, 25, 0)";
-        } else {
-          currsongmax.style.background = "rgba(25, 25, 25, 1)";
-          currsongmax.style.transform = "translateY(0%)";
-          currentlymaximized = true;
-        }
-      }
-
+      maxplaypausething.addEventListener("click", function () {
+        event.stopPropagation();
+        switchAudioMode(playbtn.style.display === "block")
+      });
       currsongmini.addEventListener("click", function () {
+        event.stopPropagation();
         if (!currentlymaximized) {
           currsongmax.style.background = "rgba(25, 25, 25, 1)";
           currsongmax.style.transform = "translateY(0%)";
+          minisongsliderBar.style.opacity = "0";
+          parentdiv.style.opacity = "0";
           currentlymaximized = true;
         } else {
           currsongmax.style.transform = "translateY(calc(100% - 60px - 0.5%))";
           currentlymaximized = false;
+          minisongsliderBar.style.opacity = "1";
+          parentdiv.style.opacity = "1";
           currsongmax.style.background = "rgba(25, 25, 25, 0)";
         }
       });
