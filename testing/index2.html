@@ -1,11 +1,12 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
-<head> 
-    <meta name="referrer" content="same-origin">
-</head>
-
-<body>
-    <script src="./index2.js"></script>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>My Song List</title>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
 
@@ -34,224 +35,348 @@
             overflow: hidden;
             scroll-behavior: smooth;
             scroll-padding-top: 4rem;
-        }
 
-        body {
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
 
-        .Root {
-            --content-spacing: 16px;
-            --content-max-width: 1955px;
-            --content-spacing: clamp(16px, 16px + (100vw - var(--left-sidebar-width, 0px) - var(--panel-width, 0px) - 600px)/424*8, 24px);
-            -webkit-transition: none .5s cubic-bezier(.3, 0, .4, 1);
-            transition: none .5s cubic-bezier(.3, 0, .4, 1);
-            -webkit-transition-property: background;
-            transition-property: background;
+        body {
+            overflow-y: scroll;
+            scrollbar-width: none;
         }
 
-        .contentSpacing {
-            margin: 0;
-            max-width: var(--content-max-width);
-            padding: 0 var(--content-spacing);
+        body::-webkit-scrollbar {
+            width: 0;
+            /* Set width to 0 to hide the scrollbar */
         }
 
-        .Header_header__v0usY {
-            display: flex;
-            justify-content: space-between;
-            padding: 24px;
-            background-color: var(--dark-secondary);
-        }
-
-        .Header_logo__VzOeQ {
-            border-radius: 4px;
-            margin-right: 10px;
-            vertical-align: sub;
-        }
-
-        .Header_index__AMXcn {
-            color: #fff;
-            text-decoration: none;
-        }
-
-        .Header_title__CHLQo {
-            margin: 0;
-            font-size: 32px;
-        }
-
-        .Header_links___Fa_y {
-            font-size: 16px;
-        }
-
-        @media screen and (max-width: 1200px) {
-            .Header_links___Fa_y {
-                display: none !important;
-            }
-        }
-
-        .Track_track__j1JOX {
-            color: var(--light-primary);
-            gap: 8px;
-            padding: 8px;
-            border-radius: 4px;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
+        .noselect {
             -webkit-user-select: none;
             -moz-user-select: none;
             user-select: none;
         }
-        .Track_track__j1JOX>div{
-            width: 300px;
-            overflow: shown;
-        }
-        
-        .Track_track__j1JOX>div:nth-child(2){
-            width: 500px;
-            margin-left: 5%;
-            overflow: shown;
-        }
-
-        .Track_track__j1JOX>div:nth-child(3){
-            width: 100px;
-            overflow: shown;
+    </style>
+    <!-- Header Styling -->
+    <style>
+        .Artist {
+            display: flex;
+            position: relative;
+            justify-content: space-between;
+            height: 40%;
+            padding: 24px;
+            margin-bottom: 0.5%;
+            background-color: var(--dark-secondary);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
         }
 
-        .Track_track__j1JOX:hover {
-            background-color: hsla(0, 0%, 100%, 0.1);
+        .Artist h1 {
+            margin: 0;
+            font-size: 32px;
         }
 
-        .Track_play__O_A_T {
-            display: none !important;
+        .Artist img {
+            position: absolute;
+            padding: 0;
+            margin: 0;
+            left: 0;
+            top: 0;
+            opacity: .85;
+            min-height: 100%;
+            height: auto;
+            width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 0;
         }
 
-        .Track_track__j1JOX:hover>.Track_play__O_A_T {
-            display: block !important;
+        .Page_Header {
+            position: fixed;
+            justify-content: space-between;
+            height: 5%;
+            width: 100%;
+            margin-bottom: 0.5%;
+            background-color: var(--dark-secondary);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+            z-index: 1;
         }
 
-        .Track_aliases__Cctz8,
-        .Track_artists__Ea865,
-        .Track_length__yIb3d {
+        .Page_Header a {
+            color: #fff;
+            text-decoration: none;
+            z-index: 2;
+        }
+    </style>
+    <!-- Song List -->
+    <style>
+        .song-list {
+            width: calc(100%-24px);
+            margin-left: 16px;
+            margin-right: 16px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .album-name {
+            width: 100%;
+            height: 12px;
+            margin-top: 8px;
+            margin-bottom: 20px;
+            padding-left: 4px;
+            padding-right: 4px;
+            font-weight: 600;
+            font-size: 24px;
             color: var(--light-secondary);
         }
 
-        .Track_length__yIb3d {
-            margin-left: auto;
-        }
-
-        .Track_tag__WTlmD {
-            padding: 4px;
-            margin-left: 4px;
-            border-radius: 4px;
-            font-weight: 700;
-            font-size: 14px;
-        }
-
-        .SearchResults_results__mfJ5h {
-            margin: 20px;
-            padding: 8px;
-            border-radius: 4px;
-            background-color: var(--dark-secondary);
-        }
-
-        .TrackGroup_track_group__1QpGC {
-            padding: 8px;
-            border-radius: 4px;
-        }
-
-        .TrackGroup_track_group__1QpGC:hover {
-            background-color: hsla(0, 0%, 100%, 0.1);
-        }
-
-        .TrackGroup_tracks__cO4Vr {
-            margin-left: 32px;
-        }
-
-        .EraCard_era__5_ZGH {
-            margin: 20px;
-            border-radius: 4px;
-            background-color: var(--dark-secondary);
-        }
-
-        .EraCard_era__5_ZGH>summary {
+        .song {
+            position: relative;
             display: flex;
-            gap: 20px;
-            padding: 20px;
-            border-radius: 4px;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
+            padding-bottom: 5px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+            border-radius: 6px;
         }
 
-        .EraCard_cover__6ANFI {
-            height: auto;
-            min-width: 136px;
-            max-height: 136px;
-            box-shadow: 0 4px 60px rgba(0, 0, 0, 0.5);
-            border-radius: 4px;
+        .song:hover {
+            background-color: #2c2c2c;
         }
 
-        .EraCard_title__Xknl9 {
-            font-size: 32px;
-            font-weight: 700;
+        .song.loading {
+            opacity: 0.7;
         }
 
-        .EraCard_description__3MKFd {
-            font-size: 14px;
-        }
-
-        @media screen and (max-width: 600px) {
-            .EraCard_era__5_ZGH>summary {
-                text-align: center;
-                align-items: center;
-                flex-direction: column;
-            }
-
-            .EraCard_description__3MKFd {
-                display: none;
-            }
-        }
-
-        .EraCard_tracks__rI0Kj {
-            padding: 16px;
-        }
-
-        .EraCard_subera__uRCRb {
-            background-color: var(--light-primary);
-            color: #000;
-            padding: 8px;
-            border-radius: 4px;
-            font-weight: 700;
-        }
-
-        .unreleased_container__IqK0q {
-            margin: 0 auto;
+        .song-info {
+            margin-top: 5px;
             width: 100%;
-            max-width: 90%;
+            height: 100%;
+            border-bottom: 1px solid #2c2c2c;
+        }
+
+        .song-name {
+            font-weight: 600;
+            font-size: 1em;
+            margin-bottom: 1px;
+        }
+
+        .song-artist {
+            font-size: 0.9em;
+            color: #bbb;
+            margin-bottom: 5px;
+        }
+
+        .song-img {
+            position: relative;
+            margin-right: 15px;
+            /* Adjust margin as needed */
+            top: 5px;
+            left: 5px;
+            width: 45px;
+            height: 45px;
+            border-radius: 6px;
+        }
+
+        .album-info {
+            padding-left: 4px;
+            padding-right: 4px;
+            color: var(--light-secondary);
+            font-size: 12px;
         }
     </style>
-    <audio id="audio" preload="metadata"></audio>
-    <div>
-        <div style="padding:10px;text-align:center">This site is dynamically generated from
-            <!-- -->
-            <a href="./example.md">this Markdown File</a>.
-            <!-- -->
-            <br>
-        </div>
-        <div class="Header_header__v0usY">
-            <a class="Header_index__AMXcn" href="/">
-                <h1 class="Header_title__CHLQo">
-                    <img alt="Tracker Icon" src="/website/logo (1).png" width="40" height="40" decoding="async"
-                        data-nimg="1" class="Header_logo__VzOeQ" loading="lazy" style="color:transparent">
-                    <span id="Tracker_Name">Loading...</span>
-                    <!-- -->
-                </h1>
-            </a>
-        </div>
-        <div class="unreleased_container__IqK0q"> </div>
+</head>
+
+<body>
+    <audio id="audio" preload="none"></audio>
+
+    <div class="Page_Header">
+        <a href="../">
+            <div
+                style="transform:scale(1);border-radius:50%;background:var(--dark-primary);height:32px;width:32px;margin-left: 15px;margin-top:15px;">
+                <svg style="fill:var(--light-primary);transform: scaleX(-1);display: block; margin-left: auto;margin-right: auto;padding-top:25%"
+                    width="24" height="24" viewBox="0 0 64 64" aria-hidden="true">
+                    <path
+                        d="M19.817 61.863c1.48 0 2.672-.515 3.702-1.546l24.243-23.63c1.352-1.385 1.996-2.737 2.028-4.443 0-1.674-.644-3.09-2.028-4.443L23.519 4.138c-1.03-.998-2.253-1.513-3.702-1.513-2.994 0-5.409 2.382-5.409 5.344 0 1.481.612 2.833 1.739 3.96l20.99 20.347-20.99 20.283c-1.127 1.126-1.739 2.478-1.739 3.96 0 2.93 2.415 5.344 5.409 5.344Z">
+                    </path>
+                </svg>
+            </div>
+        </a>
+        <span class="noselect"
+            style="position: absolute;margin-right:50%;width:100%;margin-top:-25px;text-align: center;font-size: 20px;font-weight:600;">
+            Ken Carson </span>
     </div>
+
+    <div class="Artist noselect">
+        <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Ken_Carson_-_A_Great_Chaos.jpg" width="1"
+            height="40" />
+        <h1>
+            <span style="position: absolute;bottom:15px;left:20px"> Ken Carson </span>
+        </h1>
+    </div>
+
+    <div class="song-list">
+        <div style="padding: 10px;position: relative;">
+            <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Ken_Carson_-_A_Great_Chaos.jpg" width="100" height="100" class="noselect" style="border-radius: 12px;" />
+            <div style="position: absolute;left:25%;top:0;">
+                <p style="color:var(--light-secondary);font-weight: 600;font-size: 12px;padding:0;margin-bottom:0;">OCT 13, 2023</p>
+                <p style="color:var(--light-primary);font-weight: 500;font-size: 22px;padding:0;margin-top:4px;margin-bottom:4px;">A Great Chaos</p>
+                <p style="color:var(--light-secondary);font-weight: 500;font-size: 14px;padding:0;margin:0;">18 Songs</p>
+            </div>
+        </div>
+        <p class="album-name">More Chaos</p>
+        <div class="song" song-url="https://pillowcase.zip/f/424e52c73a9528a6bb5015e0f74f6db2" track-num="1"
+            producer="Lil88 & Dylxn" leakdate="1/18/24" recording="11/1/23" songtype="Throwaway" portion="Full"
+            quality="CDQ" ogfilename="01_ken_11.1_2.mp3"
+            history="$4,000 Blind &quot;Grail&quot; Group buy, took 2 days (1/17-18/24)">
+            <img src="https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg" class="song-img noselect" />
+            <div class="song-info">
+                <div class="song-name">Private</div>
+                <div class="song-artist">Ken Carson</div>
+            </div>
+        </div>
+
+        <div class="song" song-url="https://pillowcase.zip/f/5c56d38c03abd3aa334a8afa11584cfd" track-num="2"
+            producer="Lil88 & Dylxn" leakdate="1/16/24" recording="10/31/23" songtype="Throwaway" portion="Full"
+            quality="CDQ" ogfilename="ken_10.31_2_blk.mp3" history="$2,000 Blind Group buy, took 2 days (1/15-16/24)">
+            <img src="https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg" class="song-img noselect" />
+            <div class="song-info">
+                <div class="song-name">Black</div>
+                <div class="song-artist">Ken Carson</div>
+            </div>
+        </div>
+
+        <div class="song" song-url="https://pillowcase.zip/f/4888a5494261ab2ed4aa9097a66238d2" track-num="3"
+            producer="F1LTHY" leakdate="12/30/23" recording="Unknown" songtype="Throwaway" portion="Full" quality="HQ"
+            ogfilename="Unknown"
+            history="Previously unheard. Leaked by soundcloud account chaoschaoschaos in a playlist named &quot;MORE CHAOS&quot;">
+            <img src="https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg" class="song-img noselect" />
+            <div class="song-info">
+                <div class="song-name">Rick (feat. Destroy Lonely)</div>
+                <div class="song-artist">Ken Carson, Destroy Lonely</div>
+            </div>
+        </div>
+
+        <div class="song" song-url="https://pillowcase.zip/f/96d0e0f765b5227e3bca6eeeb3494b83" track-num="4"
+            producer="F1LTHY & AM" leakdate="12/30/23" recording="Unknown" songtype="Throwaway" portion="Full"
+            quality="CDQ" ogfilename="Unknown"
+            history="Previously unheard. Leaked by soundcloud account chaoschaoschaos in a playlist named &quot;MORE CHAOS&quot;">
+            <img src="https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg" class="song-img noselect" />
+            <div class="song-info">
+                <div class="song-name">Designer (feat. Destroy Lonely)</div>
+                <div class="song-artist">Ken Carson, Destroy Lonely</div>
+            </div>
+        </div>
+
+        <p class="album-info">
+            4 Full 0 Snippets
+            <br />
+            (October 13, 2023) A Great Chaos is released
+            <br />
+            (Current) Ken is working on new songs
+        </p>
+        <p class="album-name">
+            <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/Ken_Carson_-_A_Great_Chaos.jpg" width="60"
+                height="60" class="noselect" /><br>
+            A Great Chaos
+        </p><br><br><br>
+
+        <div class="song" song-url="https://pillowcase.zip/f/be9cc0ef391f0917a3362867c3a82f5d" track-num="1"
+            producer="star boy" leakdate="1/17/24" recording="8/13/23" songtype="Throwaway" portion="Full" quality="CDQ"
+            ogfilename="ken_8.13_2.mp3"
+            history="First previewed by Homixide Beno September 29th, 2023. Snippets would later leak January 2nd, 2024, and January 12th 2024. Leaked after a $4,000 Group Buy. Open verse, probably for Homixide Gang">
+            <div class="song-info">
+                <div class="song-name">Sydney Sweeney <span style="font-size: small; color: lightgray">(open
+                        verse)</span></div>
+                <div class="song-artist">Ken Carson</div>
+            </div>
+        </div>
+
+        <div class="song" song-url="https://pillowcase.zip/f/a594e90704e30416280e6c694e3b492d" track-num="2"
+            producer="Unknown" leakdate="1/17/24" recording="12/12/22" songtype="Throwaway" portion="Full" quality="CDQ"
+            ogfilename="ken_12.12.mp3"
+            history="Previously Unheard. Leaked in a $2,000 Blind Group Buy, took 2 days (1/16-17/24)">
+            <div class="song-info">
+                <div class="song-name">Get Off</div>
+                <div class="song-artist">Ken Carson</div>
+            </div>
+        </div>
+
+        <div class="song" song-url="https://pillowcase.zip/f/dbd91f952f419e4fc47edf3bf07be307" track-num="3"
+            producer="F1LTHY, Carter Bryson, ssort & Lucian" leakdate="12/30/23" recording="Unknown"
+            songtype="Throwaway" portion="Full" quality="HQ" ogfilename="Unknown"
+            history="Snippet was posted by a random instagram account April 12, 2023. Leaked by soundcloud account chaoschaoschaos in a playlist named &quot;MORE CHAOS&quot;">
+            <div class="song-info">
+                <div class="song-name">Jumanji <span style="font-size: small; color: lightgray">(aka: Swaggin / Balenci
+                        Boots)</span></div>
+                <div class="song-artist">Ken Carson</div>
+            </div>
+        </div>
+
+        <div class="song" song-url="https://pillowcase.zip/f/f82737715a2369567c393656b114777c" track-num="4"
+            producer="Lukrative & Lucian" leakdate="12/30/23" recording="Unknown" songtype="Throwaway" portion="Full"
+            quality="HQ" ogfilename="Unknown"
+            history="Snippet was leaked from a Ken groupchat on August 2, 2023. Leaked by soundcloud account chaoschaoschaos in a playlist named &quot;MORE CHAOS&quot;">
+            <div class="song-info">
+                <div class="song-name">Just Might <span style="font-size: small; color: lightgray">(aka: X on my
+                        buckle)</span></div>
+                <div class="song-artist">Ken Carson</div>
+            </div>
+        </div>
+
+        <div class="song" song-url="https://pillowcase.zip/f/f8d02e43d0d32146b60061f655c39a63" track-num="5"
+            producer="lucidbeatz, Yung Swisher, Neal & Alex & Jimmy Torrio" leakdate="12/11/23" recording="Unknown"
+            songtype="Feature" portion="Full" quality="CDQ" ogfilename="Unknown"
+            history="Tracklist posted May 25th, 2023. leaked December 11th, 2023, the song was released January 5th, 2024">
+            <div class="song-info">
+                <div class="song-name">Rick Owens (feat. Ken Carson)</div>
+                <div class="song-artist">UFO361, Ken Carson</div>
+            </div>
+        </div>
+
+        <div class="song" song-url="https://pillowcase.zip/f/971dfcc7f3f04797f1ec60a55b389b80" track-num="6"
+            producer="F1LTHY" leakdate="12/3/23" recording="Unknown" songtype="Throwaway" portion="Full" quality="CDQ"
+            ogfilename="Unknown"
+            history="First snippet was by Mia Owens on December 11th, 2022. @Dairy (instagram) posted new snippet December 2nd, 2023, Leaked December 3rd, 2023">
+            <div class="song-info">
+                <div class="song-name">Flexing <span style="font-size: small; color: lightgray">(aka: Exotic)</span>
+                </div>
+                <div class="song-artist">Ken Carson</div>
+            </div>
+        </div>
+
+        <div class="song" song-url="https://pillowcase.zip/f/a9d85232205c7652ae0942218e671941" track-num="7"
+            producer="Lukrative & Lucian" leakdate="10/5/23" recording="11/27/22" songtype="Throwaway" portion="Full"
+            quality="CDQ" ogfilename="ken 11-27-22"
+            history="First snippet was posted by kingbob on Twitter April 11, 2023. Leaked as a bonus to the Vetements Jeans (Justin Beiber) Carti x Uzi Group Buy on October 5th 2023">
+            <div class="song-info">
+                <div class="song-name">What I need <span style="font-size: small; color: lightgray">(aka: Balenciaga
+                        Boots)</span></div>
+                <div class="song-artist">Ken Carson</div>
+            </div>
+        </div>
+
+        <div class="song" song-url="https://pillowcase.zip/f/942978fe1e7b509df723676d7ca6fd84" track-num="8"
+            producer="Clover Beats & Trgc" leakdate="8/4/23" recording="Unknown" songtype="Throwaway" portion="Full"
+            quality="CDQ" ogfilename="Unknown"
+            history="First previewed by Mia Owens, Later previewed on Ken's story on his alt instagram @user00xman. Not to be confused with &quot;Ready&quot; by Yeat featuring Ken and Lone. Leaked August 4th, 2023">
+            <div class="song-info">
+                <div class="song-name">Ready (feat. Destroy Lonely)</div>
+                <div class="song-artist">Ken Carson, Destroy Lonely</div>
+            </div>
+        </div>
+
+        <p class="album-info">
+            5 Full 0 Snippets
+            <br />
+            (October 31, 2022) - (October 13, 2023)
+            <br />
+            XTENDED released - A Great Chaos released
+        </p>
+    </div>
+    <br><br><br><br>
+
+    <script>
+        const select = (_, el = document) => el.querySelector(_);
+    </script>
 </body>
 
 </html>
