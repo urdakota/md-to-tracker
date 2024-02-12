@@ -129,7 +129,7 @@ function loadcontent(jsonData) {
         jsonData[album][key].forEach((item) => {
           item["album"] = album;
           item["disc"] = key;
-          if (item.quality != "Not Available") recentsongs[item.title] = item;
+          if (item.quality != "Not Available" && item.portion != "Snippet") recentsongs[item.title] = item;
         });
       }
     }
