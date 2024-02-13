@@ -88,7 +88,7 @@
             max-height: 100%;
             object-fit: cover;
             object-position: center;
-            z-: 0;
+            z-index: 0;
         }
 
         .Page_Header {
@@ -99,14 +99,14 @@
             margin-bottom: 0.5%;
             background-color: var(--dark-secondary);
             border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-            z-: 1;
+            z-index: 1;
             display: none;
         }
 
         .Page_Header a {
             color: #fff;
             text-decoration: none;
-            z-: 2;
+            z-index: 2;
         }
     </style>
     <!-- Song List -->
@@ -229,6 +229,16 @@
             background-color: rgba(255, 0, 0, .6);
             color: rgba(255, 255, 255, .9);
         }
+
+        #albums .wrapper .album-element {
+          border-radius: 6px;
+          transition: 0.3s;
+          cursor: pointer;
+        }
+
+        #albums .wrapper .album-element:hover{
+            background-color: #2c2c2c;
+        }
     </style>
     <!-- Lyrics --><!-- Mobile Display -->
   <style>
@@ -266,7 +276,7 @@
       opacity: 0.85;
       transition: 0.3s ease-out;
       border-top: 1px solid rgba(0, 0, 0, 0.2);
-      z-: 2;
+      z-index: 2;
     }
 
     .current-song img {
@@ -523,7 +533,7 @@
                 </p>
             </div>
         </div>
-        <p style="width:175px;font-weight: 600;font-size: 24px;margin-bottom:0px;cursor:pointer;">New Songs
+        <p style="width:175px;font-weight: 600;font-size: 24px;margin-bottom:6px;cursor:pointer;">New Songs
         <div style="height:15px;width:32px;margin-top:-27.5px;margin-left:135px;cursor:pointer">
             <svg style="fill:var(--light-secondary);display: block;opacity: .9;" width="24" height="24"
                 viewBox="0 0 64 64" aria-hidden="true">
@@ -539,6 +549,8 @@
                 <div class="row" id="row2"></div>
             </div>
         </div>
+        <p style="width:175px;font-weight: 600;font-size: 24px;margin-bottom:6px;margin-top:0px;cursor:pointer;">Albums</p>
+        <div class="new-songs" style="height:280px;" id="albums"><div class="wrapper"></div></div>
         <p class="album-name">More Chaos</p>
         <div class="song" song-url="https://pillowcase.zip/f/424e52c73a9528a6bb5015e0f74f6db2" track-num="1"
             producer="Lil88 & Dylxn" leakdate="1/18/24" recording="11/1/23" songtype="Throwaway" portion="Full"
