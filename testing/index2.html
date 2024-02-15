@@ -1025,7 +1025,7 @@
                 if (songUrl && (select(".song-name", songElement).innerText != currentsong.title || !currenttrack)) {
                     if (songUrl.includes("pillowcase.")) {
                         let hash = songUrl.split("/");
-                        songUrl = `https://api.pillowcase.su/api/get/${hash[hash.length - 1]}`;
+                        songUrl = `https://api.pillowcase.su/api/download/${hash[hash.length - 1]}`;
                     }
 
                     audioplayer.src = songUrl;
