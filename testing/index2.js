@@ -17,8 +17,6 @@ const albumicons = {
   "Teen X":           "https://images.genius.com/b29cb9082c5b354d09b3c23f3a7402ec.1000x1000x1.png",
   "Boy Barbie":       "https://images.genius.com/1ef69452d04b5a151fe7738c0b633171.1000x1000x1.jpg",
 };
-const currentDate = new Date();
-
 const convertToDate = (dateStr) => {
   var [month, day, year] = dateStr.split("/").map(Number);
   if (isNaN(month)) month = 1;
@@ -116,14 +114,14 @@ function loadcontent(jsonData) {
   const albums_wrapper = select("#albums > .wrapper");
   var recentsongs = {};
   for (const key in jsonData) {
-    var album = key;
-    
-    var albumelement = create("div");
+    let album = key;
+
+    let albumelement = create("div");
     albumelement.style.display = "inline-block";
     albumelement.classList.add("album-element");
     albums_wrapper.insertBefore(albumelement, albums_wrapper.firstChild);
 
-    var albumart = create("img", albumelement);
+    let albumart = create("img", albumelement);
     albumart.src = albumicons[album];
     albumart.classList.add("noselect");
     albumart.height = "200";
@@ -140,30 +138,155 @@ function loadcontent(jsonData) {
     songname.style.padding = "0px";
     songname.textContent = album;
 
-    var songartist = create("div", albumelement);
+    let songartist = create("div", albumelement);
     songartist.classList.add("song-artist");
     songartist.style.margin = "6px";
     songartist.style["margin-top"] = "0px";
     songartist.style["margin-bottom"] = "0px";
     songartist.style.padding = "0px";
-    var betterdate = "";
+    let betterdate = "";
     if (jsonData[album]["leak date"] != "Unknown")
       betterdate = `${formatDate(jsonData[album]["leak date"])}`;
     songartist.textContent = `${betterdate}`;
+
+    let albumthing = create("div");
+    albumthing.id = album;
+    albumthing.classList.add("album-thing");
+
+    let albumheader = create("div", albumthing);
+    albumheader.classList.add("Page_Header");
+
+    let backbtn = create("div", albumheader);
+    backbtn.id = "Back-button";
+    backbtn.style.cursor = "pointer";
+    backbtn.style["border-radius"] = "50%";
+    backbtn.style.background = "var(--dark-primary)";
+    backbtn.style.height = "32px";
+    backbtn.style.width = "32px";
+    backbtn.style["margin-left"] = "15px";
+    backbtn.style["margin-top"] = "15px";
+
+    backbtn.innerHTML += '<i class="fa-solid fa-chevron-left" style="margin-left:8px;margin-top:6px;font-size:20px"></i>'
+
+    let artistthing = create("div", albumthing);
+    artistthing.classList.add("Artist", "noselect");
+
+    let artistimg = create("img", artistthing);
+    artistimg.src = albumicons[album];
+    artistimg.width = "1";
+    artistimg.height = "40";
+
+    let artistheader = create("h1", artistthing);
+    artistheader.style["align-items"] = "center";
+    artistheader.style["justify-content"] = "center";
+    artistheader.style.display = "flex";
+    artistheader.style.width = "100%";
+
+    let albumname = create("span", artistheader);
+    albumname.style["text-align"] = "center";
+    albumname.style["font-size"] = "5vw";
+    albumname.style.bottom = "50px";
+    albumname.style.position = "absolute";
+    albumname.textContent = album;
+    create("br", albumname);
+    let artistname = create("span", albumname);
+    artistname.style["text-weight"] = "500";
+    artistname.style["font-size"] = "5vw";
+    artistname.textContent = "Ken Carson";
+    create("br", albumname);
+    let releasedate = create("span", albumname);
+    releasedate.style["text-weight"] = "500";
+    releasedate.style["font-size"] = "5vw";
+    releasedate.style.color = "gray";
+    let bolded = create("strong", releasedate);
+    bolded.textContent = jsonData[album]["leak date"];
+
+    let albumdescription = create("span", artistheader);
+    albumdescription.style["text-align"] = "center";
+    albumdescription.style["font-size"] = "2.2vw";
+    albumdescription.style.opacity = "0.7";
+    albumdescription.style.bottom = "0px";
+    albumdescription.style.position = "absolute";
+    albumdescription.textContent = jsonData[album].History;
+
+    let songlist = create("div", albumthing);
+    songlist.classList.add("song-list");
+
+    albumelement.addEventListener("click", function () {
+      albumthing.classList.add("open");
+    });
+
+    backbtn.addEventListener("click", function () {
+      albumthing.classList.remove("open");
+    });
 
     for (const key in jsonData[album]) {
       if (
         jsonData[album].hasOwnProperty(key) &&
         Array.isArray(jsonData[album][key])
       ) {
+        let albumname2 = create("p", songlist);
+        albumname2.classList.add("album-info");
+        albumname2.textContent = key;
+
+        let i = 1;
         jsonData[album][key].forEach((item) => {
           item["album"] = album;
           item["disc"] = key;
-          if (item.quality != "Not Available" && item.portion != "Snippet") recentsongs[item.title] = item;
+          if (item.quality != "Not Available" && item.portion != "Snippet")
+            recentsongs[item.title] = item;
+
+            let songelement = create("div", songlist);
+          songelement.classList.add("song");
+          if (item.link) songelement.setAttribute("song-url", item.link);
+          if (!item.link) songelement.style.opacity = ".5"
+
+          songelement.setAttribute("track-num", i);
+          songelement.setAttribute("producer", item.producer);
+          songelement.setAttribute("leakdate", item["leak date"]);
+          songelement.setAttribute("recording", item["recording date"]);
+          songelement.setAttribute("songtype", item["song type"]);
+          songelement.setAttribute("portion", item.portion);
+          songelement.setAttribute("quality", item.quality);
+          songelement.setAttribute("ogfilename", item["OG File"]);
+          songelement.setAttribute("history", item.History);
+
+          let tracknum = create("span", songelement);
+          tracknum.classList.add("track-num");
+          tracknum.textContent = i;
+
+          let songinfo = create("div", songelement);
+          songinfo.classList.add("song-info");
+
+          let songname2 = create("div", songinfo);
+          songname2.classList.add("song-name");
+          songname2.textContent = item.title;
+
+          let songinfo2 = create("span", songname2);
+          songinfo2.style["font-size"] = "small";
+          songinfo2.style.color = "lightgray";
+          songinfo2.textContent = item.info;
+
+          if (item.portion == "Snippet") {
+            var snippettag = create("span", songname2);
+            snippettag.classList.add("tag", "snippet");
+            snippettag.textContent = "Snippet";
+          }
         });
+        var albuminfo = create("p", songlist);
+        albuminfo.classList.add("album-info");
+        albuminfo.textContent = jsonData[album][key].albuminfo;
       }
     }
+    
+    songlist.querySelectorAll(".song")
+    .forEach(function (songElement) {
+      songElement.addEventListener("click", function () {
+        playSong(songElement.getAttribute("track-num"), songElement);
+      });
+    });
   }
+  // recent songs
   recentsongs = sortByDate(recentsongs);
   const songrow1 = select("#row1");
   const songrow2 = select("#row2");
@@ -175,17 +298,17 @@ function loadcontent(jsonData) {
     if (i > 4) songparent = songrow2;
     var songelement = create("div", songparent);
     songelement.classList.add("song");
-    if(songdata.link) songelement.setAttribute("song-url", songdata.link)
-    
-    songelement.setAttribute("track-num", i)
-    songelement.setAttribute("producer", songdata.producer)
-    songelement.setAttribute("leakdate", songdata["leak date"])
-    songelement.setAttribute("recording", songdata["recording date"])
-    songelement.setAttribute("songtype", songdata["song type"])
-    songelement.setAttribute("portion", songdata.portion)
-    songelement.setAttribute("quality", songdata.quality)
-    songelement.setAttribute("ogfilename", songdata["OG File"])
-    songelement.setAttribute("history", songdata.History)
+    if (songdata.link) songelement.setAttribute("song-url", songdata.link);
+
+    songelement.setAttribute("track-num", i);
+    songelement.setAttribute("producer", songdata.producer);
+    songelement.setAttribute("leakdate", songdata["leak date"]);
+    songelement.setAttribute("recording", songdata["recording date"]);
+    songelement.setAttribute("songtype", songdata["song type"]);
+    songelement.setAttribute("portion", songdata.portion);
+    songelement.setAttribute("quality", songdata.quality);
+    songelement.setAttribute("ogfilename", songdata["OG File"]);
+    songelement.setAttribute("history", songdata.History);
 
     var albumart = create("img", songelement);
     albumart.src = albumicons[songdata.album];
@@ -211,14 +334,17 @@ function loadcontent(jsonData) {
       snippettag.textContent = "Snippet";
     }
 
+    console.log(i)
     i++;
   }
 
-  select(".new-songs").querySelectorAll(".song").forEach(function (songElement) {
-    songElement.addEventListener("click", function () {
-      playSong(songElement.getAttribute("track-num"), songElement);
+  select(".new-songs")
+    .querySelectorAll(".song")
+    .forEach(function (songElement) {
+      songElement.addEventListener("click", function () {
+        playSong(songElement.getAttribute("track-num"), songElement);
+      });
     });
-  });
 }
 
 window.onload = requestdata;
