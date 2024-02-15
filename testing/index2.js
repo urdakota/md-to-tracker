@@ -272,6 +272,7 @@ function loadcontent(jsonData) {
             snippettag.classList.add("tag", "snippet");
             snippettag.textContent = "Snippet";
           }
+          i++
         });
         var albuminfo = create("p", songlist);
         albuminfo.classList.add("album-info");
