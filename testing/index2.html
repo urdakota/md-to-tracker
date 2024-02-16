@@ -250,7 +250,9 @@
             background-color: #2c2c2c;
         }
     </style>
-    <!-- Lyrics --><!-- Mobile Display -->
+    <!-- Lyrics --><!-- Mobile Display --> <!--
+            
+        -->
     <style>
         .noselect {
             -webkit-user-select: none;
@@ -385,9 +387,9 @@
             left: 1%;
             right: 1%;
             width: 98%;
-            height: 50%;
+            height: 40%;
             padding: 8px;
-            top: 5%;
+            top: 60px;
             transition: 0.3s ease-out;
             overflow: hidden;
             font-family: Inter, sans-serif;
@@ -403,41 +405,59 @@
             color: var(--light-primary);
         }
 
+        #audiowave {
+            position: absolute;
+            width: 80%;
+            margin: 120px auto;
+        }
+
         .audiocontrols {
             display: flex;
-            justify-content: space-between;
             position: absolute;
             border-radius: 12px;
+            justify-content: center;
             left: 1%;
             right: 1%;
             width: 98%;
-            height: 6.5%;
+            height: 20%;
             padding: 8px;
-            top: 56%;
+            top: 50%;
         }
 
-        .audiocontrols .current-song-pause {
-            bottom: 20%;
-            left: 45%;
+        .audio-controls {
+            display: flex;
+            justify-content: center;
+        }
+
+        .audio-controls button {
+            background-color: var(--dark-primary);
             border-radius: 50%;
-            background-color: var(--light-primary);
-            height: 50px;
-            width: 50px;
+            width: 100px;
+            height: 100px;
+            font-size: 40px;
+            padding: 5px 10px;
+            border: none;
+            margin: 0 2px;
+            cursor: pointer;
+            transition: all 0.3s ease-out;
         }
 
-        .audiocontrols .current-song-pause svg {
-            position: absolute;
-            left: 122%;
-            transform: translateY(20%);
+        .audio-controls button:nth-of-type(2) i {
+            margin-left: .25vw;
         }
 
-        .audiocontrols .current-song-pause path {
-            fill: var(--dark-primary)
+        .audio-controls button:hover {
+            background-color: rgba(60, 60, 60, 1);
         }
 
-        .audiocontrols .current-song-pause #current-song-pause {
-            left: 119%;
+        .audio-controls button:first-of-type {
+            background-color: transparent
         }
+
+        .audio-controls button:last-of-type {
+            background-color: transparent
+        }
+
 
         .slider-progress div {
             position: absolute;
@@ -451,13 +471,14 @@
 
         .audiocontrols #timeDisplay {
             position: absolute;
-            top: 5px;
+            left: 20%;
+            top: 50px;
         }
 
         .audiocontrols #durationDisplay {
             position: absolute;
-            right: 5px;
-            top: 5px;
+            right: 20%;
+            top: 50px;
         }
 
         .history {
@@ -839,28 +860,21 @@
             </h1>
         </div>
         <div class="audiocontrols">
-            <div class="current-song-slider">
-                <div class="slider-loaded"></div>
-                <div class="slider-progress">
-                    <div></div> <!-- Circle -->
-                </div>
-                <div id="timeDisplay">0:00</div>
-                <div id="durationDisplay">0:00</div>
+            <div class="audio-controls">
+                <button type="button" class="btn-backward">
+                    <i class="fa fa-step-backward"></i>
+                </button>
+                <button type="button" class="btn-toggle-pause">
+                    <i class="fa fa-play"></i>
+                    <!-- fa-play fa-pause -->
+                </button>
+                <button type="button" class="btn-forward">
+                    <i class="fa fa-step-forward"></i>
+                </button>
+                <span id="timeDisplay">1</span>
+                <span id="durationDisplay">1</span>
             </div>
-            <div class="current-song-pause noselect">
-                <svg width="25" height="25" viewBox="0 0 16 16" id="current-song-play" style="display: block">
-                    <path fill="var(--light-primary)"
-                        d="m4.4 15.14 10.386-6.096c.842-.459.794-1.64 0-2.097L4.401.85c-.87-.53-2-.12-2 .82v12.625c0 .966 1.06 1.4 2 .844z">
-                    </path>
-                </svg>
-                <svg width="25" height="25" viewBox="0 0 16 16" fill-rule="evenodd" clip-rule="evenodd"
-                    stroke-linejoin="round" stroke-miterlimit="2" id="current-song-pause"
-                    style="display: none; transform: translateX(-8px), translateY(2px)">
-                    <path fill="var(--light-primary)"
-                        d="M9.918.464h2.672a.89.89 0 0 1 .89.89v13.291a.89.89 0 0 1-.89.891H9.918a.89.89 0 0 1-.89-.89V1.354a.89.89 0 0 1 .89-.891zm-6.371 0h2.398c.567 0 1.027.46 1.027 1.028v13.016c0 .568-.46 1.028-1.027 1.028H3.547c-.567 0-1.028-.46-1.028-1.028V1.492c0-.568.46-1.028 1.028-1.028z"
-                        fill-rule="nonzero"></path>
-                </svg>
-            </div>
+            <div id="audiowave"></div>
         </div>
         <div class="history">
             <h2>About the song</h2>
@@ -877,8 +891,36 @@
         </div>
     </div>
     
+    <script src="https://unpkg.com/wavesurfer.js"></script>
     <script>
         const select = (_, el = document) => el.querySelector(_);
+        const albumicons = {
+        "More Chaos":
+            "https://images.genius.com/ddebc30f117a1d77fc3eeb39323c5993.1000x1000x1.jpg",
+        "A Great Chaos":
+            "https://images.genius.com/7691b69f0717dacd9c678521d722160a.1000x1000x1.png",
+        "Lost ?":
+            "https://images.genius.com/b2c460bf426b9df10f6073d8f15175a4.1000x1000x1.png",
+        X: "https://images.genius.com/de650f4d0ca39dbf04a5d6b51d8a84a8.1000x1000x1.png",
+        "X-23":
+            "https://images.genius.com/0ad831c7dff193912d48b18ecbfc6b3b.252x252x1.jpg",
+        "Lost Files 3":
+            "https://images.genius.com/3750b1d6541912c482aa06a5a5fc426b.500x500x1.jpg",
+        "X Man": "https://images.genius.com/78d4c56ae31f8eb1d0496e1616a1ff0a.1000x1000x1.jpg",
+        "Project X":
+            "https://images.genius.com/d3a0f08457e58a24e5c4cf357f23b987.1000x1000x1.png",
+        "Lost Files 2":
+            "https://images.genius.com/f67f38cfc7583d6e46363d7e22b23ff9.500x500x1.jpg",
+        "Lost Files":
+            "https://images.genius.com/da09dc883513130cddd7d8a86f355f43.500x500x1.jpg",
+        "Teen X: Relapsed":
+            "https://images.genius.com/331746ea75acdeb77e04167b01e07bd8.1000x1000x1.png",
+        "Teen X":
+            "https://images.genius.com/b29cb9082c5b354d09b3c23f3a7402ec.1000x1000x1.png",
+        "Boy Barbie":
+            "https://images.genius.com/1ef69452d04b5a151fe7738c0b633171.1000x1000x1.jpg",
+        };
+
         var currsongmax;
         var currsongmini;
         var currsonginfo;
@@ -897,9 +939,10 @@
             artwork:
                 "https://i1.sndcdn.com/artworks-jI4WOMsX3U0sZQ1r-MFz42w-t500x500.jpg",
             tracknumber: 1,
+            songlist: undefined
         };
 
-        var switchAudioMode; var playSong;
+        var switchAudioMode; var playSong; var playNext; var playPrevious;
         const updateAudioData = function () {
             navigator.mediaSession.playbackState = "playing";
             navigator.mediaSession.metadata = new MediaMetadata({
@@ -916,6 +959,21 @@
         };
 
         document.addEventListener("DOMContentLoaded", function () {
+            
+            var wavesurfer = WaveSurfer.create({
+                container: "#audiowave",
+                waveColor: "#9e44fc",
+                progressColor: "#501d86",
+                height: 50,
+                responsive: true,
+                hideScrollbar: true,
+                cursorColor: "#5df9de",
+                cursorWidth: 0,
+                barWidth: 2,
+                barGap: 1.5,
+                skipLength: 5
+            });
+
             audioplayer = select("#audio");
 
             currsongmax = select(".song-thing");
@@ -926,18 +984,17 @@
             songArtist = select("span", currsonginfo);
 
             var albumart = select("#weirdalbumartthing", currsongmax);
+            var albumtitle = select(".lyrics > h1 > span", currsongmax);
 
             var minisongsliderBar = select(".current-song-slider", currsongmini);
             var miniprogressBar = select(".slider-progress", minisongsliderBar);
             var miniloadedBar = select(".slider-loaded", minisongsliderBar);
 
             var audiocontrols = select(".audiocontrols", currsongmax)
-            var maxsongsliderBar = select(".current-song-slider", audiocontrols);
-            var maxplaypausething = select(".current-song-pause", audiocontrols)
-            var maxplaybtn = select("#current-song-play", maxplaypausething);
-            var maxpausebtn = select("#current-song-pause", maxplaypausething);
-            var maxprogressBar = select(".slider-progress", maxsongsliderBar);
-            var maxloadedBar = select(".slider-loaded", maxsongsliderBar);
+            var maxplaypausething = select(".btn-toggle-pause", audiocontrols)
+            var maxbackwardthing = select(".btn-backward", audiocontrols)
+            var maxforwardthing = select(".btn-forward", audiocontrols)
+            var maxplaypauseicon = select("i", maxplaypausething)
             var timeDisplay = select("#timeDisplay");
             var durationDisplay = select("#durationDisplay");
 
@@ -945,39 +1002,28 @@
             var playbtn = select("#current-song-play", parentdiv);
             var pausebtn = select("#current-song-pause", parentdiv);
 
-            audioplayer.addEventListener("ended", async function () {
-                audioplayer.currentTime = 0;
+            wavesurfer.on("finish", async function () {
                 switchAudioMode(false);
-                audioplayer.pause();
+                wavesurfer.stop();
+                // next sawng
+                if(!!currentsong) playNext(currentsong.tracknumber)
             });
-            audioplayer.addEventListener("canplay", function () {
+            wavesurfer.on("ready", function () {
                 if (currenttrack) currenttrack.classList.remove("loading");
+                durationDisplay.textContent = formatTime(wavesurfer.getDuration());
+                wavesurfer.play();
+                wavesurfer.setMuted(false)
             });
-            audioplayer.addEventListener("timeupdate", function () {
-                var progress = (audioplayer.currentTime / audioplayer.duration) * 100;
+            wavesurfer.on("timeupdate", function (currentTime) {
+                var progress = (currentTime / wavesurfer.getDuration()) * 100;
                 miniprogressBar.style.width = progress + "%";
-                maxprogressBar.style.width = progress + "%";
-                timeDisplay.textContent = formatTime(audioplayer.currentTime);
+                timeDisplay.textContent = formatTime(currentTime);
             });
-            audioplayer.addEventListener("progress", function () {
-                if (audioplayer.buffered.length > 0) {
-                    var loadedProgress = (audioplayer.buffered.end(0) / audioplayer.duration) * 100;
+            wavesurfer.on("loading", function(loadedProgress) {
+                if (loadedProgress > 0) {
                     miniloadedBar.style.width = loadedProgress + "%";
-                    maxloadedBar.style.width = loadedProgress + "%";
-                    durationDisplay.textContent = formatTime(audioplayer.duration);
                 }
             });
-
-            maxsongsliderBar.addEventListener("click", handleProgressBarClick);
-
-            function handleProgressBarClick(event) {
-                event.stopPropagation();
-                var clickX = event.clientX - maxsongsliderBar.getBoundingClientRect().left;
-                var containerWidth = maxsongsliderBar.clientWidth;
-                var clickPercentage = clickX / containerWidth;
-                var newTime = clickPercentage * audioplayer.duration;
-                audioplayer.currentTime = newTime;
-            }
 
             function formatTime(timeInSeconds) {
                 var minutes = Math.floor(timeInSeconds / 60);
@@ -992,22 +1038,20 @@
             });
 
             switchAudioMode = function (mode) {
-                if (audioplayer.src) {
-                    if (mode) {
-                        // Set to pause btn
-                        playbtn.style.display = "none";
-                        maxplaybtn.style.display = "none";
-                        pausebtn.style.display = "block";
-                        maxpausebtn.style.display = "block";
-                        audioplayer.play();
-                    } else {
-                        // Set to play btn
-                        pausebtn.style.display = "none";
-                        maxpausebtn.style.display = "none";
-                        playbtn.style.display = "block";
-                        maxplaybtn.style.display = "block";
-                        audioplayer.pause();
-                    }
+                if (mode) {
+                    // Set to pause btn
+                    playbtn.style.display = "none";
+                    pausebtn.style.display = "block";
+                    maxplaypauseicon.classList.remove("fa-play");
+                    maxplaypauseicon.classList.add("fa-pause");
+                    wavesurfer.play();
+                } else {
+                    // Set to play btn
+                    pausebtn.style.display = "none";
+                    playbtn.style.display = "block";
+                    maxplaypauseicon.classList.add("fa-play");
+                    maxplaypauseicon.classList.remove("fa-pause");
+                    wavesurfer.pause();
                 }
             };
 
@@ -1027,20 +1071,28 @@
                         let hash = songUrl.split("/");
                         songUrl = `https://api.pillowcase.su/api/download/${hash[hash.length - 1]}`;
                     }
-
-                    audioplayer.src = songUrl;
+                    
+                    wavesurfer.setMuted(true)
+                    wavesurfer.load(songUrl)
                     switchAudioMode(true);
                     var imgiconwhatever = "https://upload.wikimedia.org/wikipedia/en/f/f5/Ken_Carson_-_A_Great_Chaos.jpg";
                     var iconforalbum = select("img", songElement)
                     if (!!iconforalbum) imgiconwhatever = iconforalbum.src;
+                    if (!iconforalbum && !!songElement.getAttribute("album")) imgiconwhatever = albumicons[songElement.getAttribute("album")]
                     currentsong = {
                         title: select(".song-name", songElement).innerText,
                         artist: select(".song-artist", songElement) ? select(".song-artist", songElement).innerText : "Ken Carson",
-                        album: "More Chaos",
+                        album: songElement.getAttribute("album") ? songElement.getAttribute("album") : "More Chaos",
                         artwork: imgiconwhatever,
                         tracknumber: songElement.getAttribute("track-num"),
+                        songlist: songElement.parentElement
                     };
                     albumart.src = imgiconwhatever;
+                    let thng = `<span style="font-size: 1.3rem;position: absolute;top:100%;left:0%;width:100%;color:var(--light-secondary)">
+                        Ken Carson </span>
+                    <span style="font-size: .9rem;position: absolute;top:125%;left:0%;width:100%;color:var(--light-secondary)">
+                        No lyrics im lazy </span>`
+                    albumtitle.innerHTML = songElement.getAttribute("album") ? songElement.getAttribute("album") + thng : "Album" + thng
                     updateAudioData();
                     select("#producer").innerText = `Produced by: ${songElement.getAttribute("producer")}`;
                     select("#leakdate").innerText = `Leak Date: ${songElement.getAttribute("leakdate")}`;
@@ -1056,6 +1108,57 @@
                 }
             }
 
+            playNext = function (tracknum) {
+                var nexttrack = undefined; var nexttrackElement = undefined;
+                var tracklist = currentsong.songlist.querySelectorAll('div[track-num]');
+                for (var i = 0; i < tracklist.length; i++) {
+                    var div = tracklist[i];
+                    var divTrackNum = parseInt(div.getAttribute('track-num'));
+                    
+                    if (div.hasAttribute('song-url') && divTrackNum > tracknum) {
+                        nexttrack = divTrackNum;
+                        nexttrackElement = div;
+                        break;
+                    }
+                }
+                if (nexttrackElement) {
+                    playSong(nexttrack, nexttrackElement);
+                } else {
+                    wavesurfer.stop();
+                    switchAudioMode(false);
+                }
+            }
+            
+            playPrevious = function (tracknum) {
+                var nexttrack = undefined; var nexttrackElement = undefined;
+                var tracklist = currentsong.songlist.querySelectorAll('div[track-num]');
+                for (var i = 0; i < tracklist.length; i++) {
+                    var div = tracklist[i];
+                    var divTrackNum = parseInt(div.getAttribute('track-num'));
+                    
+                    if (div.hasAttribute('song-url')){
+                        if (divTrackNum < tracknum){
+                            nexttrack = divTrackNum;
+                            nexttrackElement = div;
+                        } else if(divTrackNum > tracknum) break;
+                    }
+                }
+                if (nexttrackElement) {
+                    playSong(nexttrack, nexttrackElement);
+                } else {
+                    wavesurfer.stop();
+                    switchAudioMode(false);
+                }
+            }
+            
+            maxbackwardthing.addEventListener("click", function() {
+                event.stopPropagation();
+                playPrevious(currentsong.tracknumber);
+            })
+            maxforwardthing.addEventListener("click", function() {
+                event.stopPropagation();
+                playNext(currentsong.tracknumber)
+            })
             parentdiv.addEventListener("click", function () {
                 event.stopPropagation();
                 switchAudioMode(playbtn.style.display === "block")
@@ -1090,19 +1193,10 @@
             switchAudioMode(false)
         });
         navigator.mediaSession.setActionHandler("previoustrack", () => {
-            var previoustrack = math.max(currentsong.tracknumber - 1, 1)
-            playSong(previoustrack);
+            playPrevious(currentsong.tracknumber);
         });
         navigator.mediaSession.setActionHandler("nexttrack", () => {
-            var nexttrack = currentsong.tracknumber + 1
-            var nexttrackElement = select(`div[track-num="${nexttrack}"]`, select(".song-list"));
-            if (nexttrackElement) {
-                playSong(nexttrack, nexttrackElement);
-            } else {
-                audioplayer.currentTime = 0;
-                switchAudioMode(false);
-                audioplayer.pause();
-            }
+            playNext(currentsong.tracknumber)
         });
     </script>
 
