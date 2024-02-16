@@ -4,19 +4,32 @@ import { select, create } from "../dependancies/utils.js";
 
 const filepath = "Ken.json";
 const albumicons = {
-  "More Chaos":       "https://images.genius.com/ddebc30f117a1d77fc3eeb39323c5993.1000x1000x1.jpg",
-  "A Great Chaos":    "https://images.genius.com/7691b69f0717dacd9c678521d722160a.1000x1000x1.png",
-  "Lost ?":           "https://images.genius.com/b2c460bf426b9df10f6073d8f15175a4.1000x1000x1.png",
-  "X":                "https://images.genius.com/de650f4d0ca39dbf04a5d6b51d8a84a8.1000x1000x1.png",
-  "X-23":             "https://images.genius.com/0ad831c7dff193912d48b18ecbfc6b3b.252x252x1.jpg",
-  "Lost Files 3":     "https://images.genius.com/3750b1d6541912c482aa06a5a5fc426b.500x500x1.jpg",
-  "Project X":        "https://images.genius.com/d3a0f08457e58a24e5c4cf357f23b987.1000x1000x1.png",
-  "Lost Files 2":     "https://images.genius.com/f67f38cfc7583d6e46363d7e22b23ff9.500x500x1.jpg",
-  "Lost Files":       "https://images.genius.com/da09dc883513130cddd7d8a86f355f43.500x500x1.jpg",
-  "Teen X: Relapsed": "https://images.genius.com/331746ea75acdeb77e04167b01e07bd8.1000x1000x1.png",
-  "Teen X":           "https://images.genius.com/b29cb9082c5b354d09b3c23f3a7402ec.1000x1000x1.png",
-  "Boy Barbie":       "https://images.genius.com/1ef69452d04b5a151fe7738c0b633171.1000x1000x1.jpg",
+  "More Chaos":
+    "https://images.genius.com/ddebc30f117a1d77fc3eeb39323c5993.1000x1000x1.jpg",
+  "A Great Chaos":
+    "https://images.genius.com/7691b69f0717dacd9c678521d722160a.1000x1000x1.png",
+  "Lost ?":
+    "https://images.genius.com/b2c460bf426b9df10f6073d8f15175a4.1000x1000x1.png",
+  X: "https://images.genius.com/de650f4d0ca39dbf04a5d6b51d8a84a8.1000x1000x1.png",
+  "X-23":
+    "https://images.genius.com/0ad831c7dff193912d48b18ecbfc6b3b.252x252x1.jpg",
+  "Lost Files 3":
+    "https://images.genius.com/3750b1d6541912c482aa06a5a5fc426b.500x500x1.jpg",
+  "X Man": "https://images.genius.com/78d4c56ae31f8eb1d0496e1616a1ff0a.1000x1000x1.jpg",
+  "Project X":
+    "https://images.genius.com/d3a0f08457e58a24e5c4cf357f23b987.1000x1000x1.png",
+  "Lost Files 2":
+    "https://images.genius.com/f67f38cfc7583d6e46363d7e22b23ff9.500x500x1.jpg",
+  "Lost Files":
+    "https://images.genius.com/da09dc883513130cddd7d8a86f355f43.500x500x1.jpg",
+  "Teen X: Relapsed":
+    "https://images.genius.com/331746ea75acdeb77e04167b01e07bd8.1000x1000x1.png",
+  "Teen X":
+    "https://images.genius.com/b29cb9082c5b354d09b3c23f3a7402ec.1000x1000x1.png",
+  "Boy Barbie":
+    "https://images.genius.com/1ef69452d04b5a151fe7738c0b633171.1000x1000x1.jpg",
 };
+
 const convertToDate = (dateStr) => {
   var [month, day, year] = dateStr.split("/").map(Number);
   if (isNaN(month)) month = 1;
@@ -242,6 +255,7 @@ function loadcontent(jsonData) {
           if (!item.link) songelement.style.opacity = ".5"
 
           songelement.setAttribute("track-num", i);
+          songelement.setAttribute("album", item["album"]);
           songelement.setAttribute("producer", item.producer);
           songelement.setAttribute("leakdate", item["leak date"]);
           songelement.setAttribute("recording", item["recording date"]);
@@ -334,8 +348,6 @@ function loadcontent(jsonData) {
       snippettag.classList.add("tag", "snippet");
       snippettag.textContent = "Snippet";
     }
-
-    console.log(i)
     i++;
   }
 
