@@ -37,8 +37,8 @@
             font-family: Inter, sans-serif;
             color: var(--light-primary);
             background-color: var(--dark-primary);
-            overflow: hidden;
             scroll-behavior: smooth;
+            scrollbar-width: none;
             scroll-padding-top: 4rem;
 
             -webkit-font-smoothing: antialiased;
@@ -98,16 +98,17 @@
         .Page_Header {
             position: fixed;
             justify-content: space-between;
-            height: 5%;
+            height: 50px;
             width: 100%;
             margin-bottom: 0.5%;
             background-color: var(--dark-secondary);
             border-bottom: 1px solid rgba(0, 0, 0, 0.2);
             z-index: 1;
-            display: none;
+            display: block;
         }
 
         .Page_Header a {
+            position: relative;
             color: #fff;
             text-decoration: none;
             z-index: 2;
@@ -604,18 +605,10 @@
     <audio id="audio" preload="none"></audio>
     <script src="./index2.js" type="module"></script>
 
-    <div class="Page_Header">
-        <a href="../">
-            <div
-                style="transform:scale(1);border-radius:50%;background:var(--dark-primary);height:32px;width:32px;margin-left: 15px;margin-top:15px;">
-                <svg style="fill:var(--light-primary);transform: scaleX(-1);display: block; margin-left: auto;margin-right: auto;padding-top:25%"
-                    width="24" height="24" viewBox="0 0 64 64" aria-hidden="true">
-                    <path
-                        d="M19.817 61.863c1.48 0 2.672-.515 3.702-1.546l24.243-23.63c1.352-1.385 1.996-2.737 2.028-4.443 0-1.674-.644-3.09-2.028-4.443L23.519 4.138c-1.03-.998-2.253-1.513-3.702-1.513-2.994 0-5.409 2.382-5.409 5.344 0 1.481.612 2.833 1.739 3.96l20.99 20.347-20.99 20.283c-1.127 1.126-1.739 2.478-1.739 3.96 0 2.93 2.415 5.344 5.409 5.344Z">
-                    </path>
-                </svg>
-            </div>
-        </a>
+    <div class="Page_Header" id="reelbackthingamabob">
+        <div id="Back-button" style="cursor: pointer; border-radius: 50%; background: var(--dark-primary); height: 32px; width: 32px; margin-left: 15px; margin-top: 10px;">
+            <a href="../"><i class="fa-solid fa-chevron-left" style="margin-left:8px;margin-top:6px;font-size:20px"></i></a>
+        </div>
         <span class="noselect"
             style="position: absolute;margin-right:50%;width:100%;margin-top:-25px;text-align: center;font-size: 20px;font-weight:600;">
             Ken Carson </span>
@@ -910,6 +903,7 @@
         "Lost Files 3":
             "https://images.genius.com/3750b1d6541912c482aa06a5a5fc426b.500x500x1.jpg",
         "X Man": "https://images.genius.com/78d4c56ae31f8eb1d0496e1616a1ff0a.1000x1000x1.jpg",
+        "Project Xtended": "https://i.redd.it/oeyyp91f2te71.png",
         "Project X":
             "https://images.genius.com/d3a0f08457e58a24e5c4cf357f23b987.1000x1000x1.png",
         "Lost Files 2":
@@ -963,6 +957,8 @@
 
         document.addEventListener("DOMContentLoaded", function () {
             
+            audioplayer = select("#audio");
+
             var wavesurfer = WaveSurfer.create({
                 container: "#audiowave",
                 waveColor: "#9e44fc",
@@ -971,13 +967,12 @@
                 responsive: true,
                 hideScrollbar: true,
                 cursorColor: "#5df9de",
+                media: audioplayer,
                 cursorWidth: 0,
                 barWidth: 2,
                 barGap: 1.5,
                 skipLength: 5
             });
-
-            audioplayer = select("#audio");
 
             currsongmax = select(".song-thing");
             currsongmini = select(".current-song");
@@ -1005,16 +1000,27 @@
             var playbtn = select("#current-song-play", parentdiv);
             var pausebtn = select("#current-song-pause", parentdiv);
 
+            var revealDiv = select("#reelbackthingamabob");
+            revealDiv.style.opacity = "0"
+            window.addEventListener('scroll', function() {
+                var scroll = window.scrollY;
+                if (scroll >= 300) {
+                revealDiv.style.opacity = '1';
+                } else {
+                revealDiv.style.opacity = scroll / 300;
+                }
+            });
+
             wavesurfer.on("finish", async function () {
                 switchAudioMode(false);
                 wavesurfer.stop();
                 // next sawng
                 if(!!currentsong) playNext(currentsong.tracknumber)
             });
-            wavesurfer.on("ready", function () {
+            audioplayer.addEventListener("canplay", function () {
                 if (currenttrack) currenttrack.classList.remove("loading");
-                durationDisplay.textContent = formatTime(wavesurfer.getDuration());
-                wavesurfer.play();
+                durationDisplay.textContent = formatTime(audioplayer.duration);
+                audioplayer.play();
                 wavesurfer.setMuted(false)
             });
             wavesurfer.on("timeupdate", function (currentTime) {
@@ -1067,6 +1073,7 @@
                     songLoading.classList.remove("loading");
                 });
 
+                wavesurfer.empty()
                 songElement.classList.add("loading");
 
                 if (songUrl && (select(".song-name", songElement).innerText != currentsong.title || !currenttrack)) {
@@ -1076,6 +1083,7 @@
                     }
                     
                     wavesurfer.setMuted(true)
+                    audioplayer.src = songUrl
                     wavesurfer.load(songUrl)
                     switchAudioMode(true);
                     var imgiconwhatever = "https://upload.wikimedia.org/wikipedia/en/f/f5/Ken_Carson_-_A_Great_Chaos.jpg";
@@ -1172,17 +1180,20 @@
             });
             currsongmini.addEventListener("click", function () {
                 event.stopPropagation();
+                let scrollopac = revealDiv.style.opacity;
                 if (!currentlymaximized) {
                     currsongmax.style.background = "rgba(25, 25, 25, 1)";
                     currsongmax.style.transform = "translateY(0%)";
                     minisongsliderBar.style.opacity = "0";
                     parentdiv.style.opacity = "0";
+                    revealDiv.style.opacity = '0';
                     currentlymaximized = true;
                 } else {
                     currsongmax.style.transform = "translateY(calc(100% - 60px - 0.5%))";
                     currentlymaximized = false;
                     minisongsliderBar.style.opacity = "1";
                     parentdiv.style.opacity = "1";
+                    revealDiv.style.opacity = scrollopac;
                     currsongmax.style.background = "rgba(25, 25, 25, 0)";
                 }
             });
@@ -1205,5 +1216,7 @@
 
 
 </body>
+
+</html>
 
 </html>
