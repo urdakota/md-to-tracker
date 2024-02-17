@@ -1,7 +1,6 @@
 import { select, create } from "../dependancies/utils.js";
 
-// Get Ken JSON
-const filepath = "Ken.json";
+// Get Ken JSONconst filepath = "Ken.json";
 const albumicons = {
   "More Chaos":
     "https://images.genius.com/ddebc30f117a1d77fc3eeb39323c5993.1000x1000x1.jpg",
@@ -238,15 +237,26 @@ function loadcontent(jsonData) {
     });
 
     let i = 1;
+    let fawk = 1;
     for (const key in jsonData[album]) {
       if (
         jsonData[album].hasOwnProperty(key) &&
         Array.isArray(jsonData[album][key])
       ) {
-        let albumname2 = create("p", songlist);
+        
+        let details = create("details", songlist);
+        if (fawk == 1) details.open = true;
+        let summary = create("summary", details);
+        summary.classList.add("arrow")
+        let albumname2 = create("span", summary);
         albumname2.classList.add("album-info");
-        albumname2.textContent = key;
+        albumname2.style["font-size"] = "22px";
+        albumname2.style["margin-left"] = "0px";
+        albumname2.style["padding-left"] = "0px";
 
+        let i2 = 1;
+        let versions = {};
+        let FullCount=0; let SnippetCount=0; let UnavailableCount=0;let BestCount=0;let vercount=0;
         jsonData[album][key].forEach((item) => {
           if(typeof item === "object"){
             item["album"] = album;
@@ -254,7 +264,9 @@ function loadcontent(jsonData) {
             if (item.quality != "Not Available" && item.portion != "Snippet")
               recentsongs[item.title] = item;
 
-            let songelement = create("div", songlist);
+            if(item.portion == "Full") FullCount++;
+
+            let songelement = create("div", details);
             songelement.classList.add("song");
             if (item.link) songelement.setAttribute("song-url", item.link);
             if (!item.link) songelement.style.opacity = ".5"
@@ -270,9 +282,22 @@ function loadcontent(jsonData) {
             songelement.setAttribute("ogfilename", item["OG File"]);
             songelement.setAttribute("history", item.History);
 
+            if (item["best"]){
+              let bestof = create("i", songelement);
+              bestof.classList.add("fa-solid","fa-circle");
+              bestof.style.display = "flex";
+              bestof.style["align-items"] = "center";
+              bestof.style["font-size"] = "8px";
+              bestof.style["margin-left"] = "10px";
+              bestof.style["margin-right"] = "0px";
+              bestof.style.color = "grey"
+              BestCount++
+            }
+
             let tracknum = create("span", songelement);
             tracknum.classList.add("track-num");
-            tracknum.textContent = i;
+            tracknum.textContent = i2;
+            if(!item['best']) tracknum.style["margin-left"] = "25px";
 
             let songinfo = create("div", songelement);
             songinfo.classList.add("song-info");
@@ -284,21 +309,51 @@ function loadcontent(jsonData) {
             let songinfo2 = create("span", songname2);
             songinfo2.style["font-size"] = "small";
             songinfo2.style.color = "lightgray";
-            songinfo2.textContent = item.info;
+            songinfo2.textContent = " "+ item.info;
 
             if (item.portion == "Snippet") {
               var snippettag = create("span", songname2);
               snippettag.classList.add("tag", "snippet");
               snippettag.textContent = "Snippet";
+              if(item.quality != "Not Available") SnippetCount++;
+            }
+            if(item.quality == "Not Available"){
+              var snippettag = create("span", songname2);
+              snippettag.classList.add("tag", "unavailable");
+              snippettag.textContent = "Unavailable";
+              if(item.portion != "Snippet") UnavailableCount++;
+            }
+
+            if(item.title.includes("[v") || item.title.includes("Instrumental")){
+              let version = item.title.split("[v")
+              let versionnumm = version[1].split("]")[0]
+              if(!versions[version[0]]) versions[version[0]]=0
+              versions[version[0]]++
+              if(versions[version[0]]!==1){ 
+                tracknum.textContent = i2-1 + "." + versionnumm;
+                vercount++;
+              }
+              if(versions[version[0]]==1){
+                i2++
+              }
+            } else {
+              i2++
             }
             i++
           }
         });
-
-        var albuminfo = create("p", songlist);
+        albumname2.textContent = key + ` (${i2-1})`
+        var albuminfo = create("p", details);
         albuminfo.classList.add("album-info");
-        var infotext = jsonData[album][key].slice(-1)[0]
-        albuminfo.innerHTML += typeof infotext !== "object" ? infotext.replaceAll("\n","<br>") : "";
+        let totalsawngs = (i2-UnavailableCount)-vercount
+        albuminfo.innerHTML += `
+        ${FullCount} Full Songs ${vercount == 0 ? "" : `(${vercount} version${vercount == 1 ? "" : "s"})`}<br>
+        ${SnippetCount} Snippet${SnippetCount == 1 ? "" : "s"} <br>
+        ${UnavailableCount} Unavailable Songs <br>
+        Rating: ${Math.round((BestCount/totalsawngs)*100)/10}/10 (${BestCount} best / ${totalsawngs} songs)
+        `
+
+        fawk++;
       }
     }
     
