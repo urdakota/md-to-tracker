@@ -1,6 +1,7 @@
 {
-  "Boy Barbie": {
-    "leak date": "5/1/20",
+  "Boy Barbie OG": {
+    "leak date": "1/19/20",
+    "History": "All known Ken Songs from 2015 - 2020. Many songs lost to time, very rough sounding. Includes Boy Barbie 808 Mafia version",
     "Pre Boy Barbie": [
       {
         "title": "32",
@@ -32,7 +33,7 @@
         "info": "",
         "producer": "TM88",
         "leak date": "?/?/17",
-        "recording date": "Unknown",
+        "recording date": "?/?/17",
         "song type": "Throwaway",
         "portion": "Full",
         "quality": "CDQ",
@@ -73,20 +74,9 @@
         "song type": "Throwaway",
         "portion": "Full",
         "quality": "CDQ",
-        "OG File": "Unknown",
+        "OG File": "KEN CARSON - ALL SEASON.mp3",
+        "link": "https://pillowcase.su/f/1993a34bd735ef82362d93032940f96e",
         "History": "Released on ken's old Soundcloud in 2018, now deleted"
-      },
-      {
-        "title": "Fold [v1]",
-        "info": "",
-        "producer": "Richie Souf",
-        "leak date": "?/?/18",
-        "recording date": "Unknown",
-        "song type": "Throwaway",
-        "portion": "Full",
-        "quality": "CDQ",
-        "OG File": "Unknown",
-        "History": "V1 of Fold"
       },
       {
         "title": "Fold [v2]",
@@ -99,6 +89,18 @@
         "quality": "CDQ",
         "OG File": "Unknown",
         "History": "V2 of Fold, currently released on all platforms"
+      },
+      {
+        "title": "Fold [v1]",
+        "info": "",
+        "producer": "Richie Souf",
+        "leak date": "?/?/18",
+        "recording date": "Unknown",
+        "song type": "Throwaway",
+        "portion": "Full",
+        "quality": "CDQ",
+        "OG File": "Unknown",
+        "History": "V1 of Fold"
       },
       {
         "title": "Loot",
@@ -117,7 +119,7 @@
         "info": "",
         "producer": "EPREME",
         "leak date": "?/?/19",
-        "recording date": "Unknown",
+        "recording date": "?/?/19",
         "song type": "Throwaway",
         "portion": "Full",
         "quality": "CDQ",
@@ -129,7 +131,7 @@
         "info": "",
         "producer": "Di$",
         "leak date": "?/?/19",
-        "recording date": "Unknown",
+        "recording date": "?/?/19",
         "song type": "Throwaway",
         "portion": "Full",
         "quality": "CDQ",
@@ -141,7 +143,7 @@
         "info": "(aka: 808Mafia, Smackdown vs. Raw)",
         "producer": "Maaly Raw & Jeff4Nine",
         "leak date": "?/?/19",
-        "recording date": "Unknown",
+        "recording date": "?/?/19",
         "song type": "Throwaway",
         "portion": "Snippet",
         "quality": "LQ",
@@ -306,7 +308,11 @@
         "OG File": "Unknown",
         "History": "Track 10 on OG Boy Barbie"
       }
-    ],
+    ]
+  },
+  "Boy Barbie": {
+    "leak date": "5/1/20",
+    "History": "Reworked version of Boy Barbie, made after Ken signed to Opium",
     "Boy Barbie Throwaways": [
       {
         "title": "Call Nobody [v1] (feat. International Jefe & Lil He77)",
@@ -335,6 +341,7 @@
       {
         "title": "For Sum",
         "info": "",
+        "best": "song",
         "producer": "TM88",
         "leak date": "?/?/19",
         "recording date": "Unknown",
@@ -366,7 +373,7 @@
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "Unknown",
-        "History": "Released on ken's old Soundcloud in 2020, now deleted"
+        "History": "Released on ken's old Soundcloud in 2020, now deleted. Very rough sounding, little to no mixing."
       },
       {
         "title": "Spaced Out (feat. International Jefe)",
@@ -395,6 +402,7 @@
       {
         "title": "Can't Go (feat. Lil Yachty)",
         "info": "(aka: Gon' Blow, KENC&BOAT)",
+        "best": "song",
         "producer": "Unknown",
         "leak date": "10/30/22",
         "recording date": "Unknown",
@@ -417,7 +425,7 @@
         "History": "Previewed on Ken's IG with no date"
       },
       {
-        "title": "Green Bean (feat. Capo DTE)",
+        "title": "Green Bean (feat. Caporee)",
         "info": "",
         "producer": "Richie Souf",
         "leak date": "6/4/20",
@@ -445,6 +453,7 @@
       {
         "title": "Geeked Up",
         "info": "",
+        "best": "song",
         "producer": "TM88 & Wheezy",
         "leak date": "5/1/20",
         "recording date": "Unknown",
@@ -506,6 +515,7 @@
   },
   "Teen X": {
     "leak date": "8/14/20",
+    "History": "Announced on June 1st, Released on August 14th, 2020.",
     "Teen X Throwaways": [
       {
         "title": "Caporee - CAPO (feat. Ken Carson)",
@@ -517,6 +527,7 @@
         "portion": "Full",
         "quality": "Not Available",
         "OG File": "Unknown",
+        "link": "https://pillowcase.su/f/803917bcd14986e0b19e5906d3a1079e",
         "History": "Released on Caporee's Soundcloud on August 4th, 2020. Reuploaded November 5th 2020."
       },
       {
@@ -524,11 +535,12 @@
         "info": "",
         "producer": "Unknown",
         "leak date": "5/2/22",
-        "recording date": "Unknown",
+        "recording date": "?/?/20",
         "song type": "Throwaway",
         "portion": "Full",
-        "quality": "CDQ",
+        "quality": "HQ",
         "OG File": "Unknown",
+        "link": "https://pillowcase.su/f/6745972df594d156d96c0ecc3e376c87",
         "History": "Released on King Kobi's Soundcloud May 2nd, 2022"
       },
       {
@@ -539,8 +551,9 @@
         "recording date": "Unknown",
         "song type": "Throwaway",
         "portion": "Full",
-        "quality": "CDQ",
+        "quality": "HQ",
         "OG File": "Unknown",
+        "link": "https://pillowcase.su/f/5961764eebb3e77258ed6426b2f9f9e3",
         "History": "Released on Caporee's Soundcloud on December 10th, 2020."
       },
       {
@@ -551,9 +564,10 @@
         "recording date": "Unknown",
         "song type": "Throwaway",
         "portion": "Full",
-        "quality": "CDQ",
+        "quality": "HQ",
         "OG File": "Unknown",
-        "History": "Released on the Sicko Radio Soundcloud on December 21th, 2020."
+        "link": "https://pillowcase.su/f/b01b8b9b0b965ca383616461a7bf3458",
+        "History": "Previewed in a snippet by Ken on September 20th, 2020. Released on the Sicko Radio Soundcloud on December 21th, 2020."
       },
       {
         "title": "Trip Wit Me",
@@ -563,20 +577,22 @@
         "recording date": "Unknown",
         "song type": "Throwaway",
         "portion": "Full",
-        "quality": "CDQ",
+        "quality": "HQ",
         "OG File": "Unknown",
-        "History": "Released on the Sicko Radio Soundcloud on December 21th, 2020."
+        "link": "https://pillowcase.su/f/efd988ee9ad29c40e77d8248991a9a77",
+        "History": "Previewed in a snippet by Ken on September 21st, 2020. Released on the Sicko Radio Soundcloud on December 21th, 2020."
       },
       {
         "title": "No One (feat. Caporee)",
         "info": "",
         "producer": "TM88 & DJ Moon",
         "leak date": "9/3/21",
-        "recording date": "Unknown",
+        "recording date": "?/?/20",
         "song type": "Throwaway",
         "portion": "Full",
-        "quality": "CDQ",
+        "quality": "HQ",
         "OG File": "Unknown",
+        "link": "https://pillowcase.su/f/388826732f83203e6188d36d371f5771",
         "History": "Released on the Sicko Radio Soundcloud on September 3rd, 2021."
       },
       {
@@ -584,36 +600,12 @@
         "info": "",
         "producer": "808 Mafia",
         "leak date": "?/?/20",
-        "recording date": "Unknown",
+        "recording date": "?/?/20",
         "song type": "Throwaway",
         "portion": "Snippet",
         "quality": "Recording",
         "OG File": "Unknown",
         "History": "Snippet posted by Homixide Beno on IG on an unknown date."
-      },
-      {
-        "title": "Pissed Off [v1] (feat. Caporee)",
-        "info": "",
-        "producer": "Star Boy",
-        "leak date": "4/11/22",
-        "recording date": "Unknown",
-        "song type": "Throwaway",
-        "portion": "Full",
-        "quality": "CDQ",
-        "OG File": "Unknown",
-        "History": "Released on the Sicko Radio Soundcloud on Ken's Bday mix 2022"
-      },
-      {
-        "title": "Pissed Off [v3] (feat. Lancey Foux)",
-        "info": "",
-        "producer": "Star Boy",
-        "leak date": "?/?/20",
-        "recording date": "Unknown",
-        "song type": "Throwaway",
-        "portion": "Snippet",
-        "quality": "Not Available",
-        "OG File": "Unknown",
-        "History": "Snippet posted by Lancey Foux on his IG on an unknown date."
       },
       {
         "title": "Sorry",
@@ -626,30 +618,6 @@
         "quality": "Not Available",
         "OG File": "Unknown",
         "History": "Snippet posted by Ken on his snapchat on an unknown date."
-      },
-      {
-        "title": "Yale [v1]",
-        "info": "(aka: Knowledge)",
-        "producer": "Outtatown & Star Boy",
-        "leak date": "8/13/20",
-        "recording date": "Unknown",
-        "song type": "Throwaway",
-        "portion": "Full",
-        "quality": "CDQ",
-        "OG File": "Unknown",
-        "History": "Unmixed version of Yale, leaked 1 day before Teen X Released"
-      },
-      {
-        "title": "Yale (Instrumental)",
-        "info": "",
-        "producer": "Outtatown & Star Boy",
-        "leak date": "8/13/20",
-        "recording date": "Unknown",
-        "song type": "Throwaway",
-        "portion": "Full",
-        "quality": "CDQ",
-        "OG File": "Unknown",
-        "History": "Unmixed version of Yale, leaked 1 day before Teen X Released"
       }
     ],
     "Teen X": [
@@ -676,6 +644,19 @@
         "quality": "CDQ",
         "OG File": "Unknown",
         "History": "Released as Track 2 of the Teen X EP on August 14th, 2020."
+      },
+      {
+        "title": "Yale [v1]",
+        "info": "(aka: Knowledge)",
+        "producer": "Outtatown & Star Boy",
+        "leak date": "8/13/20",
+        "recording date": "Unknown",
+        "song type": "Throwaway",
+        "portion": "Full",
+        "quality": "CDQ",
+        "OG File": "Unknown",
+        "link": "https://pillowcase.su/f/cf085e1f093b0060a6d6da7b15116977",
+        "History": "Unmixed version of Yale, leaked 1 day before Teen X Released"
       },
       {
         "title": "Meds",
@@ -724,6 +705,31 @@
         "quality": "CDQ",
         "OG File": "Unknown",
         "History": "Released as Track 6 of the Teen X EP on August 14th, 2020."
+      },
+      {
+        "title": "Pissed Off [v1] (feat. Caporee)",
+        "info": "",
+        "producer": "Star Boy",
+        "leak date": "4/11/22",
+        "recording date": "Unknown",
+        "song type": "Throwaway",
+        "portion": "Full",
+        "quality": "CDQ",
+        "OG File": "Unknown",
+        "link": "https://pillowcase.su/f/11986656f5cfcb2b8b37242fb2886966",
+        "History": "Released on the Sicko Radio Soundcloud on Ken's Bday mix 2022"
+      },
+      {
+        "title": "Pissed Off [v3] (Remix) (feat. Lancey Foux)",
+        "info": "",
+        "producer": "Star Boy",
+        "leak date": "10/28/20",
+        "recording date": "Unknown",
+        "song type": "Throwaway",
+        "portion": "Snippet",
+        "quality": "Not Available",
+        "OG File": "Unknown",
+        "History": "Snippet posted by Lancey Foux on his IG on October 28th, 2020."
       }
     ]
   },
@@ -738,9 +744,10 @@
         "recording date": "Unknown",
         "song type": "Throwaway",
         "portion": "Full",
-        "quality": "CDQ",
+        "quality": "HQ",
         "OG File": "Unknown",
-        "History": "Released as Track 1 of the Lost Files compilation on January 20th, 2021."
+        "link": "https://pillowcase.su/f/b12a03a75f101569aa5390d7e08f32b3",
+        "History": "Released as Track 1 of the Lost Files compilation on January 20th, 2021. Previewed on Ken's IG on December 10th, 2020."
       },
       {
         "title": "pose 2 do",
@@ -750,9 +757,10 @@
         "recording date": "Unknown",
         "song type": "Throwaway",
         "portion": "Full",
-        "quality": "CDQ",
+        "quality": "HQ",
         "OG File": "Unknown",
-        "History": "Released as Track 2 of the Lost Files compilation on January 20th, 2021."
+        "link": "https://pillowcase.su/f/89d1eea561418567fa731536321ad526",
+        "History": "Released as Track 2 of the Lost Files compilation on January 20th, 2021. Previewed on Ken's IG on December 8th, 2020."
       },
       {
         "title": "phenomenom",
@@ -762,8 +770,9 @@
         "recording date": "Unknown",
         "song type": "Throwaway",
         "portion": "Full",
-        "quality": "CDQ",
+        "quality": "HQ",
         "OG File": "Unknown",
+        "link": "https://pillowcase.su/f/e69a9174afc82cefbaa20403c4c67947",
         "History": "Released as Track 3 of the Lost Files compilation on January 20th, 2021. Previewed on Ken's IG on August 27th, 2020."
       },
       {
@@ -774,8 +783,9 @@
         "recording date": "Unknown",
         "song type": "Throwaway",
         "portion": "Full",
-        "quality": "CDQ",
+        "quality": "HQ",
         "OG File": "Unknown",
+        "link": "https://pillowcase.su/f/de8415cdaa43f94349f1b06b3dcb677d",
         "History": "Released as Track 4 of the Lost Files compilation on January 20th, 2021."
       },
       {
@@ -786,9 +796,10 @@
         "recording date": "Unknown",
         "song type": "Throwaway",
         "portion": "Full",
-        "quality": "CDQ",
+        "quality": "HQ",
         "OG File": "Unknown",
-        "History": "Released as Track 5 of the Lost Files compilation on January 20th, 2021."
+        "link": "https://pillowcase.su/f/f46676f796d3e7acd4daccfa4c189dd5",
+        "History": "Released as Track 5 of the Lost Files compilation on January 20th, 2021. Previewed on Ken's IG on September 20th, 2020."
       },
       {
         "title": "no love",
@@ -798,8 +809,9 @@
         "recording date": "Unknown",
         "song type": "Throwaway",
         "portion": "Full",
-        "quality": "CDQ",
+        "quality": "HQ",
         "OG File": "Unknown",
+        "link": "https://pillowcase.su/f/410e3889e270a20f9a715ad13c9300cf",
         "History": "Released as Track 6 of the Lost Files compilation on January 20th, 2021."
       }
     ]
@@ -815,8 +827,9 @@
         "recording date": "1/12/21",
         "song type": "Throwaway",
         "portion": "Full",
-        "quality": "CDQ",
+        "quality": "HQ",
         "OG File": "Missing KP Ken Carson 1-12-21 V2.mp3",
+        "link": "https://pillowcase.su/f/98b5719237e0dfc6cd43d29b5baee9ab",
         "History": "Released on the Sicko Radio Soundcloud on January 19th, 2021. OG File leaked January 20th, 2024."
       },
       {
@@ -829,6 +842,7 @@
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "Ken 2 Chrome Heart.mp3",
+        "link": "https://pillowcase.su/f/d5275e2dd48038b9cc0de858d92e5466",
         "History": "Released on the Sicko Radio Soundcloud on May 23rd, 2022. OG File leaked on an unknown date."
       },
       {
@@ -841,6 +855,7 @@
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "Unknown",
+        "link": "https://pillowcase.su/f/d4377fbbc1ef343f8172c7a7df2685fb",
         "History": "Released on the Sicko Radio Soundcloud on November 15th, 2020."
       },
       {
@@ -853,6 +868,7 @@
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "Unknown",
+        "link": "https://pillowcase.su/f/77bed27ca14ef0e915378a6a54b1f775",
         "History": "Released on the Sicko Radio Soundcloud on April 2nd, 2021."
       },
       {
@@ -865,6 +881,7 @@
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "MOON KEN BARSON 3 LOAD.mp3",
+        "link": "https://pillowcase.su/f/d99fcfa3680a1b9ec86193f2522a624d",
         "History": "Released on the Sicko Radio Soundcloud on November 14th 2020. OG File leaked January 20th, 2024."
       },
       {
@@ -882,6 +899,7 @@
       {
         "title": "Stoner",
         "info": "",
+        "best": "song",
         "producer": "Outtatown & Star Boy",
         "leak date": "?/?/20",
         "recording date": "Unknown",
@@ -901,7 +919,8 @@
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "Unknown",
-        "History": "Released as Track 4 of the Teen X: Relapsed EP on January 1st, 2021."
+        "link": "https://pillowcase.su/f/b228b89ad4e283d0c11d53f647ffbdb2",
+        "History": "Released as a single on December 16th, 2020."
       }
     ],
     "Teen X: Relapsed": [
@@ -915,7 +934,7 @@
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "Unknown",
-        "History": "Released as Track 1 of the Teen X: Relapsed EP on January 1st, 2021."
+        "History": "Released as Track 1 of the Teen X: Relapsed EP on January 1st, 2021. Previewed on Ken's IG on November 1st, 2020."
       },
       {
         "title": "Teenager Rager",
@@ -928,7 +947,7 @@
         "quality": "CDQ",
         "OG File": "Ken 3 Moshpit.mp3",
         "link": "https://pillowcase.su/f/12107d87d55be02079dd3ea9379d0326",
-        "History": "Released as Track 2 of the Teen X: Relapsed EP on January 1st, 2021. Previewed on Ken's IG on October 25th, 2020."
+        "History": "Released as Track 2 of the Teen X: Relapsed EP on January 1st, 2021. Previewed on Ken's IG on October 18th & 21st, 2020."
       },
       {
         "title": "Butterfly",
@@ -940,7 +959,7 @@
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "Unknown",
-        "History": "Released as Track 3 of the Teen X: Relapsed EP on January 1st, 2021."
+        "History": "Released as Track 3 of the Teen X: Relapsed EP on January 1st, 2021. Previewed on Ken's IG on October 27th, 2020."
       },
       {
         "title": "High as Sh!t",
@@ -953,6 +972,19 @@
         "quality": "CDQ",
         "OG File": "Unknown",
         "History": "Released as Track 4 of the Teen X: Relapsed EP on January 1st, 2021."
+      },
+      {
+        "title": "High as Sh!t (Remix)",
+        "info": "",
+        "producer": "Outtatown & Star Boy",
+        "leak date": "1/31/21",
+        "recording date": "Unknown",
+        "song type": "Remix",
+        "portion": "Full",
+        "quality": "CDQ",
+        "OG File": "Unknown",
+        "link": "https://pillowcase.su/f/981e1aee0b6bc02ce1d3f739fedbe8b9",
+        "History": "Remix of High as Sh!t used in the Music Video, Released on January 31st, 2021."
       },
       {
         "title": "On The Low",
@@ -974,6 +1006,7 @@
       {
         "title": "Glock 19",
         "info": "",
+        "best": "song",
         "producer": "Juberlee",
         "leak date": "6/10/21",
         "recording date": "Unknown",
@@ -981,6 +1014,7 @@
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "Unknown",
+        "link": "https://pillowcase.su/f/86fe0f51f2dfb0f97017f7adb580a0df",
         "History": "Released on June 10th, 2021. Later released as Track 1 of the Lost Files 2 compilation on July 10th, 2021."
       },
       {
@@ -993,7 +1027,8 @@
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "Unknown",
-        "History": "Released as Track 2 of the Lost Files 2 compilation on July 10th, 2021."
+        "link": "https://pillowcase.su/f/c6104ab38b16396159f85c553e679d7c",
+        "History": "Released as Track 2 of the Lost Files 2 compilation on July 10th, 2021. Previewed by Ken in a snippet on IG on March 23rd, 2021."
       },
       {
         "title": "Celebrate",
@@ -1005,11 +1040,13 @@
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "Unknown",
-        "History": "Released as Track 3 of the Lost Files 2 compilation on July 10th, 2021."
+        "link": "https://pillowcase.su/f/a23bd2b951ac3e2de83f33deaebdff64",
+        "History": "Released as Track 3 of the Lost Files 2 compilation on July 10th, 2021. Previewed by Ken in a snippet on IG on Febuary 3rd, 2021."
       },
       {
         "title": "M&M",
         "info": "",
+        "best": "song",
         "producer": "Sonny Digital & Earl on the Beat",
         "leak date": "7/10/21",
         "recording date": "Unknown",
@@ -1017,6 +1054,7 @@
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "Unknown",
+        "link": "https://pillowcase.su/f/dc8597e08cce51be5bb4331883a65c9a",
         "History": "Released as Track 4 of the Lost Files 2 compilation on July 10th, 2021."
       },
       {
@@ -1029,6 +1067,7 @@
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "Unknown",
+        "link": "https://pillowcase.su/f/951e1b1cb86e9619d11244b0a04566db",
         "History": "Released as Track 5 of the Lost Files 2 compilation on July 10th, 2021."
       },
       {
@@ -1041,6 +1080,7 @@
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "Unknown",
+        "link": "https://pillowcase.su/f/6d2aa6ac495cd78e6ac426226e6fc364",
         "History": "Released as Track 6 of the Lost Files 2 compilation on July 10th, 2021."
       },
       {
@@ -1053,7 +1093,8 @@
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "Unknown",
-        "History": "Released as Track 7 of the Lost Files 2 compilation on July 10th, 2021."
+        "link": "https://pillowcase.su/f/1ec73cb435b8c5229f48b800a26eb845",
+        "History": "Released as Track 7 of the Lost Files 2 compilation on July 10th, 2021. Previewed by Ken in a snippet on IG on May 27th, 2021."
       },
       {
         "title": "Killstreak",
@@ -1065,11 +1106,13 @@
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "Unknown",
+        "link": "https://pillowcase.su/f/0d794df5d416d14a6db822c0097bec44",
         "History": "Released as Track 8 of the Lost Files 2 compilation on July 10th, 2021."
       },
       {
         "title": "Teen Bean",
         "info": "",
+        "best": "song",
         "producer": "Jonah Abraham",
         "leak date": "7/16/21",
         "recording date": "Unknown",
@@ -1077,6 +1120,7 @@
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "Unknown",
+        "link": "https://pillowcase.su/f/9210e05253beadc16b03f0f4e9b75165",
         "History": "Released as a single, Later added as Track 9 of the Lost Files 2 compilation on July 16th, 2021."
       }
     ]
@@ -1085,8 +1129,9 @@
     "leak date": "7/23/21",
     "Project X Throwaways": [
       {
-        "title": "She Want Some More",
+        "title": "She Want Some More (feat. Lil Tecca)",
         "info": "",
+        "best": "song",
         "producer": "Outtatown, Ken Carson & Star Boy",
         "leak date": "7/18/22",
         "recording date": "6/6/21",
@@ -1094,56 +1139,8 @@
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "Unknown",
+        "link": "https://pillowcase.su/f/614fba90b82319916bafa9807ab6b689",
         "History": "Previewed in a snippet by Ken. Leaked on Soundcloud by Propkers22 on July 18th, 2022. Released by Internet Money & Lil Tecca on We All We Got on July 22nd, 2022."
-      },
-      {
-        "title": "Change [v1]",
-        "info": "",
-        "producer": "Outtatown, Star Boy & Lil 88",
-        "leak date": "2/13/21",
-        "recording date": "?/?/21",
-        "song type": "Throwaway",
-        "portion": "Snippet",
-        "quality": "Not Available",
-        "OG File": "Unknown",
-        "History": "Previewed in a snippet by Ken on IG Live. Different mix with the flute being louder."
-      },
-      {
-        "title": "Clutch [v1]",
-        "info": "",
-        "producer": "Rok & Fallwood",
-        "leak date": "4/11/22",
-        "recording date": "Unknown",
-        "song type": "Throwaway",
-        "portion": "Full",
-        "quality": "CDQ",
-        "OG File": "Unknown",
-        "link": "https://pillowcase.su/f/5af5250717c0d25dfbd43475c74318ad",
-        "History": "Released on the Sicko Radio Soundcloud on Ken's Bday mix 2022. Has different mixing, adlibs and vocals."
-      },
-      {
-        "title": "Hella [v1] (feat. Playboi Carti)",
-        "info": "",
-        "producer": "Outtatown, Bart How & Star Boy",
-        "leak date": "?/?/21",
-        "recording date": "Unknown",
-        "song type": "Throwaway",
-        "portion": "Lost",
-        "quality": "Not Available",
-        "OG File": "Unknown",
-        "History": "Said to be featured on Hella by Counting Caskets (Chris). Carti didn't like his verse and took it off the song."
-      },
-      {
-        "title": "Hella [v3] (feat. Lil Uzi Vert)",
-        "info": "",
-        "producer": "Outtatown, Bart How & Star Boy",
-        "leak date": "3/20/23",
-        "recording date": "Unknown",
-        "song type": "Remix",
-        "portion": "Snippet",
-        "quality": "Recording",
-        "OG File": "Unknown",
-        "History": "Remix of Hella with Lil Uzi Vert. Snippet posted by Fan Pages."
       },
       {
         "title": "Know The Price [v1]",
@@ -1171,17 +1168,18 @@
         "History": "Released on the Sicko Radio Soundcloud on September 3rd, 2021. OG File Leaked January 1st, 2024."
       },
       {
-        "title": "Know The Price [v3] (feat. Destroy Lonely)",
-        "info": "Casket",
+        "title": "Casket (feat. Destroy Lonely)",
+        "info": "Know The Price [v3]",
+        "best": "song",
         "producer": "Dreek Beatz & Juberlee",
         "leak date": "3/14/21",
         "recording date": "Unknown",
-        "song type": "Throwaway",
+        "song type": "Remix",
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "Unknown",
         "link": "https://pillowcase.su/f/4d4b69ac0f0d0ca9c9959849d915f100",
-        "History": "Released on Texaco Cam's Soundcloud on March 1st, 2021. Released with the name Casket. Features different producers than know the price on genius."
+        "History": "Released on Texaco Cam's Soundcloud on March 14th, 2021. Uses ken's verse from Know The Price but a different instrumental."
       },
       {
         "title": "Please Don't leave",
@@ -1208,18 +1206,6 @@
         "OG File": "Unknown",
         "link": "https://pillowcase.su/f/f313337a5c1fe9c6a18f4c508344cde3",
         "History": "Released on the Sicko Radio Soundcloud on July 12th, 2021."
-      },
-      {
-        "title": "Who's Next [v1]",
-        "info": "",
-        "producer": "Loesoe",
-        "leak date": "4/4/21",
-        "recording date": "Unknown",
-        "song type": "Throwaway",
-        "portion": "Snippet",
-        "quality": "Recording",
-        "OG File": "Unknown",
-        "History": "Features a sound effect before the Loesoe tag."
       },
       {
         "title": "Caporee - No Gimmicks (feat. Ken Carson)",
@@ -1269,6 +1255,7 @@
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "ken carson kenji - bust v1.0.mp3",
+        "link": "https://pillowcase.su/f/424108ae69b7d82f1de6ce23e5cdb8dc",
         "History": "Leaked on July 25th, 2023."
       },
       {
@@ -1281,11 +1268,13 @@
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "ken carson kenji - out the bank v1.0.mp3",
+        "link": "https://pillowcase.su/f/064df3aaf014c9993e967c50cfdf2956",
         "History": "File was shown by Taz Taylor on Instagram. Leaked on July 25th, 2023."
       },
       {
         "title": "Lil Tecca - Olympics (feat. Ken Carson)",
         "info": "",
+        "best": "song",
         "producer": "Unknown",
         "leak date": "12/13/23",
         "recording date": "Unknown",
@@ -1309,6 +1298,18 @@
         "quality": "CDQ",
         "OG File": "Unknown",
         "History": "Released as Track 1 of Project X on July 23rd, 2021."
+      },
+      {
+        "title": "Who's Next [v1]",
+        "info": "",
+        "producer": "Loesoe",
+        "leak date": "4/4/21",
+        "recording date": "Unknown",
+        "song type": "Throwaway",
+        "portion": "Snippet",
+        "quality": "Recording",
+        "OG File": "Unknown",
+        "History": "Features a sound effect before the Loesoe tag."
       },
       {
         "title": "Rock N Roll",
@@ -1347,6 +1348,18 @@
         "History": "Released as Track 4 of Project X on July 23rd, 2021. Version of Change with different mixing."
       },
       {
+        "title": "Change [v1]",
+        "info": "",
+        "producer": "Outtatown, Star Boy & Lil 88",
+        "leak date": "2/13/21",
+        "recording date": "?/?/21",
+        "song type": "Throwaway",
+        "portion": "Snippet",
+        "quality": "Not Available",
+        "OG File": "Unknown",
+        "History": "Previewed in a snippet by Ken on IG Live. Different mix with the flute being louder."
+      },
+      {
         "title": "Run + Ran",
         "info": "",
         "producer": "Outtatown & Star Boy",
@@ -1383,6 +1396,30 @@
         "History": "Released as Track 7 of Project X on July 23rd, 2021."
       },
       {
+        "title": "Hella [v1] (feat. Playboi Carti)",
+        "info": "",
+        "producer": "Outtatown, Bart How & Star Boy",
+        "leak date": "?/?/21",
+        "recording date": "Unknown",
+        "song type": "Throwaway",
+        "portion": "Lost",
+        "quality": "Not Available",
+        "OG File": "Unknown",
+        "History": "Said to be featured on Hella by Counting Caskets (Chris). Carti didn't like his verse and took it off the song."
+      },
+      {
+        "title": "Hella [v3] (Remix) (feat. Lil Uzi Vert)",
+        "info": "",
+        "producer": "Outtatown, Bart How & Star Boy",
+        "leak date": "3/20/23",
+        "recording date": "Unknown",
+        "song type": "Remix",
+        "portion": "Snippet",
+        "quality": "Recording",
+        "OG File": "Unknown",
+        "History": "Remix of Hella with Lil Uzi Vert. Snippet posted by Fan Pages."
+      },
+      {
         "title": "Clutch [v2]",
         "info": "",
         "producer": "Rok & Fallwood",
@@ -1393,6 +1430,19 @@
         "quality": "CDQ",
         "OG File": "Unknown",
         "History": "Released as Track 8 of Project X on July 23rd, 2021. Version of Clutch with different mixing and quieter adlibs."
+      },
+      {
+        "title": "Clutch [v1]",
+        "info": "",
+        "producer": "Rok & Fallwood",
+        "leak date": "4/11/22",
+        "recording date": "Unknown",
+        "song type": "Throwaway",
+        "portion": "Full",
+        "quality": "CDQ",
+        "OG File": "Unknown",
+        "link": "https://pillowcase.su/f/5af5250717c0d25dfbd43475c74318ad",
+        "History": "Released on the Sicko Radio Soundcloud on Ken's Bday mix 2022. Has different mixing, adlibs and vocals."
       },
       {
         "title": "Till I Die",
@@ -1430,7 +1480,10 @@
         "OG File": "Unknown",
         "History": "Released as Track 11 of Project X on July 23rd, 2021."
       }
-    ],
+    ]
+  },
+  "Project Xtended": {
+    "leak date": "7/31/21",
     "Project Xtended": [
       {
         "title": "Me vs. Me",
@@ -1460,6 +1513,7 @@
       {
         "title": "Destroy Lonely - Flexin (feat. Ken Carson)",
         "info": "",
+        "best": "song",
         "producer": "Aviator Keyyz",
         "leak date": "12/25/21",
         "recording date": "Unknown",
@@ -1486,6 +1540,7 @@
       {
         "title": "I serve X",
         "info": "",
+        "best": "song",
         "producer": "Esko, Lukrative & F1LTHY",
         "leak date": "12/30/23",
         "recording date": "Unknown",
@@ -1509,20 +1564,9 @@
         "History": "Previewed in a snippet on IG by ken on an unknown date"
       },
       {
-        "title": "Pull Up [v1]",
+        "title": "Pull Up (feat. Yeat)",
         "info": "",
-        "producer": "KP Beatz & Earl on the Beat",
-        "leak date": "?/?/21",
-        "recording date": "Unknown",
-        "song type": "Throwaway",
-        "portion": "Snippet",
-        "quality": "Recording",
-        "OG File": "Unknown",
-        "History": "Previewed in a snippet by Ken on IG Live. Solo version of Pull Up."
-      },
-      {
-        "title": "Pull Up [v2] (feat. Yeat)",
-        "info": "",
+        "best": "song",
         "producer": "KP Beatz & Earl on the Beat",
         "leak date": "7/6/23",
         "recording date": "Unknown",
@@ -1531,11 +1575,12 @@
         "quality": "CDQ",
         "OG File": "ken Carson - pull up ft yeat.mp3",
         "link": "https://pillowcase.su/f/776c2c32a3457cf6eededa6ff8ef13da",
-        "History": "Version of Pull Up with Yeat. Has Additional bells in his verse. Leaked July 6th, 2023."
+        "History": "First previewed by Yeat on an IG Live on November 16th, 2021. Leaked July 6th, 2023. There is said to be a solo version, but the snippet sounds identical to the leak."
       },
       {
         "title": "Someone",
         "info": "",
+        "best": "song",
         "producer": "Outtatown, Star Boy & Art Dealer",
         "leak date": "12/31/23",
         "recording date": "Unknown",
@@ -1560,8 +1605,21 @@
         "History": "Released on the Sicko Radio Soundcloud on November 24th 2021."
       },
       {
-        "title": "Hell Yeah (feat. SoFaygo)",
+        "title": "Hell Yeah [v2] (feat. SoFaygo)",
         "info": "",
+        "producer": "BryceUnknwn, Bakkwoods, Trgc & y2tnb",
+        "leak date": "10/17/22",
+        "recording date": "Unknown",
+        "song type": "Throwaway",
+        "portion": "Full",
+        "quality": "CDQ",
+        "OG File": "Unknown",
+        "History": "Previewed in a snippet by Star Boy on Instagram. Released on October 17th, 2022."
+      },
+      {
+        "title": "Hell Yeah [v1] (feat. SoFaygo)",
+        "info": "",
+        "best": "song",
         "producer": "BryceUnknwn, Bakkwoods, Trgc & y2tnb",
         "leak date": "9/22/22",
         "recording date": "Unknown",
@@ -1570,7 +1628,7 @@
         "quality": "CDQ",
         "OG File": "Faygo x Ken - Hell Yeah !.mp3",
         "link": "https://pillowcase.su/f/3c808c87c0c38865a81aeed6658474fb",
-        "History": "Previewed in a snippet by Star Boy on Instagram. Leaked on September 22nd, 2022 by waterfalls. Released on October 17th, 2022."
+        "History": "Previewed in a snippet by Star Boy on Instagram. Leaked on September 22nd, 2022 by waterfalls. Has different mix than release with an addition chord in the main verse."
       },
       {
         "title": "Yvngxchris - blood on the leaves (Remix) (feat. Ken Carson, UnoTheActivist, KA$HDAMI & SSGKobe)",
@@ -1590,33 +1648,9 @@
     "leak date": "11/12/21",
     "X Man": [
       {
-        "title": "The End [v1]",
-        "info": "(aka: Greenday)",
-        "producer": "Outtatown & Star Boy",
-        "leak date": "11/8/21",
-        "recording date": "Unknown",
-        "song type": "Throwaway",
-        "portion": "Snippet",
-        "quality": "Recording",
-        "OG File": "Unknown",
-        "History": "Previewed in a snippet on IG by ken on November 8th, 2021. Ken has a normal voice but has a different mix."
-      },
-      {
-        "title": "The End [v2]",
-        "info": "(aka: Greenday)",
-        "producer": "Outtatown & Star Boy",
-        "leak date": "11/8/21",
-        "recording date": "Unknown",
-        "song type": "Throwaway",
-        "portion": "Full",
-        "quality": "CDQ",
-        "OG File": "ken carson - end v1.2.mp3",
-        "link": "https://pillowcase.su/f/b3e2b88a33c16a2a37eafdb844dbe353",
-        "History": "Previewed in a snippet by Ken on November 26, 2021. Leaked on an unknown date. Ken has pitched up vocals."
-      },
-      {
         "title": "Peel",
         "info": "(aka: Rich As Hell)",
+        "best": "song",
         "producer": "Loesoe, Outtatown, Star Boy & Sim Fane",
         "leak date": "12/30/23",
         "recording date": "Unknown",
@@ -1630,6 +1664,7 @@
       {
         "title": "Do It All",
         "info": "",
+        "best": "song",
         "producer": "Maaly Raw & Chef9thegod",
         "leak date": "11/17/21",
         "recording date": "Unknown",
@@ -1654,6 +1689,7 @@
       {
         "title": "No Way (feat. Destroy Lonely)",
         "info": "",
+        "best": "song",
         "producer": "Arman Andican, Star Boy & Lil 88",
         "leak date": "11/19/21",
         "recording date": "Unknown",
@@ -1666,6 +1702,7 @@
       {
         "title": "FWM (feat. SoFaygo)",
         "info": "",
+        "best": "song",
         "producer": "Outtatown & Star Boy",
         "leak date": "12/30/23",
         "recording date": "Unknown",
@@ -1691,6 +1728,7 @@
       {
         "title": "Come Outside",
         "info": "",
+        "best": "song",
         "producer": "Lukrative",
         "leak date": "10/7/22",
         "recording date": "?/?/21",
@@ -1699,7 +1737,7 @@
         "quality": "CDQ",
         "OG File": "Unknown",
         "link": "https://pillowcase.su/f/268eec519fd8c418d5854ad9a83e4111",
-        "History": "Released on the Sicko Radio Soundcloud on October 7th, 2022."
+        "History": "Released on the Sicko Radio Soundcloud on October 7th, 2022. Kankan diss."
       },
       {
         "title": "Never Switch",
@@ -1752,6 +1790,7 @@
       {
         "title": "No Other Way (feat. Lil Tecca)",
         "info": "",
+        "best": "song",
         "producer": "Lil 88 & Star Boy",
         "leak date": "1/7/22",
         "recording date": "Unknown",
@@ -1795,6 +1834,7 @@
       {
         "title": "hang_fire :/",
         "info": "",
+        "best": "song",
         "producer": "Outtatown & Star Boy",
         "leak date": "1/29/22",
         "recording date": "Unknown",
@@ -1802,11 +1842,13 @@
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "Unknown",
+        "link": "https://pillowcase.su/f/ed08b7bca381747c09a0ff8fc4abae54",
         "History": "Released as Track 1 of the Lost Files 3 compilation by the Sicko Radio Soundcloud on January 29th, 2022."
       },
       {
         "title": "gang (feat. Destroy Lonely & Lil Tecca)",
         "info": "",
+        "best": "song",
         "producer": "ISSY & ilykimchi",
         "leak date": "1/29/22",
         "recording date": "Unknown",
@@ -1814,11 +1856,13 @@
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "Unknown",
+        "link": "https://pillowcase.su/f/266f2e4304ce78e35b9747ebb71b1c09",
         "History": "Released as Track 2 of the Lost Files 3 compilation by the Sicko Radio Soundcloud on January 29th, 2022."
       },
       {
         "title": "drugs_over_love :{",
         "info": "",
+        "best": "song",
         "producer": "Jonah Abraham",
         "leak date": "1/29/22",
         "recording date": "Unknown",
@@ -1826,11 +1870,13 @@
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "Unknown",
+        "link": "https://pillowcase.su/f/adcfc236d6267f8a255d6eb3770a0665",
         "History": "Released as Track 3 of the Lost Files 3 compilation by the Sicko Radio Soundcloud on January 29th, 2022."
       },
       {
         "title": "i_influence",
         "info": "",
+        "best": "song",
         "producer": "Earl on the Beat",
         "leak date": "1/29/22",
         "recording date": "Unknown",
@@ -1838,6 +1884,7 @@
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "Unknown",
+        "link": "https://pillowcase.su/f/3212841b29002b7a578d0073961cf85a",
         "History": "Released as Track 4 of the Lost Files 3 compilation by the Sicko Radio Soundcloud on January 29th, 2022."
       },
       {
@@ -1850,6 +1897,7 @@
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "Unknown",
+        "link": "https://pillowcase.su/f/3b540c7b1959570fbe45123b21dd33ee",
         "History": "Released as Track 5 of the Lost Files 3 compilation by the Sicko Radio Soundcloud on January 29th, 2022."
       },
       {
@@ -1862,6 +1910,7 @@
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "Unknown",
+        "link": "https://pillowcase.su/f/e5b8108b333fe6627f049e5615660546",
         "History": "Released as Track 6 of the Lost Files 3 compilation by the Sicko Radio Soundcloud on January 29th, 2022. Version of Murda Musik with a worse mix, Later Released on X."
       },
       {
@@ -1874,6 +1923,7 @@
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "Unknown",
+        "link": "https://pillowcase.su/f/9f258ff164bc25f98921764aee8fe64d",
         "History": "Released as Track 7 of the Lost Files 3 compilation by the Sicko Radio Soundcloud on January 29th, 2022."
       },
       {
@@ -1886,7 +1936,22 @@
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "Unknown",
+        "link": "https://pillowcase.su/f/d1c0ed1779125b4cb670330e4d8d0125",
         "History": "Previewed in a snippet on IG by Ken on November 23rd, 2021. Released as Track 8 of the Lost Files 3 compilation by the Sicko Radio Soundcloud on January 29th, 2022."
+      },
+      {
+        "title": "over_dosed [v2]",
+        "info": "",
+        "best": "song",
+        "producer": "Outtatown & Star Boy",
+        "leak date": "1/29/22",
+        "recording date": "Unknown",
+        "song type": "Throwaway",
+        "portion": "Full",
+        "quality": "CDQ",
+        "OG File": "Unknown",
+        "link": "https://pillowcase.su/f/29ea32970d16af2ff9e29db2bd851a9a",
+        "History": "Released as Track 9 of the Lost Files 3 compilation by the Sicko Radio Soundcloud on January 29th, 2022."
       },
       {
         "title": "over_dosed [v1]",
@@ -1901,18 +1966,6 @@
         "History": "Previewed in a snippet by Ken on IG Live on November 3rd, 2021. intro has additional strings, Ken says more lines at the end."
       },
       {
-        "title": "over_dosed [v2]",
-        "info": "",
-        "producer": "Outtatown & Star Boy",
-        "leak date": "1/29/22",
-        "recording date": "Unknown",
-        "song type": "Throwaway",
-        "portion": "Full",
-        "quality": "CDQ",
-        "OG File": "Unknown",
-        "History": "Released as Track 9 of the Lost Files 3 compilation by the Sicko Radio Soundcloud on January 29th, 2022."
-      },
-      {
         "title": "by my lonely (feat. JBans2Turnt)",
         "info": "",
         "producer": "Unknown",
@@ -1922,6 +1975,7 @@
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "Unknown",
+        "link": "https://pillowcase.su/f/cd01e273490a4804ec697915c85f6e0b",
         "History": "Released by the Sicko Radio Soundcloud on January 1st, 2022. Later added as Track 10 of the Lost Files 3 compilation."
       },
       {
@@ -1934,11 +1988,13 @@
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "Ken Carson x Lonely - 1 11.4.21.mp3",
+        "link": "https://pillowcase.su/f/bcfa519a203aedf6a3a1681d41043036",
         "History": "Released by the Sicko Radio Soundcloud on December 13th, 2021. Later added as Track 11 of the Lost Files 3 compilation. OG File leaked on January 20th, 2024."
       },
       {
         "title": "Exodus (feat. Destroy Lonely)",
         "info": "",
+        "best": "song",
         "producer": "Lil 88",
         "leak date": "12/1/21",
         "recording date": "Unknown",
@@ -1946,11 +2002,13 @@
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "Unknown",
+        "link": "https://pillowcase.su/f/45f9279f62e3d2c2ba985bb6b2b14595",
         "History": "Released by the Sicko Radio Soundcloud on January 29th, 2022. Later added as Track 12 of the Lost Files 3 compilation."
       },
       {
         "title": "Wockstar (feat. Offset)",
         "info": "",
+        "best": "song",
         "producer": "Styn & Max Lord",
         "leak date": "1/29/22",
         "recording date": "Unknown",
@@ -1958,6 +2016,7 @@
         "portion": "Full",
         "quality": "CDQ",
         "OG File": "Unknown",
+        "link": "https://pillowcase.su/f/73b33910c5d2deb9f3d5ada3697fa84a",
         "History": "Leaked by Counting Caskets (Chris) on the same day it was released. Released by the Sicko Radio Soundcloud on January 29th, 2022. Later added as Track 13 of the Lost Files 3 compilation. Offset says he didn't record with Ken, suspected to be an open verse."
       }
     ]
@@ -1981,6 +2040,7 @@
       {
         "title": "X FOR BREAKFAST (feat. Destroy Lonely)",
         "info": "",
+        "best": "song",
         "producer": "F1LTHY, Lukrative & Chenzo",
         "leak date": "6/8/22",
         "recording date": "Unknown",
@@ -2031,6 +2091,20 @@
         "History": "Released as Track 5 of X TWO THREE by a Soundcloud account named X-23. OG File leaked on August 5th, 2022."
       },
       {
+        "title": "AQUAFINA [v2]",
+        "info": "",
+        "best": "song",
+        "producer": "KP Beatz & ssort",
+        "leak date": "6/8/22",
+        "recording date": "Unknown",
+        "song type": "Throwaway",
+        "portion": "Full",
+        "quality": "CDQ",
+        "OG File": "ken carson - aquafina v2.0.mp3",
+        "link": "https://pillowcase.su/f/e1bff922ae2fc4590f71a435c5b35ecf",
+        "History": "Released as Track 6 of X TWO THREE by a Soundcloud account named X-23. OG File leaked on an unknown date"
+      },
+      {
         "title": "AQUAFINA [v1]",
         "info": "",
         "producer": "KP Beatz & ssort",
@@ -2041,19 +2115,6 @@
         "quality": "Recording",
         "OG File": "Unknown",
         "History": "Previewed in a snippet on IG by ken on January 7th, 2022. Only difference is an adlib at the start."
-      },
-      {
-        "title": "AQUAFINA [v2]",
-        "info": "",
-        "producer": "KP Beatz & ssort",
-        "leak date": "6/8/22",
-        "recording date": "Unknown",
-        "song type": "Throwaway",
-        "portion": "Full",
-        "quality": "CDQ",
-        "OG File": "ken carson - aquafina v2.0.mp3",
-        "link": "https://pillowcase.su/f/e1bff922ae2fc4590f71a435c5b35ecf",
-        "History": "Released as Track 6 of X TWO THREE by a Soundcloud account named X-23. OG File leaked on an unknown date"
       },
       {
         "title": "SHOULDA LISTENED (feat. Lil Tecca & Destroy Lonely)",
@@ -2115,6 +2176,7 @@
       {
         "title": "Yoda (feat. Destroy Lonely)",
         "info": "(aka: Range Rover, Outside)",
+        "best": "song",
         "producer": "Lukrative, Lucian & ssort",
         "leak date": "10/24/23",
         "recording date": "Unknown",
@@ -2126,8 +2188,9 @@
         "History": "Previewed in a snippet on IG by ken on January 31st, 2022. Leaked on October 24th, 2023."
       },
       {
-        "title": "Ready (feat. Destroy Lonely)",
+        "title": "Ready [v1]? (feat. Destroy Lonely)",
         "info": "",
+        "best": "song",
         "producer": "Clover Beats & Trgc",
         "leak date": "8/4/23",
         "recording date": "Unknown",
@@ -2165,6 +2228,7 @@
       {
         "title": "New Body (feat. Destroy Lonely)",
         "info": "",
+        "best": "song",
         "producer": "Loesoe",
         "leak date": "8/4/23",
         "recording date": "Unknown",
@@ -2177,6 +2241,7 @@
       {
         "title": "Game Over (feat. Destroy Lonely)",
         "info": "",
+        "best": "song",
         "producer": "Gab3, Jonah Abraham & KP Beatz",
         "leak date": "8/6/22",
         "recording date": "Unknown",
@@ -2244,10 +2309,10 @@
         "portion": "Snippet",
         "quality": "Not Available",
         "OG File": "",
-        "History": "Previewed in a CDQ snippet by Counting Caskets (Chris). Said to be the real version of the song, and Swwish was given an open verse."
+        "History": "Previewed in a CDQ snippet by Counting Caskets (Chris). Said to be the real version of the song."
       },
       {
-        "title": "Swwish - Geeked [v2] (feat. Ken Carson)",
+        "title": "Geeked [v2] (by Swwish feat. Ken Carson)",
         "info": "(aka: Birkin)",
         "producer": "Bugz Ronin, White Punk, malenkiyyarche, Flexyboy & Breezey Muzik",
         "leak date": "7/?/22",
@@ -2259,16 +2324,18 @@
         "History": "Swwish recorded over an open verse version of Geeked. Basically lost."
       },
       {
-        "title": "Shoot (Concert Intro)",
-        "info": "",
-        "producer": "Lukrative & ssort",
-        "leak date": "?/?/22",
+        "title": "Geeked [v3] (solo edit)",
+        "info": "(aka: Birkin)",
+        "best": "song",
+        "producer": "Bugz Ronin, White Punk, malenkiyyarche, Flexyboy & Breezey Muzik",
+        "leak date": "7/?/22",
         "recording date": "Unknown",
-        "song type": "Throwaway",
+        "song type": "Edit",
         "portion": "Full",
-        "quality": "CDQ",
+        "quality": "HQ",
         "OG File": "",
-        "History": "Concert Version of Shoot Leaked on an unknown date."
+        "link": "https://pillowcase.su/f/dcf2ab5cd59a6022bda73dc3bb1f4bde",
+        "History": "Ken only edit of Geeked [v2], repeats same verse 4 times over the beat. Only existing version of the song."
       },
       {
         "title": "Frozen (feat. Lil Uzi Vert)",
@@ -2383,6 +2450,7 @@
       {
         "title": "MDMA (feat. Destroy Lonely)",
         "info": "(aka: Get Money)",
+        "best": "song",
         "producer": "Outtatown, Bart How, Star Boy & AM",
         "leak date": "7/1/22",
         "recording date": "Unknown",
@@ -2395,6 +2463,7 @@
       {
         "title": "X",
         "info": "(aka: Just X)",
+        "best": "song",
         "producer": "Lukrative, Lucian & ssort",
         "leak date": "7/1/22",
         "recording date": "Unknown",
@@ -2443,6 +2512,7 @@
       {
         "title": "Going Schitz",
         "info": "",
+        "best": "song",
         "producer": "Bart How & Loesoe",
         "leak date": "7/1/22",
         "recording date": "Unknown",
@@ -2451,18 +2521,6 @@
         "quality": "CDQ",
         "OG File": "Unknown",
         "History": "Leaked on July 1st, 2022. Released as Track 11 of X on July 8th, 2022."
-      },
-      {
-        "title": "Same Thing [v1]",
-        "info": "",
-        "producer": "Loesoe",
-        "leak date": "1/12/22",
-        "recording date": "Unknown",
-        "song type": "Throwaway",
-        "portion": "Full",
-        "quality": "Recording",
-        "OG File": "Unknown",
-        "History": "Previewed in full on IG by ken on January 12th, 2022. Has better bass and verses. 2:31 in length."
       },
       {
         "title": "Same Thing [v2]",
@@ -2475,6 +2533,19 @@
         "quality": "CDQ",
         "OG File": "Unknown",
         "History": "Same as v1, but his verse is cut 30 seconds short. Leaked on July 1st, 2022. Released as Track 12 of X on July 8th, 2022."
+      },
+      {
+        "title": "Same Thing [v1]",
+        "info": "",
+        "best": "song",
+        "producer": "Loesoe",
+        "leak date": "1/12/22",
+        "recording date": "Unknown",
+        "song type": "Throwaway",
+        "portion": "Full",
+        "quality": "Recording",
+        "OG File": "Unknown",
+        "History": "Previewed in full on IG by ken on January 12th, 2022. Has better bass and verses. 2:31 in length."
       },
       {
         "title": "Freestyle 1",
@@ -2491,6 +2562,7 @@
       {
         "title": "Freestyle 2",
         "info": "(aka: Berserk)",
+        "best": "song",
         "producer": "F1LTHY, AM & Gab3",
         "leak date": "7/1/22",
         "recording date": "Unknown",
@@ -2515,6 +2587,7 @@
       {
         "title": "Murda Musik [v2] (feat. Destroy Lonely)",
         "info": "",
+        "best": "song",
         "producer": "Rok, Bart How & 4VRLIT",
         "leak date": "7/1/22",
         "recording date": "Unknown",
@@ -2571,6 +2644,31 @@
         "quality": "CDQ",
         "OG File": "Unknown",
         "History": "Version of The End with regular Ken vocals but high pitched adlibs. Leaked on July 1st, 2022. Released as Track 19 of X on July 8th, 2022."
+      },
+      {
+        "title": "The End [v1]",
+        "info": "(aka: Greenday)",
+        "producer": "Outtatown & Star Boy",
+        "leak date": "11/8/21",
+        "recording date": "Unknown",
+        "song type": "Throwaway",
+        "portion": "Snippet",
+        "quality": "Recording",
+        "OG File": "Unknown",
+        "History": "Previewed in a snippet on IG by ken on November 8th, 2021. Ken has a normal voice but has a different mix."
+      },
+      {
+        "title": "The End [v2]",
+        "info": "(aka: Greenday)",
+        "producer": "Outtatown & Star Boy",
+        "leak date": "11/8/21",
+        "recording date": "Unknown",
+        "song type": "Throwaway",
+        "portion": "Full",
+        "quality": "CDQ",
+        "OG File": "ken carson - end v1.2.mp3",
+        "link": "https://pillowcase.su/f/b3e2b88a33c16a2a37eafdb844dbe353",
+        "History": "Previewed in a snippet by Ken on November 26, 2021. Leaked on an unknown date. Ken has pitched up vocals."
       }
     ],
     "Xtended": [
@@ -2599,8 +2697,9 @@
         "History": "Previewed in a snippet by Ken on an unknown date. Released as Track 22 of XTENDED on October 31st, 2022."
       },
       {
-        "title": "Shoot",
+        "title": "Shoot [v1]",
         "info": "(aka: Ain't Trippin)",
+        "best": "song",
         "producer": "Lukrative & ssort",
         "leak date": "10/31/22",
         "recording date": "Unknown",
@@ -2609,6 +2708,19 @@
         "quality": "CDQ",
         "OG File": "Unknown",
         "History": "Previewed in a snippet by Ken on an unknown date. Released as Track 23 of XTENDED on October 31st, 2022."
+      },
+      {
+        "title": "Shoot [v2] (Concert Intro)",
+        "info": "",
+        "producer": "Lukrative & ssort",
+        "leak date": "?/?/22",
+        "recording date": "Unknown",
+        "song type": "Throwaway",
+        "portion": "Full",
+        "quality": "CDQ",
+        "OG File": "",
+        "link": "https://pillowcase.su/f/4bcc78f33ada7a5cc443cda8706c98df",
+        "History": "Concert Version of Shoot Leaked on an unknown date."
       },
       {
         "title": "Swag Overload",
@@ -2642,6 +2754,7 @@
       {
         "title": "suicidal",
         "info": "",
+        "best": "song",
         "producer": "Lil 88 & Brandon Dalton",
         "leak date": "1/3/23",
         "recording date": "Unknown",
@@ -2655,6 +2768,7 @@
       {
         "title": "lets go shoppin",
         "info": "",
+        "best": "song",
         "producer": "Lucian & Perto",
         "leak date": "1/3/23",
         "recording date": "9/7/22",
@@ -2694,6 +2808,7 @@
       {
         "title": "higher & flyer",
         "info": "(aka: Future)",
+        "best": "song",
         "producer": "Nick Mira & Georgie",
         "leak date": "1/3/23",
         "recording date": "?/?/21",
@@ -2720,6 +2835,7 @@
       {
         "title": "free young thug",
         "info": "(aka: YKWIA & FYT)",
+        "best": "song",
         "producer": "Lukrative, Glasear & Clif Shayne",
         "leak date": "1/3/23",
         "recording date": "10/1/22",
@@ -2733,6 +2849,7 @@
       {
         "title": "bosses",
         "info": "(aka: Postal & Ties)",
+        "best": "song",
         "producer": "Outtatown & Star Boy",
         "leak date": "1/3/23",
         "recording date": "10/17/22",
@@ -2763,6 +2880,7 @@
       {
         "title": "Darkside (feat. Destroy Lonely)",
         "info": "(aka: 00Darkside)",
+        "best": "song",
         "producer": "F1LTHY, Clif Shayne & Arman Andican",
         "leak date": "9/26/22",
         "recording date": "Unknown",
@@ -2775,6 +2893,7 @@
       {
         "title": "Cameras (feat. Destroy Lonely)",
         "info": "(aka: Scene & One)",
+        "best": "song",
         "producer": "Unknown",
         "leak date": "11/17/23",
         "recording date": "10/12/22",
@@ -2788,6 +2907,7 @@
       {
         "title": "Everyday",
         "info": "",
+        "best": "song",
         "producer": "Clif Shayne",
         "leak date": "9/26/22",
         "recording date": "Unknown",
@@ -2812,6 +2932,7 @@
       {
         "title": "Southside",
         "info": "",
+        "best": "song",
         "producer": "Lukrative, Lucian & MaxFlames",
         "leak date": "10/29/22",
         "recording date": "Unknown",
@@ -2948,6 +3069,7 @@
       {
         "title": "Molly",
         "info": "",
+        "best": "song",
         "producer": "Clif Shayne, Distance Decay & instupendo",
         "leak date": "2/10/23",
         "recording date": "Unknown",
@@ -2960,6 +3082,7 @@
       {
         "title": "Pourin Up (feat. Destroy Lonely)",
         "info": "",
+        "best": "song",
         "producer": "semsi & ssort",
         "leak date": "3/5/23",
         "recording date": "Unknown",
@@ -2996,6 +3119,7 @@
       {
         "title": "How You Keep It (feat. Destroy Lonely)",
         "info": "",
+        "best": "song",
         "producer": "Clayco",
         "leak date": "11/16/23",
         "recording date": "4/30/23",
@@ -3108,6 +3232,7 @@
       {
         "title": "Jumanji",
         "info": "(aka: Swaggin)",
+        "best": "song",
         "producer": "F1LTHY, Carter Bryson, ssort & Lucian",
         "leak date": "12/30/23",
         "recording date": "Unknown",
@@ -3171,6 +3296,7 @@
       {
         "title": "Green Room",
         "info": "(aka: Never Seen Shit)",
+        "best": "song",
         "producer": "Lukrative, Lucian & F1LTHY",
         "leak date": "10/9/23",
         "recording date": "Unknown",
@@ -3193,6 +3319,19 @@
         "History": "Previewed in a snippet by Ken on June 1st, 2023. On the v1 tracklist on June 25th, 2023. King Bob posted a snippet on September 22nd, 2023. Leaked on October 9th, 2023. Released as Track 2 of A Great Chaos on October 13th, 2023."
       },
       {
+        "title": "Fighting My Demons [v2]",
+        "info": "(aka: Pop & Fighting Demons)",
+        "best": "song",
+        "producer": "Outtatown, Star Boy, Bart How, Warren Hunter & Lvis",
+        "leak date": "10/9/23",
+        "recording date": "Unknown",
+        "song type": "EP Track",
+        "portion": "Full",
+        "quality": "CDQ",
+        "OG File": "Unknown",
+        "History": "The beginning was named POP and was previewed on January 20th and August 2nd, 2023. The ending was previewed by Ken on March 15th, 2023. King Bob confirmed they are the same song. On the v1 tracklist on June 25th, 2023. Leaked on October 9th, 2023. Released as Track 3 of A Great Chaos on October 13th, 2023."
+      },
+      {
         "title": "Fighting My Demons [v1]",
         "info": "",
         "producer": "Outtatown, Star Boy, Bart How, Warren Hunter & Lvis",
@@ -3202,19 +3341,7 @@
         "portion": "Snippet",
         "quality": "Recording",
         "OG File": "Unknown",
-        "History": "Previewed in a leaked snippet on August 2nd, 2023. Has an unheard Star Boy tag that isn't in the released version."
-      },
-      {
-        "title": "Fighting My Demons [v2]",
-        "info": "(aka: Pop & Fighting Demons)",
-        "producer": "Outtatown, Star Boy, Bart How, Warren Hunter & Lvis",
-        "leak date": "10/9/23",
-        "recording date": "Unknown",
-        "song type": "EP Track",
-        "portion": "Full",
-        "quality": "CDQ",
-        "OG File": "Unknown",
-        "History": "The beginning was named POP and was previewed on January 20th and August 2nd, 2023. The ending was previewed by Ken on March 15th, 2023. King Bob confirmed they are the same song. On the v1 tracklist on June 25th, 2023. Leaked on October 9th, 2023. Released as Track 3 of A Great Chaos on October 13th, 2023."
+        "History": "Previewed in a leaked snippet on August 2nd, 2023. Has an unheard Star Boy tag in the intro that isn't in the released version."
       },
       {
         "title": "Singapore (feat. Destroy Lonely)",
@@ -3267,6 +3394,7 @@
       {
         "title": "It's Over",
         "info": "",
+        "best": "song",
         "producer": "skai, MISOGI, Star Boy, AM, Lil 88 & Outtatown",
         "leak date": "10/9/23",
         "recording date": "Unknown",
@@ -3275,6 +3403,19 @@
         "quality": "CDQ",
         "OG File": "Unknown",
         "History": "Previewed in a snippet by Ken on January 20th, 2023 and performed live several times. On the v1 tracklist on June 25th, 2023. Leaked on October 9th, 2023. Released as Track 8 of A Great Chaos on October 13th, 2023."
+      },
+      {
+        "title": "Succubus [v2]",
+        "info": "(aka: Sucka)",
+        "best": "song",
+        "producer": "F1LTHY & AM",
+        "leak date": "10/9/23",
+        "recording date": "Unknown",
+        "song type": "EP Track",
+        "portion": "Full",
+        "quality": "CDQ",
+        "OG File": "Unknown",
+        "History": "Previewed in a snippet by Ken on June 17th, 2023. On the v1 tracklist on June 25th, 2023 under the name: So Dark. Leaked on October 9th, 2023. Released as Track 9 of A Great Chaos on October 13th, 2023."
       },
       {
         "title": "Succubus [v1]",
@@ -3289,16 +3430,16 @@
         "History": "Previewed in a leaked snippet on September 3rd, 2023. Has an unheard verse that isn't in the released version."
       },
       {
-        "title": "Succubus [v2]",
-        "info": "(aka: Sucka)",
-        "producer": "F1LTHY & AM",
-        "leak date": "10/9/23",
+        "title": "Paranoid [v2] (feat. Destroy Lonely)",
+        "info": "",
+        "producer": "Lukrative, Lucian & F1LTHY",
+        "leak date": "9/6/23",
         "recording date": "Unknown",
         "song type": "EP Track",
         "portion": "Full",
         "quality": "CDQ",
-        "OG File": "Unknown",
-        "History": "Previewed in a snippet by Ken on June 17th, 2023. On the v1 tracklist on June 25th, 2023 under the name: So Dark. Leaked on October 9th, 2023. Released as Track 9 of A Great Chaos on October 13th, 2023."
+        "OG File": "ken n lone paranoid.wav",
+        "History": "Previewed in a leaked snippet on April 10th, 2023. Another snippet would leak on September 3rd, 2023. On the v1 tracklist on June 25th, 2023. Leaked on September 6th, 2023. Released as Track 10 of A Great Chaos on October 13th, 2023."
       },
       {
         "title": "Paranoid [v1] (feat. Destroy Lonely)",
@@ -3311,18 +3452,6 @@
         "quality": "CDQ",
         "OG File": "Unknown",
         "History": "Previewed on Ken's IG Live on December 11th, 2022. Sped up."
-      },
-      {
-        "title": "Paranoid [v2] (feat. Destroy Lonely)",
-        "info": "",
-        "producer": "Lukrative, Lucian & F1LTHY",
-        "leak date": "9/6/23",
-        "recording date": "Unknown",
-        "song type": "EP Track",
-        "portion": "Full",
-        "quality": "CDQ",
-        "OG File": "ken n lone paranoid.wav",
-        "History": "Previewed in a leaked snippet on April 10th, 2023. Another snippet would leak on September 3rd, 2023. On the v1 tracklist on June 25th, 2023. Leaked on September 6th, 2023. Released as Track 10 of A Great Chaos on October 13th, 2023."
       },
       {
         "title": "POTS",
@@ -3375,6 +3504,7 @@
       {
         "title": "Nightcore",
         "info": "(aka: Jodeci, Coast to Coast, We the Best & Ken Carson)",
+        "best": "song",
         "producer": "Lukrative & Lucian",
         "leak date": "10/9/23",
         "recording date": "Unknown",
@@ -3441,6 +3571,7 @@
       {
         "title": "Private",
         "info": "",
+        "best": "song",
         "producer": "Lil 88 & Dylxn",
         "leak date": "1/18/24",
         "recording date": "11/1/23",
@@ -3516,6 +3647,7 @@
       {
         "title": "President (feat. Destroy Lonely)",
         "info": "",
+        "best": "song",
         "producer": "Unknown",
         "leak date": "12/17/23",
         "recording date": "Unknown",
@@ -3566,6 +3698,7 @@
       {
         "title": "For You",
         "info": "",
+        "best": "song",
         "producer": "Lukrative, Lucian & F1LTHY",
         "leak date": "11/9/23",
         "recording date": "Unknown",
@@ -3578,6 +3711,7 @@
       {
         "title": "Vampire",
         "info": "",
+        "best": "song",
         "producer": "Gab3, Noah Mejia & Kavik",
         "leak date": "11/9/23",
         "recording date": "Unknown",
@@ -3602,6 +3736,7 @@
       {
         "title": "Bleed",
         "info": "",
+        "best": "song",
         "producer": "Lukrative, Lucian, Nick Spiders & Esko",
         "leak date": "12/2/23",
         "recording date": "Unknown",
@@ -3626,6 +3761,7 @@
       {
         "title": "First Night",
         "info": "(aka: Yuhhhhh)",
+        "best": "song",
         "producer": "Clif Shayne",
         "leak date": "12/24/23",
         "recording date": "Unknown",
