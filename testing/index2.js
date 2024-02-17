@@ -1,7 +1,6 @@
 import { select, create } from "../dependancies/utils.js";
 
 // Get Ken JSON
-
 const filepath = "Ken.json";
 const albumicons = {
   "More Chaos":
@@ -16,6 +15,7 @@ const albumicons = {
   "Lost Files 3":
     "https://images.genius.com/3750b1d6541912c482aa06a5a5fc426b.500x500x1.jpg",
   "X Man": "https://images.genius.com/78d4c56ae31f8eb1d0496e1616a1ff0a.1000x1000x1.jpg",
+  "Project Xtended": "https://i.redd.it/oeyyp91f2te71.png",
   "Project X":
     "https://images.genius.com/d3a0f08457e58a24e5c4cf357f23b987.1000x1000x1.png",
   "Lost Files 2":
@@ -28,6 +28,8 @@ const albumicons = {
     "https://images.genius.com/b29cb9082c5b354d09b3c23f3a7402ec.1000x1000x1.png",
   "Boy Barbie":
     "https://images.genius.com/1ef69452d04b5a151fe7738c0b633171.1000x1000x1.jpg",
+  "Boy Barbie OG":
+    "https://images.genius.com/4db345894c3b0cfdaf9fe68d4a487b18.899x899x1.jpg"
 };
 
 const convertToDate = (dateStr) => {
@@ -177,7 +179,7 @@ function loadcontent(jsonData) {
     backbtn.style.height = "32px";
     backbtn.style.width = "32px";
     backbtn.style["margin-left"] = "15px";
-    backbtn.style["margin-top"] = "15px";
+    backbtn.style["margin-top"] = "10px";
 
     backbtn.innerHTML += '<i class="fa-solid fa-chevron-left" style="margin-left:8px;margin-top:6px;font-size:20px"></i>'
 
@@ -217,7 +219,9 @@ function loadcontent(jsonData) {
     let albumdescription = create("span", artistheader);
     albumdescription.style["text-align"] = "center";
     albumdescription.style["font-size"] = "2.2vw";
-    albumdescription.style.opacity = "0.7";
+    albumdescription.style.width = "100%"
+    albumdescription.style.opacity = ".85"
+    albumdescription.style.background = "var(--dark-secondary)";
     albumdescription.style.bottom = "0px";
     albumdescription.style.position = "absolute";
     albumdescription.textContent = jsonData[album].History;
@@ -233,6 +237,7 @@ function loadcontent(jsonData) {
       albumthing.classList.remove("open");
     });
 
+    let i = 1;
     for (const key in jsonData[album]) {
       if (
         jsonData[album].hasOwnProperty(key) &&
@@ -242,55 +247,58 @@ function loadcontent(jsonData) {
         albumname2.classList.add("album-info");
         albumname2.textContent = key;
 
-        let i = 1;
         jsonData[album][key].forEach((item) => {
-          item["album"] = album;
-          item["disc"] = key;
-          if (item.quality != "Not Available" && item.portion != "Snippet")
-            recentsongs[item.title] = item;
+          if(typeof item === "object"){
+            item["album"] = album;
+            item["disc"] = key;
+            if (item.quality != "Not Available" && item.portion != "Snippet")
+              recentsongs[item.title] = item;
 
             let songelement = create("div", songlist);
-          songelement.classList.add("song");
-          if (item.link) songelement.setAttribute("song-url", item.link);
-          if (!item.link) songelement.style.opacity = ".5"
+            songelement.classList.add("song");
+            if (item.link) songelement.setAttribute("song-url", item.link);
+            if (!item.link) songelement.style.opacity = ".5"
 
-          songelement.setAttribute("track-num", i);
-          songelement.setAttribute("album", item["album"]);
-          songelement.setAttribute("producer", item.producer);
-          songelement.setAttribute("leakdate", item["leak date"]);
-          songelement.setAttribute("recording", item["recording date"]);
-          songelement.setAttribute("songtype", item["song type"]);
-          songelement.setAttribute("portion", item.portion);
-          songelement.setAttribute("quality", item.quality);
-          songelement.setAttribute("ogfilename", item["OG File"]);
-          songelement.setAttribute("history", item.History);
+            songelement.setAttribute("track-num", i);
+            songelement.setAttribute("album", item["album"]);
+            songelement.setAttribute("producer", item.producer);
+            songelement.setAttribute("leakdate", item["leak date"]);
+            songelement.setAttribute("recording", item["recording date"]);
+            songelement.setAttribute("songtype", item["song type"]);
+            songelement.setAttribute("portion", item.portion);
+            songelement.setAttribute("quality", item.quality);
+            songelement.setAttribute("ogfilename", item["OG File"]);
+            songelement.setAttribute("history", item.History);
 
-          let tracknum = create("span", songelement);
-          tracknum.classList.add("track-num");
-          tracknum.textContent = i;
+            let tracknum = create("span", songelement);
+            tracknum.classList.add("track-num");
+            tracknum.textContent = i;
 
-          let songinfo = create("div", songelement);
-          songinfo.classList.add("song-info");
+            let songinfo = create("div", songelement);
+            songinfo.classList.add("song-info");
 
-          let songname2 = create("div", songinfo);
-          songname2.classList.add("song-name");
-          songname2.textContent = item.title;
+            let songname2 = create("div", songinfo);
+            songname2.classList.add("song-name");
+            songname2.textContent = item.title;
 
-          let songinfo2 = create("span", songname2);
-          songinfo2.style["font-size"] = "small";
-          songinfo2.style.color = "lightgray";
-          songinfo2.textContent = item.info;
+            let songinfo2 = create("span", songname2);
+            songinfo2.style["font-size"] = "small";
+            songinfo2.style.color = "lightgray";
+            songinfo2.textContent = item.info;
 
-          if (item.portion == "Snippet") {
-            var snippettag = create("span", songname2);
-            snippettag.classList.add("tag", "snippet");
-            snippettag.textContent = "Snippet";
+            if (item.portion == "Snippet") {
+              var snippettag = create("span", songname2);
+              snippettag.classList.add("tag", "snippet");
+              snippettag.textContent = "Snippet";
+            }
+            i++
           }
-          i++
         });
+
         var albuminfo = create("p", songlist);
         albuminfo.classList.add("album-info");
-        albuminfo.textContent = jsonData[album][key].albuminfo;
+        var infotext = jsonData[album][key].slice(-1)[0]
+        albuminfo.innerHTML += typeof infotext !== "object" ? infotext.replaceAll("\n","<br>") : "";
       }
     }
     
