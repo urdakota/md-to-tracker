@@ -6,9 +6,10 @@
     <meta name="robots" content="noindex">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="application-name" content="Listen to Leaks">
-    <meta name="description" content="Listen to leaks is a free streaming service for listening to unreleased songs">
+    <meta name="description" content="Listen to Leaks is a free streaming service for listening to unreleased songs">
     <meta property="og:title" content="Listen to Leaks">
-    <meta property="og:description" content="Listen to leaks is a free streaming service for listening to unreleased songs">
+    <meta property="og:description"
+        content="Listen to Leaks is a free streaming service for listening to unreleased songs">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <title>Listen to Leaks | Ken Carson</title>
@@ -165,15 +166,6 @@
             font-size: 1em;
         }
 
-        .song .song-name span {
-            opacity: 0;
-            transition: 0.3s;
-        }
-
-        .song:hover .song-name span {
-            opacity: 1;
-        }
-
         .song-artist {
             font-size: 0.8em;
             color: #bbb;
@@ -241,7 +233,11 @@
 
         .tag.snippet {
             background-color: rgba(255, 0, 0, .6);
-            color: rgba(255, 255, 255, .9);
+            color: rgba(25, 25, 25, .9);
+        }
+        .tag.unavailable {
+            background-color: rgba(125, 125, 125, .6);
+            color: rgba(25, 25, 25, .9);
         }
 
         #albums .wrapper .album-element {
@@ -254,9 +250,55 @@
             background-color: #2c2c2c;
         }
     </style>
-    <!-- Lyrics --><!-- Mobile Display --> <!--
-            
-        -->
+    <!-- Lyrics --><!-- Mobile Display --> 
+    <style>
+        @keyframes details-show {
+            0% {
+                opacity: 0;
+                transform: var(--details-translate,translateY(-.5em))
+            }
+        }
+
+        details {
+            display: block;
+            padding-top: 10px;
+        }
+
+        details[open]>:not(summary) {
+            animation: details-show .15s ease-in-out
+        }
+
+        details>:not(summary) {
+            opacity: 1;
+            transform: var(--details-translate,translateY(0em))
+        }
+
+        details[open] > summary:first-of-type {
+            list-style-type: disclosure-open;
+        }
+        
+        details > summary:first-of-type {
+            display: list-item;
+            counter-increment: list-item 0;
+            list-style: inside disclosure-closed;
+        }
+
+        details>summary {
+            margin-left: 10px;
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--light-secondary);
+            cursor: pointer
+        }
+
+        details>summary:not(.arrow) {
+            list-style: none
+        }
+
+        details>summary:not(.arrow)::-webkit-details-marker {
+            display: none
+        }
+    </style>
     <style>
         .noselect {
             -webkit-user-select: none;
@@ -425,7 +467,7 @@
             width: 98%;
             height: 20%;
             padding: 8px;
-            top: 50%;
+            top: 42.5%;
         }
 
         .audio-controls {
@@ -475,13 +517,14 @@
 
         .audiocontrols #timeDisplay {
             position: absolute;
-            left: 20%;
+            text-align: right;
+            left: 10%;
             top: 50px;
         }
 
         .audiocontrols #durationDisplay {
             position: absolute;
-            right: 20%;
+            right: 10%;
             top: 50px;
         }
 
@@ -573,10 +616,10 @@
         }
 
         .album-thing .song {
-            margin-left: 16px;
+            margin-left: 0px;
             height: 40px;
         }
-        
+
         .album-thing .song:first-of-type .song-info {
             border-top: transparent;
         }
@@ -589,13 +632,16 @@
             display: flex;
             align-items: center;
         }
+
         .album-thing .track-num {
             display: flex;
             align-items: center;
             font-weight: 500;
             font-size: 16px;
             margin-left: 5px;
-            margin-right: 10px;
+            margin-right: 12px;
+            min-width: 16px;
+            text-align: left;
             color: grey;
         }
     </style>
@@ -606,8 +652,10 @@
     <script src="./index2.js" type="module"></script>
 
     <div class="Page_Header" id="reelbackthingamabob">
-        <div id="Back-button" style="cursor: pointer; border-radius: 50%; background: var(--dark-primary); height: 32px; width: 32px; margin-left: 15px; margin-top: 10px;">
-            <a href="../"><i class="fa-solid fa-chevron-left" style="margin-left:8px;margin-top:6px;font-size:20px"></i></a>
+        <div id="Back-button"
+            style="cursor: pointer; border-radius: 50%; background: var(--dark-primary); height: 32px; width: 32px; margin-left: 15px; margin-top: 10px;">
+            <a href="../"><i class="fa-solid fa-chevron-left"
+                    style="margin-left:8px;margin-top:6px;font-size:20px"></i></a>
         </div>
         <span class="noselect"
             style="position: absolute;margin-right:50%;width:100%;margin-top:-25px;text-align: center;font-size: 20px;font-weight:600;">
@@ -845,6 +893,7 @@
                     style="position:absolute;top: 5%" width="auto" height="55%">
                 <span
                     style="font-size: 4rem;position: absolute;top:65.5%;right:0%;width:100%;text-align: center;color:var(--light-primary);">
+                    <!--
                     Album
                     <span
                         style="font-size: 1.3rem;position: absolute;top:100%;left:0%;width:100%;color:var(--light-secondary)">
@@ -852,6 +901,7 @@
                     <span
                         style="font-size: .9rem;position: absolute;top:125%;left:0%;width:100%;color:var(--light-secondary)">
                         No lyrics im lazy </span>
+                    -->
                 </span>
             </h1>
         </div>
@@ -886,36 +936,36 @@
             </div>
         </div>
     </div>
-    
+
     <script src="https://unpkg.com/wavesurfer.js"></script>
     <script>
         const select = (_, el = document) => el.querySelector(_);
         const albumicons = {
-        "More Chaos":
-            "https://images.genius.com/ddebc30f117a1d77fc3eeb39323c5993.1000x1000x1.jpg",
-        "A Great Chaos":
-            "https://images.genius.com/7691b69f0717dacd9c678521d722160a.1000x1000x1.png",
-        "Lost ?":
-            "https://images.genius.com/b2c460bf426b9df10f6073d8f15175a4.1000x1000x1.png",
-        X: "https://images.genius.com/de650f4d0ca39dbf04a5d6b51d8a84a8.1000x1000x1.png",
-        "X-23":
-            "https://images.genius.com/0ad831c7dff193912d48b18ecbfc6b3b.252x252x1.jpg",
-        "Lost Files 3":
-            "https://images.genius.com/3750b1d6541912c482aa06a5a5fc426b.500x500x1.jpg",
-        "X Man": "https://images.genius.com/78d4c56ae31f8eb1d0496e1616a1ff0a.1000x1000x1.jpg",
-        "Project Xtended": "https://i.redd.it/oeyyp91f2te71.png",
-        "Project X":
-            "https://images.genius.com/d3a0f08457e58a24e5c4cf357f23b987.1000x1000x1.png",
-        "Lost Files 2":
-            "https://images.genius.com/f67f38cfc7583d6e46363d7e22b23ff9.500x500x1.jpg",
-        "Lost Files":
-            "https://images.genius.com/da09dc883513130cddd7d8a86f355f43.500x500x1.jpg",
-        "Teen X: Relapsed":
-            "https://images.genius.com/331746ea75acdeb77e04167b01e07bd8.1000x1000x1.png",
-        "Teen X":
-            "https://images.genius.com/b29cb9082c5b354d09b3c23f3a7402ec.1000x1000x1.png",
-        "Boy Barbie":
-            "https://images.genius.com/1ef69452d04b5a151fe7738c0b633171.1000x1000x1.jpg",
+            "More Chaos":
+                "https://images.genius.com/ddebc30f117a1d77fc3eeb39323c5993.1000x1000x1.jpg",
+            "A Great Chaos":
+                "https://images.genius.com/7691b69f0717dacd9c678521d722160a.1000x1000x1.png",
+            "Lost ?":
+                "https://images.genius.com/b2c460bf426b9df10f6073d8f15175a4.1000x1000x1.png",
+            X: "https://images.genius.com/de650f4d0ca39dbf04a5d6b51d8a84a8.1000x1000x1.png",
+            "X-23":
+                "https://images.genius.com/0ad831c7dff193912d48b18ecbfc6b3b.252x252x1.jpg",
+            "Lost Files 3":
+                "https://images.genius.com/3750b1d6541912c482aa06a5a5fc426b.500x500x1.jpg",
+            "X Man": "https://images.genius.com/78d4c56ae31f8eb1d0496e1616a1ff0a.1000x1000x1.jpg",
+            "Project Xtended": "https://i.redd.it/oeyyp91f2te71.png",
+            "Project X":
+                "https://images.genius.com/d3a0f08457e58a24e5c4cf357f23b987.1000x1000x1.png",
+            "Lost Files 2":
+                "https://images.genius.com/f67f38cfc7583d6e46363d7e22b23ff9.500x500x1.jpg",
+            "Lost Files":
+                "https://images.genius.com/da09dc883513130cddd7d8a86f355f43.500x500x1.jpg",
+            "Teen X: Relapsed":
+                "https://images.genius.com/331746ea75acdeb77e04167b01e07bd8.1000x1000x1.png",
+            "Teen X":
+                "https://images.genius.com/b29cb9082c5b354d09b3c23f3a7402ec.1000x1000x1.png",
+            "Boy Barbie":
+                "https://images.genius.com/1ef69452d04b5a151fe7738c0b633171.1000x1000x1.jpg",
         };
 
         var currsongmax;
@@ -956,7 +1006,7 @@
         };
 
         document.addEventListener("DOMContentLoaded", function () {
-            
+
             audioplayer = select("#audio");
 
             var wavesurfer = WaveSurfer.create({
@@ -1002,20 +1052,22 @@
 
             var revealDiv = select("#reelbackthingamabob");
             revealDiv.style.opacity = "0"
-            window.addEventListener('scroll', function() {
+            window.addEventListener('scroll', function () {
                 var scroll = window.scrollY;
-                if (scroll >= 300) {
-                revealDiv.style.opacity = '1';
-                } else {
-                revealDiv.style.opacity = scroll / 300;
-                }
+                if(!currentlymaximized){
+                    if (scroll >= 300) {
+                        revealDiv.style.opacity = '1';
+                    } else {
+                        revealDiv.style.opacity = scroll / 300;
+                    }
+                } else revealDiv.style.opacity = "0"
             });
 
             wavesurfer.on("finish", async function () {
                 switchAudioMode(false);
                 wavesurfer.stop();
                 // next sawng
-                if(!!currentsong) playNext(currentsong.tracknumber)
+                if (!!currentsong) playNext(currentsong.tracknumber)
             });
             audioplayer.addEventListener("canplay", function () {
                 if (currenttrack) currenttrack.classList.remove("loading");
@@ -1028,7 +1080,7 @@
                 miniprogressBar.style.width = progress + "%";
                 timeDisplay.textContent = formatTime(currentTime);
             });
-            wavesurfer.on("loading", function(loadedProgress) {
+            wavesurfer.on("loading", function (loadedProgress) {
                 if (loadedProgress > 0) {
                     miniloadedBar.style.width = loadedProgress + "%";
                 }
@@ -1081,7 +1133,7 @@
                         let hash = songUrl.split("/");
                         songUrl = `https://api.pillowcase.su/api/download/${hash[hash.length - 1]}`;
                     }
-                    
+
                     wavesurfer.setMuted(true)
                     audioplayer.src = songUrl
                     wavesurfer.load(songUrl)
@@ -1099,11 +1151,11 @@
                         songlist: songElement.parentElement
                     };
                     albumart.src = imgiconwhatever;
-                    let thng = `<span style="font-size: 1.3rem;position: absolute;top:100%;left:0%;width:100%;color:var(--light-secondary)">
+                    /*let thng = `<span style="font-size: 1.3rem;position: absolute;top:100%;left:0%;width:100%;color:var(--light-secondary)">
                         Ken Carson </span>
                     <span style="font-size: .9rem;position: absolute;top:125%;left:0%;width:100%;color:var(--light-secondary)">
                         No lyrics im lazy </span>`
-                    albumtitle.innerHTML = songElement.getAttribute("album") ? songElement.getAttribute("album") + thng : "Album" + thng
+                    albumtitle.innerHTML = songElement.getAttribute("album") ? songElement.getAttribute("album") + thng : "Album" + thng */
                     updateAudioData();
                     select("#producer").innerText = `Produced by: ${songElement.getAttribute("producer")}`;
                     select("#leakdate").innerText = `Leak Date: ${songElement.getAttribute("leakdate")}`;
@@ -1125,7 +1177,7 @@
                 for (var i = 0; i < tracklist.length; i++) {
                     var div = tracklist[i];
                     var divTrackNum = parseInt(div.getAttribute('track-num'));
-                    
+
                     if (div.hasAttribute('song-url') && divTrackNum > tracknum) {
                         nexttrack = divTrackNum;
                         nexttrackElement = div;
@@ -1139,19 +1191,19 @@
                     switchAudioMode(false);
                 }
             }
-            
+
             playPrevious = function (tracknum) {
                 var nexttrack = undefined; var nexttrackElement = undefined;
                 var tracklist = currentsong.songlist.querySelectorAll('div[track-num]');
                 for (var i = 0; i < tracklist.length; i++) {
                     var div = tracklist[i];
                     var divTrackNum = parseInt(div.getAttribute('track-num'));
-                    
-                    if (div.hasAttribute('song-url')){
-                        if (divTrackNum < tracknum){
+
+                    if (div.hasAttribute('song-url')) {
+                        if (divTrackNum < tracknum) {
                             nexttrack = divTrackNum;
                             nexttrackElement = div;
-                        } else if(divTrackNum > tracknum) break;
+                        } else if (divTrackNum > tracknum) break;
                     }
                 }
                 if (nexttrackElement) {
@@ -1161,12 +1213,12 @@
                     switchAudioMode(false);
                 }
             }
-            
-            maxbackwardthing.addEventListener("click", function() {
+
+            maxbackwardthing.addEventListener("click", function () {
                 event.stopPropagation();
                 playPrevious(currentsong.tracknumber);
             })
-            maxforwardthing.addEventListener("click", function() {
+            maxforwardthing.addEventListener("click", function () {
                 event.stopPropagation();
                 playNext(currentsong.tracknumber)
             })
@@ -1216,7 +1268,5 @@
 
 
 </body>
-
-</html>
 
 </html>
