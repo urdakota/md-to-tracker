@@ -1,6 +1,7 @@
 import { select, create } from "../dependancies/utils.js";
 
-// Get Ken JSONconst filepath = "Ken.json";
+// Get Ken JSON
+const filepath = "Ken.json";
 const albumicons = {
   "More Chaos":
     "https://images.genius.com/ddebc30f117a1d77fc3eeb39323c5993.1000x1000x1.jpg",
