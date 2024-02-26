@@ -1,6 +1,7 @@
 import { select, create } from "../dependancies/utils.js";
 
 // Get Ken JSON
+
 const filepath = "Ken.json";
 const albumicons = {
   "More Chaos":
@@ -14,7 +15,8 @@ const albumicons = {
     "https://images.genius.com/0ad831c7dff193912d48b18ecbfc6b3b.252x252x1.jpg",
   "Lost Files 3":
     "https://images.genius.com/3750b1d6541912c482aa06a5a5fc426b.500x500x1.jpg",
-  "X Man": "https://images.genius.com/78d4c56ae31f8eb1d0496e1616a1ff0a.1000x1000x1.jpg",
+  "X Man":
+    "https://images.genius.com/78d4c56ae31f8eb1d0496e1616a1ff0a.1000x1000x1.jpg",
   "Project Xtended": "https://i.redd.it/oeyyp91f2te71.png",
   "Project X":
     "https://images.genius.com/d3a0f08457e58a24e5c4cf357f23b987.1000x1000x1.png",
@@ -29,7 +31,7 @@ const albumicons = {
   "Boy Barbie":
     "https://images.genius.com/1ef69452d04b5a151fe7738c0b633171.1000x1000x1.jpg",
   "Boy Barbie OG":
-    "https://images.genius.com/4db345894c3b0cfdaf9fe68d4a487b18.899x899x1.jpg"
+    "https://images.genius.com/4db345894c3b0cfdaf9fe68d4a487b18.899x899x1.jpg",
 };
 
 const convertToDate = (dateStr) => {
@@ -38,6 +40,21 @@ const convertToDate = (dateStr) => {
   if (isNaN(day)) day = 1;
   return new Date(`20${year}/${month}/${day}`);
 };
+
+const monthNames = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
 
 function formatDate(inputDate) {
   // Split the input date string into components
@@ -49,20 +66,6 @@ function formatDate(inputDate) {
     const date = new Date(`${month}/${day}/20${year}`);
 
     // Define an array of month names
-    const monthNames = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
 
     // Get the month, day, and year from the Date object
     const formattedMonth = monthNames[date.getMonth()];
@@ -81,7 +84,10 @@ function formatDate(inputDate) {
     // No day specified, output just the month and year
     // Here, you might want to decide if you want the month to be abbreviated or spelled out fully
     // For example, "Jan" or "January"
-    return `${month} ${year}`;
+    let date = new Date(`${month}/1/20${year}`);
+    let formattedMonth = monthNames[date.getMonth()];
+
+    return `${formattedMonth}, 20${year}`;
   } else {
     // Only day provided, it's an invalid format
     return "Invalid date format";
@@ -128,6 +134,7 @@ function requestdata() {
 function loadcontent(jsonData) {
   const albums_wrapper = select("#albums > .wrapper");
   var recentsongs = {};
+  var bestsongs = {};
   for (const key in jsonData) {
     let album = key;
 
@@ -181,7 +188,8 @@ function loadcontent(jsonData) {
     backbtn.style["margin-left"] = "15px";
     backbtn.style["margin-top"] = "10px";
 
-    backbtn.innerHTML += '<i class="fa-solid fa-chevron-left" style="margin-left:8px;margin-top:6px;font-size:20px"></i>'
+    backbtn.innerHTML +=
+      '<i class="fa-solid fa-chevron-left" style="margin-left:8px;margin-top:6px;font-size:20px"></i>';
 
     let artistthing = create("div", albumthing);
     artistthing.classList.add("Artist", "noselect");
@@ -219,8 +227,8 @@ function loadcontent(jsonData) {
     let albumdescription = create("span", artistheader);
     albumdescription.style["text-align"] = "center";
     albumdescription.style["font-size"] = "2.2vw";
-    albumdescription.style.width = "100%"
-    albumdescription.style.opacity = ".85"
+    albumdescription.style.width = "100%";
+    albumdescription.style.opacity = ".85";
     albumdescription.style.background = "var(--dark-secondary)";
     albumdescription.style.bottom = "0px";
     albumdescription.style.position = "absolute";
@@ -244,11 +252,10 @@ function loadcontent(jsonData) {
         jsonData[album].hasOwnProperty(key) &&
         Array.isArray(jsonData[album][key])
       ) {
-        
         let details = create("details", songlist);
         if (fawk == 1) details.open = true;
         let summary = create("summary", details);
-        summary.classList.add("arrow")
+        summary.classList.add("arrow");
         let albumname2 = create("span", summary);
         albumname2.classList.add("album-info");
         albumname2.style["font-size"] = "22px";
@@ -257,20 +264,24 @@ function loadcontent(jsonData) {
 
         let i2 = 1;
         let versions = {};
-        let FullCount=0; let SnippetCount=0; let UnavailableCount=0;let BestCount=0;let vercount=0;
+        let FullCount = 0;
+        let SnippetCount = 0;
+        let UnavailableCount = 0;
+        let BestCount = 0;
+        let vercount = 0;
         jsonData[album][key].forEach((item) => {
-          if(typeof item === "object"){
+          if (typeof item === "object") {
             item["album"] = album;
             item["disc"] = key;
             if (item.quality != "Not Available" && item.portion != "Snippet")
               recentsongs[item.title] = item;
 
-            if(item.portion == "Full") FullCount++;
+            if (item.portion == "Full") FullCount++;
 
             let songelement = create("div", details);
             songelement.classList.add("song");
             if (item.link) songelement.setAttribute("song-url", item.link);
-            if (!item.link) songelement.style.opacity = ".5"
+            if (!item.link) songelement.style.opacity = ".5";
 
             songelement.setAttribute("track-num", i);
             songelement.setAttribute("album", item["album"]);
@@ -283,22 +294,23 @@ function loadcontent(jsonData) {
             songelement.setAttribute("ogfilename", item["OG File"]);
             songelement.setAttribute("history", item.History);
 
-            if (item["best"]){
+            if (item["best"]) {
+              if (item.quality != "Not Available" && item.portion != "Snippet" && item["song type"] != "EP Track") bestsongs[item.title] = item;
               let bestof = create("i", songelement);
-              bestof.classList.add("fa-solid","fa-circle");
+              bestof.classList.add("fa-solid", "fa-circle");
               bestof.style.display = "flex";
               bestof.style["align-items"] = "center";
               bestof.style["font-size"] = "8px";
               bestof.style["margin-left"] = "10px";
               bestof.style["margin-right"] = "0px";
-              bestof.style.color = "grey"
-              BestCount++
+              bestof.style.color = "grey";
+              BestCount++;
             }
 
             let tracknum = create("span", songelement);
             tracknum.classList.add("track-num");
             tracknum.textContent = i2;
-            if(!item['best']) tracknum.style["margin-left"] = "25px";
+            if (!item["best"]) tracknum.style["margin-left"] = "25px";
 
             let songinfo = create("div", songelement);
             songinfo.classList.add("song-info");
@@ -310,56 +322,58 @@ function loadcontent(jsonData) {
             let songinfo2 = create("span", songname2);
             songinfo2.style["font-size"] = "small";
             songinfo2.style.color = "lightgray";
-            songinfo2.textContent = " "+ item.info;
+            songinfo2.textContent = " " + item.info;
 
             if (item.portion == "Snippet") {
               var snippettag = create("span", songname2);
               snippettag.classList.add("tag", "snippet");
               snippettag.textContent = "Snippet";
-              if(item.quality != "Not Available") SnippetCount++;
+              if (item.quality != "Not Available") SnippetCount++;
             }
-            if(item.quality == "Not Available"){
+            if (item.quality == "Not Available") {
               var snippettag = create("span", songname2);
               snippettag.classList.add("tag", "unavailable");
               snippettag.textContent = "Unavailable";
-              if(item.portion != "Snippet") UnavailableCount++;
+              if (item.portion != "Snippet") UnavailableCount++;
             }
 
-            if(item.title.includes("[v") || item.title.includes("Instrumental")){
-              let version = item.title.split("[v")
-              let versionnumm = version[1].split("]")[0]
-              if(!versions[version[0]]) versions[version[0]]=0
-              versions[version[0]]++
-              if(versions[version[0]]!==1){ 
-                tracknum.textContent = i2-1 + "." + versionnumm;
+            if (
+              item.title.includes("[v") ||
+              item.title.includes("Instrumental")
+            ) {
+              let version = item.title.split("[v");
+              let versionnumm = version[1].split("]")[0];
+              if (!versions[version[0]]) versions[version[0]] = 0;
+              versions[version[0]]++;
+              if (versions[version[0]] !== 1) {
+                tracknum.textContent = i2 - 1 + "." + versionnumm;
                 vercount++;
               }
-              if(versions[version[0]]==1){
-                i2++
+              if (versions[version[0]] == 1) {
+                i2++;
               }
             } else {
-              i2++
+              i2++;
             }
-            i++
+            i++;
           }
         });
-        albumname2.textContent = key + ` (${i2-1})`
+        albumname2.textContent = key + ` (${i2 - 1})`;
         var albuminfo = create("p", details);
         albuminfo.classList.add("album-info");
-        let totalsawngs = (i2-UnavailableCount)-vercount
+        let totalsawngs = i2 - UnavailableCount - vercount;
         albuminfo.innerHTML += `
         ${FullCount} Full Songs ${vercount == 0 ? "" : `(${vercount} version${vercount == 1 ? "" : "s"})`}<br>
         ${SnippetCount} Snippet${SnippetCount == 1 ? "" : "s"} <br>
         ${UnavailableCount} Unavailable Songs <br>
-        Rating: ${Math.round((BestCount/totalsawngs)*100)/10}/10 (${BestCount} best / ${totalsawngs} songs)
-        `
+        Rating: ${Math.round((BestCount / totalsawngs) * 100) / 10}/10 (${BestCount} best / ${totalsawngs} songs)
+        `;
 
         fawk++;
       }
     }
-    
-    songlist.querySelectorAll(".song")
-    .forEach(function (songElement) {
+
+    songlist.querySelectorAll(".song").forEach(function (songElement) {
       songElement.addEventListener("click", function () {
         playSong(songElement.getAttribute("track-num"), songElement);
       });
@@ -415,7 +429,67 @@ function loadcontent(jsonData) {
     i++;
   }
 
-  select(".new-songs")
+  select("#new-songs")
+    .querySelectorAll(".song")
+    .forEach(function (songElement) {
+      songElement.addEventListener("click", function () {
+        playSong(songElement.getAttribute("track-num"), songElement);
+      });
+    });
+
+  i = 1;
+  var songparent1 = select("#best-songs > .wrapper > #row1");
+  const entries = Object.entries(bestsongs).reverse();
+  for (const [song, songdata] of entries) {
+    var songelement = create("div", songparent1);
+    songelement.classList.add("song");
+
+    if (i % 4 == 0 && i > 3) {
+      var newrow = create("div", select("#best-songs > .wrapper"));
+      newrow.classList.add("row");
+      newrow.id = "row" + (i / 4 + 1);
+      songparent1 = newrow;
+    }
+    if (songdata.link) songelement.setAttribute("song-url", songdata.link);
+
+    songelement.setAttribute("track-num", i);
+    songelement.setAttribute("producer", songdata.producer);
+    songelement.setAttribute("leakdate", songdata["leak date"]);
+    songelement.setAttribute("recording", songdata["recording date"]);
+    songelement.setAttribute("songtype", songdata["song type"]);
+    songelement.setAttribute("portion", songdata.portion);
+    songelement.setAttribute("quality", songdata.quality);
+    songelement.setAttribute("ogfilename", songdata["OG File"]);
+    songelement.setAttribute("history", songdata.History);
+
+    var albumart = create("img", songelement);
+    albumart.src = albumicons[songdata.album];
+    albumart.classList.add("song-img", "noselect");
+
+    var songinfo = create("div", songelement);
+    songinfo.classList.add("song-info");
+
+    var songname = create("div", songinfo);
+    songname.classList.add("song-name");
+    songname.textContent = songdata.title;
+
+    var songartist = create("div", songinfo);
+    songartist.classList.add("song-artist");
+    var betterdate = "";
+    if (songdata["leak date"] != "Unknown")
+      betterdate = `· ${formatDate(songdata["leak date"])}`;
+    songartist.textContent = `${songdata.album} ${betterdate}`;
+
+    if (songdata.portion == "Snippet") {
+      var snippettag = create("span", songname);
+      snippettag.classList.add("tag", "snippet");
+      snippettag.textContent = "Snippet";
+    }
+
+    i++;
+  }
+
+  select("#best-songs")
     .querySelectorAll(".song")
     .forEach(function (songElement) {
       songElement.addEventListener("click", function () {
